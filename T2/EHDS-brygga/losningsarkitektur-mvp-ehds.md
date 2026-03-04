@@ -17,16 +17,31 @@ Dokumentet är organiserat i tre nivåer:
 | API Gateway | TLS, routing, rate limit, åtkomstkontroll | Permanent |
 | Åtkomstintygstjänst | OAuth2-tokenvalidering, klientauktorisation | Permanent |
 | FHIR-tjänsteyta | Logisk FHIR-server per VG, sökning, Bundle-bygge | Permanent |
+| Regelverksproxy | Spärr/filtrering, åtkomstloggning, samtyckesstyrning – tillämpas på aggregerat svar innan det lämnar bryggan; kan placeras framför en VG:s native FHIR-server utan mappningslagret | Permanent |
 | Informationsindex | Patientförekomst per VG (EI-baserat) | Permanent |
-| Tjänstekatalog | Endpoint och informationstyper per VG | Permanent |
+| Tjänstekatalog | Endpoint, informationstyper **och backend-typ (FHIR eller SOAP)** per VG | Permanent |
 | Adapter-TAK | VG HSA-id → logisk adress i NTjP | Övergång |
 | Mappningsmotor | FHIR↔SOAP, kodverksöversättning | Övergång (mönstret permanent) |
 | SOAP-klient | RIVTA BP 2.1, mTLS, felhantering | Övergång |
-| Spärr/filtrering | Utgångsfiltrering mot spärrunderlag | Permanent (mönstret) |
-| Åtkomstlogg | Loggpost per patientdataåtkomst | Permanent |
+| Spärr/filtrering | Utgångsfiltrering mot spärrunderlag – ingår i Regelverksproxy | Permanent (mönstret) |
+| Åtkomstlogg | Loggpost per patientdataåtkomst – ingår i Regelverksproxy | Permanent |
 | PDI-synk | EI → eHM:s PDI | Permanent |
 | NTK-synk | Tjänstekatalog → eHM:s NTK | Permanent |
 | Federationssynk | Medlemskap → eHM:s katalog | Permanent |
+
+### Ansvarsfördelning: FHIR-tjänsteyta vs. Regelverksproxy
+
+FHIR-tjänsteytan delas konceptuellt i två ansvarsområden med olika livslängd:
+
+| Ansvarsområde | Innehåll | Livslängd |
+|---------------|----------|-----------|
+| **Mappning och orkestrering** | FHIR↔SOAP-översättning, EI-uppslag, TAK-uppslag, Bundle-bygge | Övergång – försvinner när VG:er har native FHIR |
+| **Regelverksproxy** | Spärr, filtrering, åtkomstlogg, samtycke | Permanent – tillämpas oavsett om bakändan är SOAP eller FHIR |
+
+Proxyn tillämpas alltid på det *aggregerade* svaret, d.v.s. efter att data hämtats och normaliserats från alla berörda VG:er. Det innebär att:
+- Åtkomstloggen skriver **en post per konsumentanrop** (inte per VG-anrop bakom kulisserna)
+- PDL-kravet "konsumenten kan inte skilja 'ingen data' från 'allt spärrat'" gäller det samlade resultatet
+- `Bundle.total` och interna resursreferenser (t.ex. `Provenance.target`) uppdateras efter filtrering
 
 ---
 
@@ -51,10 +66,10 @@ Konsument söker diagnoser för en patient hos en specifik vårdgivare. Bryggan 
 
 ```mermaid
 sequenceDiagram
-    box rgb(227,242,253) Konsument
+    box rgb(255,255,255) Konsument
         actor K as Konsument
     end
-    box rgb(74,14,46) Ineras infrastruktur
+    box rgb(255,255,204) Ineras infrastruktur
         participant GW as API Gateway
         participant AT as Åtkomsintygstjänst
         participant FY as FHIR-tjänsteyta
@@ -65,7 +80,7 @@ sequenceDiagram
         participant SP as Spärr/filtrering
         participant LG as Åtkomstlogg
     end
-    box rgb(198,40,40) Befintlig infrastruktur
+    box rgb(220,220,255) Befintlig infrastruktur
         participant VP as NTjP/VP
         participant PROD as Regionens<br/>tjänsteproducent
     end
@@ -123,12 +138,16 @@ Konsument söker diagnoser men informationsindexet visar att VG inte har data om
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant GW as API Gateway
-    participant AT as Åtkomstintygstjänst
-    participant FY as FHIR-tjänsteyta
-    participant IX as Informationsindex
-    participant LG as Åtkomstlogg
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant GW as API Gateway
+        participant AT as Åtkomstintygstjänst
+        participant FY as FHIR-tjänsteyta
+        participant IX as Informationsindex
+        participant LG as Åtkomstlogg
+    end
 
     K->>GW: GET /fhir/{vg-hsa-id}/Condition?patient={pnr}
     GW->>AT: Validera token
@@ -151,9 +170,13 @@ Konsumentens token saknar rätt scope eller är ogiltigt.
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant GW as API Gateway
-    participant AT as Åtkomstintygstjänst
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant GW as API Gateway
+        participant AT as Åtkomstintygstjänst
+    end
 
     K->>GW: GET /fhir/{vg-hsa-id}/Condition?patient={pnr}
     GW->>AT: Validera token
@@ -168,13 +191,19 @@ SOAP-anropet misslyckas (timeout, fel).
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant GW as API Gateway
-    participant FY as FHIR-tjänsteyta
-    participant SC as SOAP-klient
-    participant VP as NTjP/VP
-    participant PROD as Regionens producent
-    participant LG as Åtkomstlogg
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant GW as API Gateway
+        participant FY as FHIR-tjänsteyta
+        participant SC as SOAP-klient
+        participant LG as Åtkomstlogg
+    end
+    box rgb(220,220,255) Befintlig infrastruktur
+        participant VP as NTjP/VP
+        participant PROD as Regionens producent
+    end
 
     K->>GW: GET /fhir/{vg-hsa-id}/Condition?patient={pnr}
     Note over GW: Token validerat (utelämnat)
@@ -200,11 +229,15 @@ SOAP-anropet lyckas men all returnerad data filtreras bort av spärrtjänsten.
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant FY as FHIR-tjänsteyta
-    participant MM as Mappningsmotor
-    participant SP as Spärr/filtrering
-    participant LG as Åtkomstlogg
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant FY as FHIR-tjänsteyta
+        participant MM as Mappningsmotor
+        participant SP as Spärr/filtrering
+        participant LG as Åtkomstlogg
+    end
 
     Note over FY: Autentisering, index, TAK, SOAP-hämtning OK (utelämnat)
 
@@ -255,14 +288,20 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    actor FV as Förvaltare
-    participant TK as Tjänstekatalog
-    participant TAK as Adapter-TAK
-    participant FMK as Federationsmedlemskap
-    participant NS as NTK-synk
-    participant FS as Federationssynk
-    participant eHM_NTK as eHM NTK
-    participant eHM_FED as eHM Fed.katalog
+    box rgb(255,255,255) Förvaltare
+        actor FV as Förvaltare
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant TK as Tjänstekatalog
+        participant TAK as Adapter-TAK
+        participant FMK as Federationsmedlemskap
+        participant NS as NTK-synk
+        participant FS as Federationssynk
+    end
+    box rgb(220,220,255) Externa tjänster
+        participant eHM_NTK as eHM NTK
+        participant eHM_FED as eHM Fed.katalog
+    end
 
     FV->>TK: Registrera VG: HSA-id, endpoint, informationstyper
     Note over TK: TX-20: Manuell konfiguration i MVP
@@ -310,10 +349,14 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant EI as Engagemangsindex
-    participant PS as PDI-synk
-    participant PROJ as Lokal projektion
-    participant eHM_PDI as eHM PDI
+    box rgb(255,255,204) Ineras infrastruktur
+        participant EI as Engagemangsindex
+        participant PS as PDI-synk
+        participant PROJ as Lokal projektion
+    end
+    box rgb(220,220,255) Externa tjänster
+        participant eHM_PDI as eHM PDI
+    end
 
     EI->>PS: ProcessNotification (ny post)
     Note over EI,PS: TX-30: Patientid + VG + informationstyp
@@ -332,10 +375,14 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant EI as Engagemangsindex
-    participant PS as PDI-synk
-    participant PROJ as Lokal projektion
-    participant eHM_PDI as eHM PDI
+    box rgb(255,255,204) Ineras infrastruktur
+        participant EI as Engagemangsindex
+        participant PS as PDI-synk
+        participant PROJ as Lokal projektion
+    end
+    box rgb(220,220,255) Externa tjänster
+        participant eHM_PDI as eHM PDI
+    end
 
     EI->>PS: ProcessNotification (borttagen post)
     Note over EI,PS: TX-30: Borttagning
@@ -373,9 +420,13 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    actor KF as Konsumentens<br/>förvaltare
-    participant KMK as Klientmetadatakatalog
-    participant AT as Åtkomstintygstjänst
+    box rgb(255,255,255) Konsument
+        actor KF as Konsumentens<br/>förvaltare
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant KMK as Klientmetadatakatalog
+        participant AT as Åtkomstintygstjänst
+    end
 
     KF->>KMK: Registrera klient: org-id, publika nycklar, önskade scopes
     Note over KMK: TX-40: Manuell i MVP
@@ -509,4 +560,20 @@ Ska `GET /fhir/{vg-hsa-id}/metadata` vara ett eget användningsfall (UC-05) elle
 
 ## Öppen fråga: Aggregering
 
-Sekvensdiagrammet i den bifogade bilden visar en aggregeringsmodell där 1177/Journalen hämtar data från multipla VG:er parallellt (via index → parallella hämtningar). MVP:n täcker en VG i taget, men designen bör vara förberedd för ett framtida UC-05: "Hämta diagnosinformation från alla VG:er med data om en patient" – vilket kräver tvärsökning via informationsindex + parallella SOAP-anrop, samma mönster som AgP idag fast med FHIR som utgående format.
+Sekvensdiagrammet i den bifogade bilden visar en aggregeringsmodell där 1177/Journalen hämtar data från multipla VG:er parallellt (via index → parallella hämtningar). MVP:n täcker en VG i taget, men designen bör vara förberedd för ett framtida UC-05: "Hämta diagnosinformation från alla VG:er med data om en patient" – vilket kräver tvärsökning via informationsindex + parallella anrop, samma mönster som AgP idag fast med FHIR som utgående format.
+
+### Designprinciper för UC-05 att ha med sig redan nu
+
+**Utåt ser lösningen ut som en VG:s FHIR-server.** Konsumenten anropar ett FHIR-API med ett VG HSA-id i URL:en. I aggregeringsfallet kan det HSA-id:t tillhöra bryggan/Inera snarare än en enskild region – konsumenten behöver inte känna till om svaret aggregerats.
+
+**URL-mönster för aggregering** (förslag):
+- Per VG (MVP): `GET /fhir/{vg-hsa-id}/Condition?patient={pnr}`
+- Aggregerat (UC-05): `GET /fhir/{inera-aggregator-hsa-id}/Condition?patient={pnr}`
+
+**Tjänstekatalog måste hålla backend-typ.** När bryggan i UC-05 slår upp vilka VG:er som har data (via EI) och sedan ska hämta den, behöver den veta om respektive VG exponerar FHIR eller SOAP. Tjänstekatalogen behöver därför innehålla `backendTyp: FHIR | SOAP` per VG-endpoint, så att bryggan kan välja rätt adapter.
+
+**Regelverksproxyn tillämpas en gång på det aggregerade resultatet** – inte per VG-anrop. Annars riskerar man:
+- Flera loggposter för samma konsumentanrop
+- Inkonsekvent filtrering om spärr täcker data från flera VG:er
+
+**Deduplicering** av resurser som förekommer hos flera VG:er bör adresseras i UC-05-specen (t.ex. samma diagnos registrerad i två system).
