@@ -1,0 +1,1192 @@
+<ImplementationGuide xmlns="http://hl7.org/fhir">
+   <id value="sis.se.tk334.ag10.lma"/>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <p class="res-header-id">
+            <b>Generated Narrative: ImplementationGuide sis.se.tk334.ag10.lma</b>
+         </p>
+         <a name="sis.se.tk334.ag10.lma"> </a>
+         <a name="hcsis.se.tk334.ag10.lma"> </a>
+         <h2>LMAApiStandard</h2>
+         <p>The official URL for this implementation guide is: </p>
+         <pre>https://sis.se/fhir/lma/ImplementationGuide/sis.se.tk334.ag10.lma</pre>
+         <div>
+            <p>FHIR Implementation Guide för SIS/TR API-standard för läkemedelsautomater. Specificerar hur informationsmodellen för läkemedelsautomater realiseras med HL7 FHIR R4 för datautbyte mellan LMA-plattformar och konsumerande system.</p>
+         </div>
+      </div>
+   </text>
+   <url value="https://sis.se/fhir/lma/ImplementationGuide/sis.se.tk334.ag10.lma"/>
+   <version value="0.1.0"/>
+   <name value="LMAApiStandard"/>
+   <title value="LMA API-standard – FHIR Implementation Guide"/>
+   <status value="draft"/>
+   <date value="2026-03-02T17:45:35+00:00"/>
+   <publisher value="SIS/TK334 AG10"/>
+   <contact>
+      <name value="SIS/TK334 AG10"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://sis.se"/>
+      </telecom>
+      <telecom>
+         <system value="email"/>
+         <value value="fhir@sis.se"/>
+      </telecom>
+   </contact>
+   <description value="FHIR Implementation Guide för SIS/TR API-standard för läkemedelsautomater. Specificerar hur informationsmodellen för läkemedelsautomater realiseras med HL7 FHIR R4 för datautbyte mellan LMA-plattformar och konsumerande system."/>
+   <jurisdiction>
+      <coding>
+         <system value="urn:iso:std:iso:3166"/>
+         <code value="SE"/>
+         <display value="Sweden"/>
+      </coding>
+   </jurisdiction>
+   <packageId value="sis.se.tk334.ag10.lma"/>
+   <license value="CC0-1.0"/>
+   <fhirVersion value="4.0.1"/>
+   <dependsOn id="hl7tx">
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment">
+         <valueMarkdown value="Automatically added as a dependency - all IGs depend on HL7 Terminology"/>
+      </extension>
+      <uri value="http://terminology.hl7.org/ImplementationGuide/hl7.terminology"/>
+      <packageId value="hl7.terminology.r4"/>
+      <version value="7.0.1"/>
+   </dependsOn>
+   <dependsOn id="hl7ext">
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment">
+         <valueMarkdown value="Automatically added as a dependency - all IGs depend on the HL7 Extension Pack"/>
+      </extension>
+      <uri value="http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions"/>
+      <packageId value="hl7.fhir.uv.extensions.r4"/>
+      <version value="5.2.0"/>
+   </dependsOn>
+   <definition>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="copyrightyear"/>
+         </extension>
+         <extension url="value">
+            <valueString value="2025+"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="releaselabel"/>
+         </extension>
+         <extension url="value">
+            <valueString value="draft"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-publisher"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-version"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-expansion-params"/>
+         </extension>
+         <extension url="value">
+            <valueString value="../../input/_resources/exp-params.json"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="show-inherited-invariants"/>
+         </extension>
+         <extension url="value">
+            <valueString value="false"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="usage-stats-opt-out"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="excludettl"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="autoload-resources"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-liquid"/>
+         </extension>
+         <extension url="value">
+            <valueString value="template/liquid"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-liquid"/>
+         </extension>
+         <extension url="value">
+            <valueString value="input/liquid"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-qa"/>
+         </extension>
+         <extension url="value">
+            <valueString value="temp/qa"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-temp"/>
+         </extension>
+         <extension url="value">
+            <valueString value="temp/pages"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-output"/>
+         </extension>
+         <extension url="value">
+            <valueString value="output"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-suppressed-warnings"/>
+         </extension>
+         <extension url="value">
+            <valueString value="input/ignoreWarnings.txt"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="path-history"/>
+         </extension>
+         <extension url="value">
+            <valueString value="https://sis.se/fhir/lma/history.html"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="template-html"/>
+         </extension>
+         <extension url="value">
+            <valueString value="template-page.html"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="template-md"/>
+         </extension>
+         <extension url="value">
+            <valueString value="template-page-md.html"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-contact"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-context"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-copyright"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-jurisdiction"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-license"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="apply-wg"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="active-tables"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="fmm-definition"/>
+         </extension>
+         <extension url="value">
+            <valueString value="http://hl7.org/fhir/versions.html#maturity"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="propagate-status"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="excludelogbinaryformat"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+         <extension url="code">
+            <valueString value="tabbed-snapshots"/>
+         </extension>
+         <extension url="value">
+            <valueString value="true"/>
+         </extension>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/expansion-parameters">
+         <valueReference>
+            <reference value="Parameters/expansion-parameters"/>
+         </valueReference>
+      </extension>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency">
+         <valueCode value="hl7.fhir.uv.tools.r4#0.9.0"/>
+      </extension>
+      <grouping id="ProfilesCore">
+         <name value="Profiler – Kärnmodell"/>
+         <description value="Profiler för de kärnklasser som ingår i alla LMA-implementeringar."/>
+      </grouping>
+      <grouping id="Extensions">
+         <name value="Extensions"/>
+         <description value="Extensions specifika för LMA-standarden."/>
+      </grouping>
+      <grouping id="Terminology">
+         <name value="Terminologi"/>
+         <description value="CodeSystems och ValueSets med lagerindelad termbindning."/>
+      </grouping>
+      <grouping id="Examples">
+         <name value="Exempelinstanser"/>
+         <description value="Exempelinstanser för alla kärnprofiler."/>
+      </grouping>
+      <grouping id="-req-actordefinition">
+         <name value="Requirements: Actor Definitions"/>
+         <description value="The following artifacts define the types of individuals and/or systems that will interact as part of the use cases covered by this implementation guide."/>
+      </grouping>
+      <grouping id="-req-requirements">
+         <name value="Requirements: Formal Requirements"/>
+         <description value="The following artifacts describe the specific requirements to be met by systems compliant with the implementation guide."/>
+      </grouping>
+      <grouping id="-dyn-capabilitystatement">
+         <name value="Behavior: Capability Statements"/>
+         <description value="The following artifacts define the specific capabilities that different types of systems are expected to have in order to comply with this implementation guide.  Systems conforming to this implementation guide are expected to declare conformance to one or more of the following capability statements."/>
+      </grouping>
+      <grouping id="-dyn-operationdefinition">
+         <name value="Behavior: Operation Definitions"/>
+         <description value="These are custom operations that can be supported by and/or invoked by systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-dyn-messagedefinition">
+         <name value="Behavior: Message Definitions"/>
+         <description value="These define the types of messages that can be sent and/or received by systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-dyn-searchparameter">
+         <name value="Behavior: Search Parameters"/>
+         <description value="These define the properties by which a RESTful server can be searched.  They can also be used for sorting and including related resources."/>
+      </grouping>
+      <grouping id="-ka-activitydefinition">
+         <name value="Knowledge Artifacts: Activity Definitions"/>
+         <description value="These define activities that can be performed as part of content in this implementation guide."/>
+      </grouping>
+      <grouping id="-ka-plandefinition">
+         <name value="Knowledge Artifacts: Plan Definitions"/>
+         <description value="These define workflows, rules, strategies, or protocols as part of content in this implementation guide."/>
+      </grouping>
+      <grouping id="-ka-measure">
+         <name value="Knowledge Artifacts: Measure"/>
+         <description value="These define measures as part of content in this implementation guide."/>
+      </grouping>
+      <grouping id="-ka-library">
+         <name value="Knowledge Artifacts: Libraries"/>
+         <description value="These define logic, asset collections and other libraries as part of content in this implementation guide."/>
+      </grouping>
+      <grouping id="-str-graphdefinition">
+         <name value="Structures: Graph Definitions"/>
+         <description value="These define collections of interrelated resources that are useful to pass around as a group."/>
+      </grouping>
+      <grouping id="-str-logicalmodel">
+         <name value="Structures: Logical Models"/>
+         <description value="These define data models that represent the domain covered by this implementation guide in more business-friendly terms than the underlying FHIR resources."/>
+      </grouping>
+      <grouping id="-str-questionnaire">
+         <name value="Structures: Questionnaires"/>
+         <description value="These define forms used by systems conforming to this implementation guide to capture or expose data to end users."/>
+      </grouping>
+      <grouping id="-str-abstractprofile">
+         <name value="Structures: Abstract Profiles"/>
+         <description value="These are profiles on resources or data types that describe patterns used by other profiles, but cannot be instantiated directly.  I.e. instances can conform to profiles *based* on these abstract profiles but do not declare conformance to the abstract profiles themselves."/>
+      </grouping>
+      <grouping id="-str-profile">
+         <name value="Structures: Resource Profiles"/>
+         <description value="These define constraints on FHIR resources for systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-str-datatype">
+         <name value="Structures: Data Type Profiles"/>
+         <description value="These define constraints on FHIR data types for systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-str-extension">
+         <name value="Structures: Extension Definitions"/>
+         <description value="These define constraints on FHIR data types for systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-term-valueset">
+         <name value="Terminology: Value Sets"/>
+         <description value="These define sets of codes used by systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-term-codesystem">
+         <name value="Terminology: Code Systems"/>
+         <description value="These define new code systems used by systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-term-namingsystem">
+         <name value="Terminology: Naming Systems"/>
+         <description value="These define identifier and/or code system identities used by systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-map-structuremap">
+         <name value="Terminology: Structure Maps"/>
+         <description value="These define transformations to convert between data structures used by systems conforming to this implementation guide."/>
+      </grouping>
+      <grouping id="-map-conceptmap">
+         <name value="Terminology: Concept Maps"/>
+         <description value="These define transformations to convert between codes by systems conforming with this implementation guide."/>
+      </grouping>
+      <grouping id="-test-testplan">
+         <name value="Testing Artifacts: TestPlans"/>
+         <description value="These test plans are available to verify test coverage for this implementation guide"/>
+      </grouping>
+      <grouping id="-test-testscript">
+         <name value="Testing Artifacts: TestScripts"/>
+         <description value="These test definitions are available to FHIR test engines to verify systems are conforming to this implementation guide"/>
+      </grouping>
+      <grouping id="-ex-examplescenario">
+         <name value="Example: Example Scenarios"/>
+         <description value="These define groups of interrelated examples that demonstrate one or more of the workflows supported by this implementation guide."/>
+      </grouping>
+      <grouping id="-ex-example">
+         <name value="Example: Example Instances"/>
+         <description value="These are example instances that show what data produced and consumed by systems conforming with this implementation guide might look like."/>
+      </grouping>
+      <grouping id="-ex-examplesup">
+         <name value="Example: Example Supporting Instances"/>
+         <description value="These are example instances that are not governed by this implementation guide, but which are necessary to support other examples defined in the IG."/>
+      </grouping>
+      <grouping id="-other">
+         <name value="Other"/>
+         <description value="These are resources that are used within this implementation guide that do not fit into one of the other categories."/>
+      </grouping>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="MedicationAdministration"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="MedicationAdministration-example-administrering-avbojde-01.html"/>
+         </extension>
+         <reference>
+            <reference value="MedicationAdministration/example-administrering-avbojde-01"/>
+         </reference>
+         <name value="Exempeladministrering – brukare avböjde (omvårdnadslager)"/>
+         <description value="Exempelinstans för LMALakemedelsadministrering där brukaren avböjde.&#xA;Visar korrekt lageruppdelning: orsaken är omvårdnadsbedömd och från omvårdnadslagrets VS."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMALakemedelsadministrering"/>
+         <groupingId value="-ex-example"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="MedicationAdministration"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="MedicationAdministration-example-administrering-01.html"/>
+         </extension>
+         <reference>
+            <reference value="MedicationAdministration/example-administrering-01"/>
+         </reference>
+         <name value="Exempeladministrering – genomförd av sjuksköterska"/>
+         <description value="Exempelinstans för LMALakemedelsadministrering. Kopplar till föregående överlämning."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMALakemedelsadministrering"/>
+         <groupingId value="Examples"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="Device"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="Device-example-automat-01.html"/>
+         </extension>
+         <reference>
+            <reference value="Device/example-automat-01"/>
+         </reference>
+         <name value="Exempelautomat – MedRobot 3000"/>
+         <description value="Exempelinstans för LMAAutomat med driftsstatus och batterinivå."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMAAutomat"/>
+         <groupingId value="Examples"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="Patient"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="Patient-example-brukare-01.html"/>
+         </extension>
+         <reference>
+            <reference value="Patient/example-brukare-01"/>
+         </reference>
+         <name value="Exempelbrukare – Erik Svensson"/>
+         <description value="Exempelinstans för LMABrukare. Personnummer och namn är fiktiva."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMABrukare"/>
+         <groupingId value="Examples"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="DeviceUseStatement"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="DeviceUseStatement-example-koppling-01.html"/>
+         </extension>
+         <reference>
+            <reference value="DeviceUseStatement/example-koppling-01"/>
+         </reference>
+         <name value="Exempelkoppling – brukare 4711 till automat 0042"/>
+         <description value="Exempelinstans för LMAKoppling. Aktiv koppling sedan 2025-01-15."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMAKoppling"/>
+         <groupingId value="Examples"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="SupplyDelivery"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="SupplyDelivery-example-pafyllnad-01.html"/>
+         </extension>
+         <reference>
+            <reference value="SupplyDelivery/example-pafyllnad-01"/>
+         </reference>
+         <name value="Exempelpåfyllnad – dosrulle batch 2024-LM-9912"/>
+         <description value="Exempelinstans för LMAPafyllnad med batchnummer för spårbarhet."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMAPafyllnad"/>
+         <groupingId value="Examples"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="MedicationDispense"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="MedicationDispense-example-overlamnande-01.html"/>
+         </extension>
+         <reference>
+            <reference value="MedicationDispense/example-overlamnande-01"/>
+         </reference>
+         <name value="Exempelöverlämning – lyckad, 2025-06-15 08:00"/>
+         <description value="Exempelinstans för LMALakemedelsoverlamnande. Planerad och genomförd överlämning."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMALakemedelsoverlamnande"/>
+         <groupingId value="Examples"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="MedicationDispense"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="MedicationDispense-example-overlamnande-misslyckad-01.html"/>
+         </extension>
+         <reference>
+            <reference value="MedicationDispense/example-overlamnande-misslyckad-01"/>
+         </reference>
+         <name value="Exempelöverlämning – misslyckad, mekaniskt fel"/>
+         <description value="Exempelinstans för LMALakemedelsoverlamnande med felkod från enhetslagret."/>
+         <exampleCanonical value="https://sis.se/fhir/lma/StructureDefinition/LMALakemedelsoverlamnande"/>
+         <groupingId value="-ex-example"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="CodeSystem"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="CodeSystem-lma-administreringsorsak.html"/>
+         </extension>
+         <reference>
+            <reference value="CodeSystem/lma-administreringsorsak"/>
+         </reference>
+         <name value="LMA Administreringsorsak"/>
+         <description value="Orsak till utebliven eller avbruten läkemedelsadministrering.&#xA;**Omvårdnadslager.** Bedöms och dokumenteras av hälso- och sjukvårdspersonal."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="CodeSystem"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="CodeSystem-lma-administreringsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="CodeSystem/lma-administreringsstatus"/>
+         </reference>
+         <name value="LMA Administreringsstatus"/>
+         <description value="Status för läkemedelsadministrering. **Omvårdnadslager.**&#xA;Dokumenteras av hälso- och sjukvårdspersonal. (HSLF-FS 2016:40)"/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="CodeSystem"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="CodeSystem-lma-anslutningsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="CodeSystem/lma-anslutningsstatus"/>
+         </reference>
+         <name value="LMA Anslutningsstatus"/>
+         <description value="Kommunikationsstatus för läkemedelsautomat mot LMA-plattformen.&#xA;**Enhetslager.** Rapporteras av plattformen baserat på nätverksobservation.&#xA;(IHE SDPi/BICEPS: BICEPS MDib ConnectedState)"/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="StructureDefinition:resource"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="StructureDefinition-LMAAutomat.html"/>
+         </extension>
+         <reference>
+            <reference value="StructureDefinition/LMAAutomat"/>
+         </reference>
+         <name value="LMA Automat"/>
+         <description value="Fysisk läkemedelsautomat registrerad som medicinteknisk produkt&#xA;(MDR 2017/745). Lager: enhetslager.&#xA;&#xA;Attributen driftsstatus, anslutningsstatus och batteriNivå tillhör **enhetslagret**&#xA;men modelleras **inte** direkt på Device-resursen. De bör i stället antingen:&#xA;- hämtas i realtid via `DeviceMetric`-resursen&#xA;  (se https://hl7.org/fhir/R4/devicemetric.html), eller&#xA;- lagras som `Observation` om de mäts vid en viss frekvens eller händelse.&#xA;&#xA;Se avsnitt 6.1 i standarden för principiell motivering (IHE SDPi/BICEPS)."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="ProfilesCore"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="StructureDefinition:extension"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="StructureDefinition-ext-lma-batch.html"/>
+         </extension>
+         <reference>
+            <reference value="StructureDefinition/ext-lma-batch"/>
+         </reference>
+         <name value="LMA Batchnummer"/>
+         <description value="Batchnummer (lottnummer) för det läkemedel som fylldes på i&#xA;automaten. Krävs för spårbarhet vid läkemedelsåterkallelse per LVFS 2012:14.&#xA;&#xA;Batchnumret tillhandahålls av apoteket/dosaktören och registreras vid påfyllnad."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Extensions"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="StructureDefinition:resource"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="StructureDefinition-LMABrukare.html"/>
+         </extension>
+         <reference>
+            <reference value="StructureDefinition/LMABrukare"/>
+         </reference>
+         <name value="LMA Brukare"/>
+         <description value="Brukare med insatsen läkemedelsautomat inom socialtjänst och&#xA;kommunal hälso- och sjukvård. Lager: omvårdnadslager.&#xA;&#xA;I PDL-kontext benämns samma person *patient*; FHIR-resursen Patient används&#xA;i båda sammanhangen. Ankarpunkten för alla personrelaterade händelseresurser."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="ProfilesCore"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="CodeSystem"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="CodeSystem-lma-driftsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="CodeSystem/lma-driftsstatus"/>
+         </reference>
+         <name value="LMA Driftsstatus"/>
+         <description value="Driftsstatus för läkemedelsautomat. **Enhetslager.**&#xA;Rapporteras av automaten och avser enhetens egna drifttillstånd,&#xA;oberoende av omvårdnadsflöden. (IHE SDPi/BICEPS: MDib OperatingMode)"/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="StructureDefinition:resource"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="StructureDefinition-LMAKoppling.html"/>
+         </extension>
+         <reference>
+            <reference value="StructureDefinition/LMAKoppling"/>
+         </reference>
+         <name value="LMA Koppling"/>
+         <description value="Kopplingen brukare–automat. Representerar det administrativa&#xA;beslutet att en brukare betjänas av en specifik automat under en tidsavgränsad&#xA;period. Lager: enhetslager.&#xA;&#xA;**FHIR-migreringsbana:** I FHIR R4 används `DeviceUseStatement`. I FHIR R5/R6&#xA;ersätts denna resurs av `DeviceAssociation` med tydligare semantik. IG:ns&#xA;profil är designad för att underlätta framtida migrering: logiska attribut&#xA;är namngivna i enlighet med R5-resursen."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="ProfilesCore"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="CodeSystem"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="CodeSystem-lma-kopplingsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="CodeSystem/lma-kopplingsstatus"/>
+         </reference>
+         <name value="LMA Kopplingsstatus"/>
+         <description value="Status för kopplingen brukare–automat. **Enhetslager.**"/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="StructureDefinition:resource"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="StructureDefinition-LMALakemedelsadministrering.html"/>
+         </extension>
+         <reference>
+            <reference value="StructureDefinition/LMALakemedelsadministrering"/>
+         </reference>
+         <name value="LMA Läkemedelsadministrering"/>
+         <description value="Dokumentation av att behörig hälso- och sjukvårdspersonal&#xA;administrerade läkemedlet till brukaren (tillförsel till kroppen).&#xA;Lager: omvårdnadslager.&#xA;&#xA;Varje post är ett **oföränderligt event** (immutable event). Korrektioner&#xA;hanteras via ny post med `partOf`-referens till ursprungsposten.&#xA;&#xA;**Lageruppdelning av orsakskoder:**&#xA;Kodurval `VS-Administreringsorsak` tillhör **omvårdnadslagret** och innehåller&#xA;enbart omvårdnadsbedömda orsaker: brukare-avböjde, brukare-ej-anträffad,&#xA;medicinsk-orsak. Tekniska felkoder från automaten (enhetslager) ingår **inte**&#xA;– dessa representeras i `LMALakemedelsoverlamnande.statusReason`."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="ProfilesCore"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="StructureDefinition:resource"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="StructureDefinition-LMALakemedelsoverlamnande.html"/>
+         </extension>
+         <reference>
+            <reference value="StructureDefinition/LMALakemedelsoverlamnande"/>
+         </reference>
+         <name value="LMA Läkemedelsöverlämnande"/>
+         <description value="Automatens överlämning av läkemedel vid schemalagd tidpunkt.&#xA;Lager: enhetslager.&#xA;&#xA;Automaten **överlämnar** – den administrerar inte. Klassen benämns&#xA;Läkemedelsöverlämnande för att skilja automatens handling från apotekets&#xA;dosförpackande (dosdispensering). Se ANMÄRKNING i standardens avsnitt 6.4.7.&#xA;&#xA;**Lageruppdelning av felkoder:**&#xA;- `statusReason` (felkod) tillhör **enhetslagret**: mekaniskt-fel, produkt-slut, sensorfel.&#xA;- Dessa koder ska **inte** förekomma i `MedicationAdministration.statusReason`&#xA;  (omvårdnadslagret)."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="ProfilesCore"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="StructureDefinition:resource"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="StructureDefinition-LMAPafyllnad.html"/>
+         </extension>
+         <reference>
+            <reference value="StructureDefinition/LMAPafyllnad"/>
+         </reference>
+         <name value="LMA Påfyllnad"/>
+         <description value="Registrering av att dosrullen eller läkemedelsförrådet fyllts&#xA;på i en automat. Lager: enhetslager.&#xA;&#xA;Batchnummer (LVFS 2012:14) ska anges för att möjliggöra spårbarhet vid&#xA;läkemedelsåterkallelse."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="ProfilesCore"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="CodeSystem"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="CodeSystem-lma-overlamninsfelkod.html"/>
+         </extension>
+         <reference>
+            <reference value="CodeSystem/lma-overlamninsfelkod"/>
+         </reference>
+         <name value="LMA Överlämningsfelkod"/>
+         <description value="Felkod för misslyckad överlämning. **Enhetslager.**&#xA;Tekniska felkoder från automaten. Ska **inte** förekomma i&#xA;MedicationAdministration.statusReason (omvårdnadslagret)."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="CodeSystem"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="CodeSystem-lma-overlamningstfall.html"/>
+         </extension>
+         <reference>
+            <reference value="CodeSystem/lma-overlamningstfall"/>
+         </reference>
+         <name value="LMA Överlämningsutfall"/>
+         <description value="Utfall av automatens överlämning av läkemedel. Enhetslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="ValueSet"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="ValueSet-VS-Administreringsorsak.html"/>
+         </extension>
+         <reference>
+            <reference value="ValueSet/VS-Administreringsorsak"/>
+         </reference>
+         <name value="VS Administreringsorsak"/>
+         <description value="Orsak till utebliven eller avbruten läkemedelsadministrering. Omvårdnadslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="ValueSet"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="ValueSet-VS-Administreringsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="ValueSet/VS-Administreringsstatus"/>
+         </reference>
+         <name value="VS Administreringsstatus"/>
+         <description value="Status för läkemedelsadministrering. Omvårdnadslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="ValueSet"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="ValueSet-VS-Anslutningsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="ValueSet/VS-Anslutningsstatus"/>
+         </reference>
+         <name value="VS Anslutningsstatus"/>
+         <description value="Anslutningsstatus för läkemedelsautomat mot LMA-plattformen. Enhetslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="ValueSet"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="ValueSet-VS-Driftsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="ValueSet/VS-Driftsstatus"/>
+         </reference>
+         <name value="VS Driftsstatus"/>
+         <description value="Driftsstatus för läkemedelsautomat. Enhetslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="ValueSet"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="ValueSet-VS-Kopplingsstatus.html"/>
+         </extension>
+         <reference>
+            <reference value="ValueSet/VS-Kopplingsstatus"/>
+         </reference>
+         <name value="VS Kopplingsstatus"/>
+         <description value="Status för kopplingen brukare–automat. Enhetslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="ValueSet"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="ValueSet-VS-Overlamninsfelkod.html"/>
+         </extension>
+         <reference>
+            <reference value="ValueSet/VS-Overlamninsfelkod"/>
+         </reference>
+         <name value="VS Överlämningsfelkod"/>
+         <description value="Teknisk felkod vid misslyckad överlämning. Enhetslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <resource>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-sort">
+            <valueInteger value="999999999"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+            <valueString value="ValueSet"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+            <valueUri value="ValueSet-VS-Overlamningstfall.html"/>
+         </extension>
+         <reference>
+            <reference value="ValueSet/VS-Overlamningstfall"/>
+         </reference>
+         <name value="VS Överlämningsutfall"/>
+         <description value="Utfall av automatens överlämning av läkemedel. Enhetslager."/>
+         <exampleBoolean value="false"/>
+         <groupingId value="Terminology"/>
+      </resource>
+      <page>
+         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+            <valueUrl value="toc.html"/>
+         </extension>
+         <nameUrl value="toc.html"/>
+         <title value="Table of Contents"/>
+         <generation value="html"/>
+         <page>
+            <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+               <valueUrl value="index.html"/>
+            </extension>
+            <nameUrl value="index.html"/>
+            <title value="Hem"/>
+            <generation value="markdown"/>
+         </page>
+         <page>
+            <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+               <valueUrl value="background.html"/>
+            </extension>
+            <nameUrl value="background.html"/>
+            <title value="Bakgrund och syfte"/>
+            <generation value="markdown"/>
+         </page>
+         <page>
+            <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+               <valueUrl value="logical-model.html"/>
+            </extension>
+            <nameUrl value="logical-model.html"/>
+            <title value="Lagermodell och klasser"/>
+            <generation value="markdown"/>
+         </page>
+         <page>
+            <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+               <valueUrl value="mappings.html"/>
+            </extension>
+            <nameUrl value="mappings.html"/>
+            <title value="Mappning till FHIR"/>
+            <generation value="markdown"/>
+         </page>
+         <page>
+            <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+               <valueUrl value="profiles.html"/>
+            </extension>
+            <nameUrl value="profiles.html"/>
+            <title value="Profilöversikt"/>
+            <generation value="markdown"/>
+         </page>
+         <page>
+            <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+               <valueUrl value="artifacts.html"/>
+            </extension>
+            <nameUrl value="artifacts.html"/>
+            <title value="Alla artefakter"/>
+            <generation value="markdown"/>
+         </page>
+      </page>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/resources"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="fsh-generated/resources"/>
+      </parameter>
+      <parameter>
+         <code value="path-pages"/>
+         <value value="input/pagecontent"/>
+      </parameter>
+      <parameter>
+         <code value="path-pages"/>
+         <value value="fsh-generated/includes"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/capabilities"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/examples"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/extensions"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/models"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/operations"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/profiles"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/vocabulary"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/testing"/>
+      </parameter>
+      <parameter>
+         <code value="path-resource"/>
+         <value value="input/history"/>
+      </parameter>
+      <parameter>
+         <code value="path-pages"/>
+         <value value="template/config"/>
+      </parameter>
+      <parameter>
+         <code value="path-pages"/>
+         <value value="input/images"/>
+      </parameter>
+      <parameter>
+         <code value="path-tx-cache"/>
+         <value value="input-cache/txcache"/>
+      </parameter>
+      <parameter>
+         <code value="copyrightyear"/>
+         <value value="2025+"/>
+      </parameter>
+      <parameter>
+         <code value="releaselabel"/>
+         <value value="draft"/>
+      </parameter>
+      <parameter>
+         <code value="apply-publisher"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="apply-version"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="path-expansion-params"/>
+         <value value="../../input/_resources/exp-params.json"/>
+      </parameter>
+      <parameter>
+         <code value="show-inherited-invariants"/>
+         <value value="false"/>
+      </parameter>
+      <parameter>
+         <code value="usage-stats-opt-out"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="excludettl"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="autoload-resources"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="path-liquid"/>
+         <value value="template/liquid"/>
+      </parameter>
+      <parameter>
+         <code value="path-liquid"/>
+         <value value="input/liquid"/>
+      </parameter>
+      <parameter>
+         <code value="path-qa"/>
+         <value value="temp/qa"/>
+      </parameter>
+      <parameter>
+         <code value="path-temp"/>
+         <value value="temp/pages"/>
+      </parameter>
+      <parameter>
+         <code value="path-output"/>
+         <value value="output"/>
+      </parameter>
+      <parameter>
+         <code value="path-suppressed-warnings"/>
+         <value value="input/ignoreWarnings.txt"/>
+      </parameter>
+      <parameter>
+         <code value="path-history"/>
+         <value value="https://sis.se/fhir/lma/history.html"/>
+      </parameter>
+      <parameter>
+         <code value="template-html"/>
+         <value value="template-page.html"/>
+      </parameter>
+      <parameter>
+         <code value="template-md"/>
+         <value value="template-page-md.html"/>
+      </parameter>
+      <parameter>
+         <code value="apply-contact"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="apply-context"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="apply-copyright"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="apply-jurisdiction"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="apply-license"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="apply-wg"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="active-tables"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="fmm-definition"/>
+         <value value="http://hl7.org/fhir/versions.html#maturity"/>
+      </parameter>
+      <parameter>
+         <code value="propagate-status"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="excludelogbinaryformat"/>
+         <value value="true"/>
+      </parameter>
+      <parameter>
+         <code value="tabbed-snapshots"/>
+         <value value="true"/>
+      </parameter>
+   </definition>
+</ImplementationGuide>

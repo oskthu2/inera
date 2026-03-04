@@ -1,0 +1,28 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "LMAOverlamningstfall",
+  "id": "lma-overlamningstfall",
+  "title": "LMA Överlämningsutfall",
+  "description": "Utfall av automatens överlämning av läkemedel. Enhetslager.",
+  "url": "https://sis.se/fhir/lma/CodeSystem/lma-overlamningstfall",
+  "concept": [
+    {
+      "code": "lyckad",
+      "display": "Lyckad",
+      "definition": "Automaten överlämnade läkemedlet till brukaren inom schemalagt toleransfönster."
+    },
+    {
+      "code": "misslyckad",
+      "display": "Misslyckad",
+      "definition": "Automaten misslyckades med att överlämna läkemedlet."
+    },
+    {
+      "code": "okant",
+      "display": "Okänt",
+      "definition": "Utfallet av överlämnandet är okänt."
+    }
+  ],
+  "count": 3
+}

@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "VSOverlamninsfelkod",
+  "id": "VS-Overlamninsfelkod",
+  "title": "VS Överlämningsfelkod",
+  "description": "Teknisk felkod vid misslyckad överlämning. Enhetslager.",
+  "url": "https://sis.se/fhir/lma/ValueSet/VS-Overlamninsfelkod",
+  "compose": {
+    "include": [
+      {
+        "system": "https://sis.se/fhir/lma/CodeSystem/lma-overlamninsfelkod"
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "resourceType": "SupplyDelivery",
+  "id": "example-pafyllnad-01",
+  "meta": {
+    "profile": [
+      "https://sis.se/fhir/lma/StructureDefinition/LMAPafyllnad"
+    ]
+  },
+  "status": "completed",
+  "extension": [
+    {
+      "url": "https://sis.se/fhir/lma/StructureDefinition/ext-lma-batch",
+      "valueString": "2024-LM-9912"
+    }
+  ],
+  "occurrenceDateTime": "2025-06-14T14:30:00Z",
+  "suppliedItem": {
+    "quantity": {
+      "value": 28,
+      "code": "1",
+      "system": "http://unitsofmeasure.org",
+      "unit": "doser"
+    }
+  },
+  "destination": {
+    "display": "LMA automat-SE-2024-0042 (Storgatan 12)"
+  },
+  "receiver": [
+    {
+      "identifier": {
+        "system": "urn:oid:1.2.752.129.2.1.4.1",
+        "value": "SE2321000016-APO789"
+      },
+      "display": "Farmaceut Maria Johansson, Apoteket Hjärtat"
+    }
+  ]
+}

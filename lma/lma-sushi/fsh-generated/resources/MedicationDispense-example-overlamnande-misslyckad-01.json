@@ -1,0 +1,47 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "example-overlamnande-misslyckad-01",
+  "meta": {
+    "profile": [
+      "https://sis.se/fhir/lma/StructureDefinition/LMALakemedelsoverlamnande"
+    ]
+  },
+  "dosageInstruction": [
+    {
+      "timing": {
+        "event": [
+          "2025-06-15T20:00:00Z"
+        ]
+      }
+    }
+  ],
+  "status": "declined",
+  "statusReasonCodeableConcept": {
+    "coding": [
+      {
+        "code": "mekaniskt-fel",
+        "system": "https://sis.se/fhir/lma/CodeSystem/lma-overlamninsfelkod",
+        "display": "Mekaniskt fel"
+      }
+    ]
+  },
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "code": "unknown",
+        "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+        "display": "Unknown"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/example-brukare-01"
+  },
+  "performer": [
+    {
+      "actor": {
+        "reference": "Device/example-automat-01"
+      }
+    }
+  ]
+}

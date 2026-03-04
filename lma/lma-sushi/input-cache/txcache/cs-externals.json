@@ -1,0 +1,6 @@
+{
+  "urn:iso:std:iso:3166" : null,
+  "http://terminology.hl7.org/CodeSystem/device-version-type" : null,
+  "https://sis.se/fhir/lma/CodeSystem/device-property" : null,
+  "http://unitsofmeasure.org" : null
+}

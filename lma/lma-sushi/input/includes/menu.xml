@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  menu.xml – Navigationsmeny för LMA FHIR IG
+  Används av fhir.base.template för att rendera toppmenyn.
+-->
+<div>
+  <ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="background.html">Bakgrund</a></li>
+    <li class="dropdown">
+      <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+        Logisk modell <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="logical-model.html">Lagermodell och klasser</a></li>
+        <li><a href="mappings.html">Mappning till FHIR</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+        Profiler <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="profiles.html">Profilöversikt</a></li>
+        <li role="separator" class="divider"/>
+        <li><a href="StructureDefinition-LMABrukare.html">LMABrukare</a></li>
+        <li><a href="StructureDefinition-LMAAutomat.html">LMAAutomat</a></li>
+        <li><a href="StructureDefinition-LMAKoppling.html">LMAKoppling</a></li>
+        <li><a href="StructureDefinition-LMALakemedelsoverlamnande.html">LMALakemedelsoverlamnande</a></li>
+        <li><a href="StructureDefinition-LMALakemedelsadministrering.html">LMALakemedelsadministrering</a></li>
+        <li><a href="StructureDefinition-LMAPafyllnad.html">LMAPafyllnad</a></li>
+      </ul>
+    </li>
+    <li><a href="artifacts.html">Artefakter</a></li>
+  </ul>
+</div>

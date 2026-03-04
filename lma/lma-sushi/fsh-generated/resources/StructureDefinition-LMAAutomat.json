@@ -1,0 +1,87 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "LMAAutomat",
+  "url": "https://sis.se/fhir/lma/StructureDefinition/LMAAutomat",
+  "name": "LMAAutomat",
+  "title": "LMA Automat",
+  "status": "draft",
+  "description": "Fysisk läkemedelsautomat registrerad som medicinteknisk produkt\n(MDR 2017/745). Lager: enhetslager.\n\nAttributen driftsstatus, anslutningsstatus och batteriNivå tillhör **enhetslagret**\nmen modelleras **inte** direkt på Device-resursen. De bör i stället antingen:\n- hämtas i realtid via `DeviceMetric`-resursen\n  (se https://hl7.org/fhir/R4/devicemetric.html), eller\n- lagras som `Observation` om de mäts vid en viss frekvens eller händelse.\n\nSe avsnitt 6.1 i standarden för principiell motivering (IHE SDPi/BICEPS).",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Device",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Device",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Device.identifier",
+        "path": "Device.identifier",
+        "short": "Unik identifierare för automaten",
+        "comment": "SHALL innehålla minst en identifierare med system och value. Implementeraren väljer system-URI; kravet är att id:t är globalt unikt.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Device.identifier.system",
+        "path": "Device.identifier.system",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Device.identifier.value",
+        "path": "Device.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Device.statusReason",
+        "path": "Device.statusReason",
+        "short": "Statusorsak / period",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.manufacturer",
+        "path": "Device.manufacturer",
+        "short": "Tillverkare (juridisk identitet)",
+        "comment": "MDR art. 10.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Device.serialNumber",
+        "path": "Device.serialNumber",
+        "short": "Tillverkarens serienummer",
+        "comment": "Primär fysisk identitet. Obligatoriskt per MDR art. 27.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Device.modelNumber",
+        "path": "Device.modelNumber",
+        "short": "Modellbeteckning",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Device.version",
+        "path": "Device.version",
+        "short": "Firmwareversion (SemVer)",
+        "comment": "SHOULD anges. Anges enligt SemVer (major.minor.patch). version.type SHOULD sättas till #firmware från http://terminology.hl7.org/CodeSystem/device-version-type.",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.version.value",
+        "path": "Device.version.value",
+        "mustSupport": true
+      },
+      {
+        "id": "Device.location",
+        "path": "Device.location",
+        "short": "Installationsadress (Reference till Location)",
+        "comment": "SHALL referera till Location med strukturerad adress för automatens placering.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

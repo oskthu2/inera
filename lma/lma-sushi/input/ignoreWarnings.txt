@@ -1,0 +1,20 @@
+﻿== INFORMATION ==
+The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
+
+== WARNING ==
+No definition could be found for URL value 'http://terminology.hl7.org/CodeSystem/device-version-type'
+
+== WARNING ==
+A definition for CodeSystem 'http://terminology.hl7.org/CodeSystem/device-version-type' could not be found, so the code cannot be validated
+
+== WARNING ==
+No definition could be found for URL value 'https://sis.se/fhir/lma/CodeSystem/device-property'
+
+== WARNING ==
+A definition for CodeSystem 'https://sis.se/fhir/lma/CodeSystem/device-property' could not be found, so the code cannot be validated
+
+== WARNING ==
+Unable to validate code '%' in system 'http://unitsofmeasure.org' because the validator is running without terminology services
+
+== WARNING ==
+Unable to validate code '1' in system 'http://unitsofmeasure.org' because the validator is running without terminology services

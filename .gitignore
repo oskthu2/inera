@@ -1,0 +1,10 @@
+# FHIR IG Publisher - large build tool, download separately
+publisher.jar
+
+# Common build output directories
+output/
+temp/
+
+# OS files
+.DS_Store
+Thumbs.db

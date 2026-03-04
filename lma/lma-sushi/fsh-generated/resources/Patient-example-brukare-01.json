@@ -1,0 +1,28 @@
+{
+  "resourceType": "Patient",
+  "id": "example-brukare-01",
+  "meta": {
+    "lastUpdated": "2025-06-01T08:00:00Z",
+    "profile": [
+      "https://sis.se/fhir/lma/StructureDefinition/LMABrukare"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://sis.se/fhir/lma/id/brukare",
+      "value": "brukare-4711"
+    },
+    {
+      "system": "http://electronichealth.se/id/personnummer",
+      "value": "194501011234"
+    }
+  ],
+  "active": true,
+  "managingOrganization": {
+    "identifier": {
+      "system": "urn:oid:1.2.752.129.2.1.4.1",
+      "value": "SE2321000016-6PF5"
+    },
+    "display": "Hemtjänst Västerby"
+  }
+}

@@ -1,0 +1,216 @@
+@startuml LMA-informationsmodell
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam classFontSize 11
+skinparam classAttributeFontSize 10
+skinparam classStereotypeFontSize 9
+skinparam ArrowFontSize 9
+skinparam ArrowColor #333333
+skinparam ClassBorderColor #333333
+skinparam ClassBackgroundColor #FFFFFF
+skinparam ClassHeaderBackgroundColor #D9D9D9
+skinparam NoteBackgroundColor #F5F5F5
+skinparam NoteBorderColor #999999
+skinparam Padding 4
+skinparam nodesep 40
+skinparam ranksep 50
+skinparam linetype ortho
+
+title LMA-standard – Informationsmodell\n<size:9>(Klasser inom utökat scope markeras med «option»)</size>
+
+' ─────────────────────────────────────────────────────────────────────────────
+' KÄRNKLASSER
+' ─────────────────────────────────────────────────────────────────────────────
+
+class Brukare <<Patient>> [[StructureDefinition-LMABrukare.html]] {
+  + id [1] : Identifier
+  + personnummer [0..1] : Identifier
+  + namn [0..1] : string
+  + ansvarigEnhet [1] : Identifier
+  + kontakt [0..1] : ContactPoint
+  + aktiv [1] : boolean
+  + meta.senastAndrad [1] : dateTime
+}
+
+class Automat <<Device>> [[StructureDefinition-LMAAutomat.html]] {
+  + id [1] : Identifier
+  + serieNr [1] : string
+  + tillverkare [1] : string
+  + modell [1] : string
+  + firmwareVersion [0..1] : string
+  + installationsAdress [1] : Address
+  + aktivPeriod [0..1] : Period
+}
+
+class Koppling <<DeviceUseStatement>> [[StructureDefinition-LMAKoppling.html]] {
+  + id [1] : Identifier
+  + giltigFrån [1] : dateTime
+  + giltigTill [0..1] : dateTime
+  + ansvarigFörskrivare [0..1] : Identifier
+  + status [1] : CodeableConcept
+}
+
+class Läkemedelsordination <<MedicationRequest>> {
+  + id [1] : Identifier
+  + produktKod [0..1] : CodeableConcept
+  + substansnamn [0..1] : string
+  + styrka [0..1] : Quantity
+  + administreringsväg [0..1] : CodeableConcept
+  + doseringText [0..1] : string
+  + dosSchema [0..1] : string
+  + giltigFrån [0..1] : date
+  + giltigTill [0..1] : date
+  + förskrivare [0..1] : Identifier
+}
+
+class Dospåse <<PackagedProduct>> {
+  + id [1] : Identifier
+  + produktKod [0..1] : CodeableConcept
+  + batch [0..1] : string
+  + iordningställandeDatum [0..1] : date
+  + antalEnheter [0..1] : integer
+  + innehållText [0..1] : string
+}
+
+class Läkemedelsöverlämnande <<MedicationDispense>> [[StructureDefinition-LMALakemedelsoverlamnande.html]] {
+  + id [1] : Identifier
+  + tidPlanerad [1] : dateTime
+  + tidFaktisk [0..1] : dateTime
+  + utfall [1] : CodeableConcept
+  + felkod [0..1] : CodeableConcept
+}
+
+class Läkemedelsadministrering <<MedicationAdministration>> [[StructureDefinition-LMALakemedelsadministrering.html]] {
+  + id [1] : Identifier
+  + tidPlanerad [0..1] : dateTime
+  + tidFaktisk [1] : dateTime
+  + status [1] : CodeableConcept
+  + orsak [0..1] : CodeableConcept
+  + utförare [1] : Identifier
+  + meta.skapad [1] : dateTime
+}
+
+class Påfyllnad <<SupplyDelivery>> [[StructureDefinition-LMAPafyllnad.html]] {
+  + id [1] : Identifier
+  + tid [1] : dateTime
+  + batch [0..1] : string
+  + antalEnheter [0..1] : integer
+  + utförare [1] : Identifier
+}
+
+class Åtkomstlogg <<AuditEvent>> {
+  + id [1] : Identifier
+  + tid [1] : dateTime
+  + aktör.id [1] : Identifier
+  + aktör.roll [1] : CodeableConcept
+  + aktör.enhet [1] : Identifier
+  + resurs.typ [1] : CodeableConcept
+  + resurs.id [1] : Identifier
+  + åtgärd [1] : CodeableConcept
+  + ändamål [1] : CodeableConcept
+  + källa [1] : string
+}
+
+' ─────────────────────────────────────────────────────────────────────────────
+' KLASSER INOM UTÖKAT SCOPE (option)
+' ─────────────────────────────────────────────────────────────────────────────
+
+class Larm <<DeviceAlert\noption>> #FAFAFA {
+  + id [1] : Identifier
+  + typ [1] : CodeableConcept
+  + allvarlighetsgrad [1] : CodeableConcept
+  + status [1] : CodeableConcept
+  + tidUpptäckt [1] : dateTime
+  + tidKvitterat [0..1] : dateTime
+  + tidStängt [0..1] : dateTime
+  + larmText [0..1] : string
+}
+
+class Påminnelse <<Activity\noption>> #FAFAFA {
+  + id [1] : Identifier
+  + typ [1] : CodeableConcept
+  + tid [1] : dateTime
+  + bekräftad [0..1] : boolean
+}
+
+class Bekräftelse <<Task\noption>> #FAFAFA {
+  + id [1] : Identifier
+  + typ [1] : CodeableConcept
+  + status [1] : CodeableConcept
+  + tid [1] : dateTime
+  + aktör [1] : Identifier
+  + åtgärdText [0..1] : string
+}
+
+' ─────────────────────────────────────────────────────────────────────────────
+' RELATIONER – KÄRNMODELL
+' ─────────────────────────────────────────────────────────────────────────────
+
+Koppling "1" --> "1" Brukare : brukare
+Koppling "1" --> "1" Automat : automat
+
+Läkemedelsordination "0..*" --> "1" Brukare : brukare
+
+Dospåse "0..*" --> "0..1" Läkemedelsordination : ordination
+
+Läkemedelsöverlämnande "0..*" --> "1" Brukare : brukare
+Läkemedelsöverlämnande "0..*" --> "1" Automat : automat
+Läkemedelsöverlämnande "0..*" --> "0..1" Läkemedelsordination : ordination
+Läkemedelsöverlämnande "0..*" --> "0..1" Dospåse : dospåse
+
+Läkemedelsadministrering "0..*" --> "1" Brukare : brukare
+Läkemedelsadministrering "0..*" --> "0..1" Läkemedelsordination : ordination
+Läkemedelsadministrering "0..*" --> "0..1" Läkemedelsöverlämnande : läkemedelsöverlämnande
+
+Påfyllnad "0..*" --> "1" Automat : automat
+
+Åtkomstlogg "0..*" --> "0..1" Brukare : resurs.brukare
+
+' ─────────────────────────────────────────────────────────────────────────────
+' RELATIONER – UTÖKAT SCOPE (option)
+' ─────────────────────────────────────────────────────────────────────────────
+
+Larm "0..*" --> "0..1" Brukare : brukare
+Larm "0..*" --> "1" Automat : automat
+
+Påminnelse "0..*" --> "1" Brukare : brukare
+Påminnelse "0..*" --> "0..1" Läkemedelsöverlämnande : läkemedelsöverlämnande
+
+Bekräftelse "0..*" --> "0..1" Larm : relateratLarm
+Bekräftelse "0..1" --> "0..1" Bekräftelse : eskaleringsreferens
+
+' ─────────────────────────────────────────────────────────────────────────────
+' NOTERINGAR
+' ─────────────────────────────────────────────────────────────────────────────
+
+note bottom of Larm
+  Larm, Påminnelse och Bekräftelse ingår
+  i utökat scope (option). Arbetsgruppen
+  tar ställning till om larmhantering ska
+  ingå i kärndokumentet eller specificeras
+  som separat del.
+end note
+
+note right of Läkemedelsadministrering
+  Varje post är oföränderlig (immutable event).
+  Korrektioner hanteras via ny post med
+  referens till ursprungsposten.
+end note
+
+note bottom of Automat
+  driftsstatus, anslutningsstatus och
+  batteriNivå modelleras ej på Device.
+  Hämtas via DeviceMetric (realtid)
+  eller lagras som Observation.
+end note
+
+note right of Läkemedelsöverlämnande
+  Automaten överlämnar – den
+  administrerar inte.
+  FHIR: MedicationDispense
+  tidPlanerad → dosageInstruction
+  .timing.event
+end note
+
+@enduml

@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "VSKopplingsstatus",
+  "id": "VS-Kopplingsstatus",
+  "title": "VS Kopplingsstatus",
+  "description": "Status för kopplingen brukare–automat. Enhetslager.",
+  "url": "https://sis.se/fhir/lma/ValueSet/VS-Kopplingsstatus",
+  "compose": {
+    "include": [
+      {
+        "system": "https://sis.se/fhir/lma/CodeSystem/lma-kopplingsstatus"
+      }
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "LMAKoppling",
+  "url": "https://sis.se/fhir/lma/StructureDefinition/LMAKoppling",
+  "name": "LMAKoppling",
+  "title": "LMA Koppling",
+  "status": "draft",
+  "description": "Kopplingen brukare–automat. Representerar det administrativa\nbeslutet att en brukare betjänas av en specifik automat under en tidsavgränsad\nperiod. Lager: enhetslager.\n\n**FHIR-migreringsbana:** I FHIR R4 används `DeviceUseStatement`. I FHIR R5/R6\nersätts denna resurs av `DeviceAssociation` med tydligare semantik. IG:ns\nprofil är designad för att underlätta framtida migrering: logiska attribut\när namngivna i enlighet med R5-resursen.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DeviceUseStatement",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DeviceUseStatement.status",
+        "path": "DeviceUseStatement.status",
+        "short": "Kopplingsstatus",
+        "comment": "Använd FHIR-koderna från device-statement-status. Konceptmappning: active=aktiv, completed=avslutad, on-hold=pausad.",
+        "mustSupport": true
+      },
+      {
+        "id": "DeviceUseStatement.subject",
+        "path": "DeviceUseStatement.subject",
+        "short": "Brukare (Reference LMABrukare)",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://sis.se/fhir/lma/StructureDefinition/LMABrukare"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "DeviceUseStatement.timing[x]",
+        "path": "DeviceUseStatement.timing[x]",
+        "short": "Giltighetstid (giltigFrån / giltigTill)",
+        "comment": "`timingPeriod.start` = giltigFrån (1..1, obligatorisk).\n`timingPeriod.end` = giltigTill (0..1). Null indikerar aktiv koppling.\nPDL 3 kap. kräver att kopplingens giltighetstid kan återges.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "DeviceUseStatement.timing[x].start",
+        "path": "DeviceUseStatement.timing[x].start",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "DeviceUseStatement.timing[x].end",
+        "path": "DeviceUseStatement.timing[x].end",
+        "mustSupport": true
+      },
+      {
+        "id": "DeviceUseStatement.recordedOn",
+        "path": "DeviceUseStatement.recordedOn",
+        "short": "Tidpunkt då kopplingen registrerades",
+        "mustSupport": true
+      },
+      {
+        "id": "DeviceUseStatement.source",
+        "path": "DeviceUseStatement.source",
+        "short": "Ansvarig förskrivare (HSA-id)",
+        "comment": "Reference(Practitioner) med HSA-id. Anges om kopplingen är ordinationsbaserad. PDL 3:5§.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Practitioner"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "DeviceUseStatement.device",
+        "path": "DeviceUseStatement.device",
+        "short": "Automat (Reference LMAAutomat)",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://sis.se/fhir/lma/StructureDefinition/LMAAutomat"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

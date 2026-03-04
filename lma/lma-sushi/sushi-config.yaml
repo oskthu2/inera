@@ -1,0 +1,117 @@
+id: sis.se.tk334.ag10.lma
+canonical: https://sis.se/fhir/lma
+name: LMAApiStandard
+title: "LMA API-standard – FHIR Implementation Guide"
+description: >-
+  FHIR Implementation Guide för SIS/TR API-standard för läkemedelsautomater.
+  Specificerar hur informationsmodellen för läkemedelsautomater realiseras med
+  HL7 FHIR R4 för datautbyte mellan LMA-plattformar och konsumerande system.
+status: draft
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2025+
+releaseLabel: draft
+publisher:
+  name: SIS/TK334 AG10
+  url: https://sis.se
+  email: fhir@sis.se
+jurisdiction: urn:iso:std:iso:3166#SE "Sweden"
+license: CC0-1.0
+
+dependencies:
+
+parameters:
+  apply-publisher: true
+  apply-version: true
+  path-resource:
+    - input/resources
+    - fsh-generated/resources
+  path-pages:
+    - input/pagecontent
+    - fsh-generated/includes
+  path-expansion-params: '../../input/_resources/exp-params.json'
+  show-inherited-invariants: false
+  usage-stats-opt-out: true
+  excludettl: true
+
+# ─── NAVIGATION MENU ────────────────────────────────────────────────────────
+menu:
+  Home: index.html
+  Bakgrund: background.html
+  Logisk modell:
+    Lagermodell och klasser: logical-model.html
+    Mappning till FHIR: mappings.html
+  Profiler:
+    Översikt: profiles.html
+    LMABrukare: StructureDefinition-LMABrukare.html
+    LMAAutomat: StructureDefinition-LMAAutomat.html
+    LMAKoppling: StructureDefinition-LMAKoppling.html
+    LMALakemedelsoverlamnande: StructureDefinition-LMALakemedelsoverlamnande.html
+    LMALakemedelsadministrering: StructureDefinition-LMALakemedelsadministrering.html
+    LMAPafyllnad: StructureDefinition-LMAPafyllnad.html
+  Artefakter: artifacts.html
+
+# ─── PAGE ORDER ─────────────────────────────────────────────────────────────
+pages:
+  index.md:
+    title: Hem
+  background.md:
+    title: Bakgrund och syfte
+  logical-model.md:
+    title: Lagermodell och klasser
+  mappings.md:
+    title: Mappning till FHIR
+  profiles.md:
+    title: Profilöversikt
+  artifacts.md:
+    title: Alla artefakter
+
+# ─── GROUPS ─────────────────────────────────────────────────────────────────
+groups:
+  ProfilesCore:
+    name: "Profiler – Kärnmodell"
+    description: >-
+      Profiler för de kärnklasser som ingår i alla LMA-implementeringar.
+    resources:
+      - StructureDefinition/LMABrukare
+      - StructureDefinition/LMAAutomat
+      - StructureDefinition/LMAKoppling
+      - StructureDefinition/LMALakemedelsoverlamnande
+      - StructureDefinition/LMALakemedelsadministrering
+      - StructureDefinition/LMAPafyllnad
+
+  Extensions:
+    name: "Extensions"
+    description: Extensions specifika för LMA-standarden.
+    resources:
+      - StructureDefinition/ext-lma-batch
+
+  Terminology:
+    name: "Terminologi"
+    description: CodeSystems och ValueSets med lagerindelad termbindning.
+    resources:
+      - CodeSystem/lma-driftsstatus
+      - CodeSystem/lma-anslutningsstatus
+      - CodeSystem/lma-kopplingsstatus
+      - CodeSystem/lma-overlamningstfall
+      - CodeSystem/lma-overlamninsfelkod
+      - CodeSystem/lma-administreringsstatus
+      - CodeSystem/lma-administreringsorsak
+      - ValueSet/VS-Driftsstatus
+      - ValueSet/VS-Anslutningsstatus
+      - ValueSet/VS-Kopplingsstatus
+      - ValueSet/VS-Overlamningstfall
+      - ValueSet/VS-Overlamninsfelkod
+      - ValueSet/VS-Administreringsstatus
+      - ValueSet/VS-Administreringsorsak
+
+  Examples:
+    name: "Exempelinstanser"
+    description: Exempelinstanser för alla kärnprofiler.
+    resources:
+      - Patient/example-brukare-01
+      - Device/example-automat-01
+      - DeviceUseStatement/example-koppling-01
+      - MedicationDispense/example-overlamnande-01
+      - MedicationAdministration/example-administrering-01
+      - SupplyDelivery/example-pafyllnad-01

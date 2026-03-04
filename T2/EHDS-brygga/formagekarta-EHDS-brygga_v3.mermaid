@@ -1,0 +1,75 @@
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '12px'}}}%%
+flowchart LR
+
+    subgraph MALARKITEKTUR[" "]
+        direction TB
+
+        subgraph KONSUMENTER["0: Tjänster"]
+            direction LR
+            K1["Ineras tjänster<br/>(Journalen, NPÖ, 1177)<br/>💡<i>ny möjlighet</i>"]
+            K2["VG-system /<br/>leverantörsappar<br/>💡<i>ny möjlighet</i>"]
+            K3["eHM: nationell<br/>kontaktpunkt"]
+            K4["Forskning /<br/>kvalitetsregister<br/>💡<i>ny möjlighet</i>"]
+        end
+
+        subgraph UTBYTE["1: Informationsutbyte"]
+            direction LR
+            C6["<b>API Gateway</b><br/>Åtkomstkontroll,<br/>trafikbegränsning,<br/>cybersäkerhet,<br/>logging, statistik"]
+            C7["<b>API Management</b><br/>Administration,<br/>livscykelhantering,<br/>testmöjligheter"]
+            B1["<b>Protokollbrygga</b><br/>SOAP↔FHIR-<br/>översättning per TK<br/>⏳ <i>övergång</i>"]
+            B2["<b>Informations-<br/>aggregering</b><br/>Tvärproducent-<br/>sökning, samla data<br/>från multipla VG"]
+        end
+
+        subgraph HANTERING["2: Informationshantering"]
+            direction LR
+            B3["<b>Informations-<br/>mappning</b><br/>Kodverk, EHDS-<br/>profiler, Provenance"]
+            B4["<b>FHIR-datalagring</b><br/>Indexerat datalager<br/>per VG, FHIR-sökning"]
+            H3["<b>Grunddata</b><br/>PU, HSA:<br/>patient, organisation,<br/>medarbetare"]
+            B5["<b>Spärr och<br/>filtrering</b><br/>Utgångsfiltrering,<br/>PDL-kontroll,<br/>security-taggar"]
+        end
+
+        subgraph LOKALISERING["3: Lokalisering och indexering"]
+            direction LR
+            C2["<b>Informationsindex</b><br/>Har VG X data om<br/>patient Y? Byggt<br/>på EI-data"]
+            C1["<b>Tjänstekatalog</b><br/>FHIR-endpoints per<br/>VG, informationstyper,<br/>CapabilityStatements"]
+            S1["<b>PDI och NTK<br/>synk</b><br/>Rapporterar index<br/>och endpoints till<br/>eHM å VG vägnar"]
+            C5A["<b>TAK-adapter</b><br/>VG-id till logisk<br/>adress i NTjP<br/>⏳ <i>övergång</i>"]
+        end
+
+        subgraph FEDERATION["4: Federation och tillit"]
+            direction LR
+            C3["<b>Federations-<br/>medlemskap</b><br/>Vilka VG och system<br/>deltar i samverkan"]
+            C4["<b>Identitet och<br/>autentisering</b><br/>Klientmetadata:<br/>ansvarig part,<br/>nycklar, egenskaper"]
+            C5["<b>Åtkomstkontroll</b><br/>OAuth2-baserad,<br/>utfärdar och<br/>validerar intyg"]
+            F4["<b>Spårbarhet/<br/>logg</b><br/>Åtkomstloggning,<br/>ATNA/BALP"]
+            S3["<b>Federationssynk<br/>å VG vägnar</b><br/>Synk medlemskap<br/>till eHM:s<br/>EHDS-federation"]
+        end
+
+        KONSUMENTER --> UTBYTE
+        UTBYTE --> HANTERING
+        HANTERING --> LOKALISERING
+        LOKALISERING --> FEDERATION
+    end
+
+    NT -.- KONSUMENTER
+    NU -.- UTBYTE
+    NH -.- HANTERING
+    NL -.- LOKALISERING
+    NF -.- FEDERATION
+
+    classDef layerFill fill:#fff,color:#4A0E2E,stroke:#3A0A22
+    classDef itemBlue fill:#1565C0,color:#fff,stroke:#0D47A1
+    classDef overgangFill fill:#D4A04A,color:#000,stroke:#B8862D
+    classDef konsumentFill fill:#E3F2FD,stroke:#1565C0,color:#0D47A1
+    classDef invisible fill:none,stroke:none
+
+    class KONSUMENTER,UTBYTE,HANTERING,LOKALISERING,FEDERATION layerFill
+    class K1,K2,K4 konsumentFill
+    class C6,C7,B2,K3 itemBlue
+    class B3,B4,H3,B5 itemBlue
+    class C2,C1,S1 itemBlue
+    class C3,C4,C5,F4,S3 itemBlue
+    class B1,C5A overgangFill
+    class NT,NU,NH,NL,NF invisible
+
+    linkStyle 4,5,6,7,8 stroke:transparent,stroke-width:0px

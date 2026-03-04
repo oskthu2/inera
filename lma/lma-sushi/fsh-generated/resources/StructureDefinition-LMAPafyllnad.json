@@ -1,0 +1,114 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "LMAPafyllnad",
+  "url": "https://sis.se/fhir/lma/StructureDefinition/LMAPafyllnad",
+  "name": "LMAPafyllnad",
+  "title": "LMA Påfyllnad",
+  "status": "draft",
+  "description": "Registrering av att dosrullen eller läkemedelsförrådet fyllts\npå i en automat. Lager: enhetslager.\n\nBatchnummer (LVFS 2012:14) ska anges för att möjliggöra spårbarhet vid\nläkemedelsåterkallelse.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "SupplyDelivery",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/SupplyDelivery",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "SupplyDelivery.extension",
+        "path": "SupplyDelivery.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "SupplyDelivery.extension:batch",
+        "path": "SupplyDelivery.extension",
+        "sliceName": "batch",
+        "short": "Batchnummer (LVFS 2012:14)",
+        "comment": "SHOULD anges. Krävs för spårbarhet vid läkemedelsåterkallelse per LVFS 2012:14.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://sis.se/fhir/lma/StructureDefinition/ext-lma-batch"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.status",
+        "path": "SupplyDelivery.status",
+        "short": "Status (alltid completed)",
+        "min": 1,
+        "patternCode": "completed",
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.type",
+        "path": "SupplyDelivery.type",
+        "short": "Typ av leverans",
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.suppliedItem",
+        "path": "SupplyDelivery.suppliedItem",
+        "short": "Påfyllt läkemedel",
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.suppliedItem.quantity",
+        "path": "SupplyDelivery.suppliedItem.quantity",
+        "short": "Antal påfyllda doser",
+        "comment": "MAY anges. Quantity.",
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.suppliedItem.item[x]",
+        "path": "SupplyDelivery.suppliedItem.item[x]",
+        "short": "Läkemedelsidentitet (valfritt)",
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.occurrence[x]",
+        "path": "SupplyDelivery.occurrence[x]",
+        "short": "Tidpunkt för påfyllnad",
+        "comment": "SHALL anges.",
+        "min": 1,
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.destination",
+        "path": "SupplyDelivery.destination",
+        "short": "Automat (via Reference(Location))",
+        "comment": "SHALL referera till Location vars\n`managingEntity` är Reference(LMAAutomat). Eftersom SupplyDelivery.destination\när Reference(Location) och inte Reference(Device) realiseras automatreferensen\nvia Location. Se mappningstabell i standarden.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "SupplyDelivery.receiver",
+        "path": "SupplyDelivery.receiver",
+        "short": "Utförare (HSA-id)",
+        "comment": "SHALL vara Reference(Practitioner) med HSA-id.\nPDL 3 kap. Den person som fysiskt fyllde på automaten.",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      }
+    ]
+  }
+}

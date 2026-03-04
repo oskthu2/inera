@@ -1,0 +1,28 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "LMAKopplingsstatus",
+  "id": "lma-kopplingsstatus",
+  "title": "LMA Kopplingsstatus",
+  "description": "Status för kopplingen brukare–automat. **Enhetslager.**",
+  "url": "https://sis.se/fhir/lma/CodeSystem/lma-kopplingsstatus",
+  "concept": [
+    {
+      "code": "aktiv",
+      "display": "Aktiv",
+      "definition": "Kopplingen är aktiv och brukaren har en pågående insats med aktuell automat."
+    },
+    {
+      "code": "avslutad",
+      "display": "Avslutad",
+      "definition": "Kopplingen är avslutad."
+    },
+    {
+      "code": "pausad",
+      "display": "Pausad",
+      "definition": "Kopplingen är tillfälligt inaktiverad."
+    }
+  ],
+  "count": 3
+}

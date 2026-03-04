@@ -1,0 +1,53 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ext-lma-batch",
+  "url": "https://sis.se/fhir/lma/StructureDefinition/ext-lma-batch",
+  "name": "ExtLmaBatch",
+  "title": "LMA Batchnummer",
+  "status": "draft",
+  "description": "Batchnummer (lottnummer) för det läkemedel som fylldes på i\nautomaten. Krävs för spårbarhet vid läkemedelsåterkallelse per LVFS 2012:14.\n\nBatchnumret tillhandahålls av apoteket/dosaktören och registreras vid påfyllnad.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "SupplyDelivery"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "LMA Batchnummer",
+        "definition": "Batchnummer (lottnummer) för det läkemedel som fylldes på i\nautomaten. Krävs för spårbarhet vid läkemedelsåterkallelse per LVFS 2012:14.\n\nBatchnumret tillhandahålls av apoteket/dosaktören och registreras vid påfyllnad."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://sis.se/fhir/lma/StructureDefinition/ext-lma-batch"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "short": "Batchnummer / lottnummer",
+        "comment": "Format definierat av tillverkaren. LVFS 2012:14.",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+sequenceDiagram
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(227,227,227) Ineras infrastruktur
+        participant GW as API Gateway
+        participant AT as Åtkomsintygstjänst
+        participant FY as FHIR-tjänsteyta
+        participant IX as Informationsindex
+        participant TAK as Adapter-TAK
+        participant MM as Mappningsmotor
+        participant SC as SOAP-klient
+        participant SP as Spärr/filtrering
+        participant LG as Åtkomstlogg
+    end
+    box rgb(255,255,255) Befintlig infrastruktur
+        participant VP as NTjP/VP
+        participant PROD as Regionens<br/>tjänsteproducent
+    end
+
+    K->>GW: GET /fhir/{vg-hsa-id}/Condition?patient={pnr}
+    Note over GW: TX-01: TLS-terminering, routing
+
+    GW->>AT: Validera token
+    Note over AT: TX-02: JWT-validering,<br/>klientuppslag, scope-kontroll
+    AT-->>GW: OK + klient-id + scopes
+
+    GW->>FY: Vidarebefordra FHIR-sökning
+    Note over FY: TX-03: Parsa sökparametrar,<br/>identifiera VG
+
+    FY->>IX: Har VG data om patient?
+    Note over IX: TX-04: EI-uppslag
+    IX-->>FY: Ja, engagemang finns
+
+    FY->>TAK: Slå upp logisk adress
+    Note over TAK: TX-05: VG HSA-id → logisk adress
+    TAK-->>FY: LogiskAdress + TK-version
+
+    FY->>MM: Översätt FHIR → SOAP
+    Note over MM: TX-06: Sökparametrar →<br/>GetDiagnosis-request
+
+    MM->>SC: Anropa GetDiagnosis
+    Note over SC: TX-07: RIVTA BP 2.1, mTLS
+
+    SC->>VP: SOAP via NTjP
+    Note over VP: TX-08: Routing via TAK-vägval
+    VP->>PROD: GetDiagnosis(personnummer, logisk adress)
+    PROD-->>VP: GetDiagnosisResponse
+    VP-->>SC: SOAP-svar
+
+    SC-->>MM: SOAPsvar
+    Note over MM: TX-09: SOAP → FHIR Condition[],<br/>kodverksöversättning,<br/>Provenance-generering
+    MM-->>FY: FHIR Condition[] + Provenance[]
+
+    FY->>SP: Filtrera mot spärr
+    Note over SP: TX-10: Utgångsfiltrering,<br/>PDL-kontroll
+    SP-->>FY: Filtrerade resurser
+
+    Note over FY: TX-11: Bygg Bundle (searchset)
+
+    FY->>LG: Logga åtkomst
+    Note over LG: TX-12: Klient, patient,<br/>informationstyp, tidpunkt, resultat
+
+    FY-->>GW: 200 OK + Bundle
+    GW-->>K: 200 OK + Bundle
