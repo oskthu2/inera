@@ -138,12 +138,16 @@ Konsument söker diagnoser men informationsindexet visar att VG inte har data om
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant GW as API Gateway
-    participant AT as Åtkomstintygstjänst
-    participant FY as FHIR-tjänsteyta
-    participant IX as Informationsindex
-    participant LG as Åtkomstlogg
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant GW as API Gateway
+        participant AT as Åtkomstintygstjänst
+        participant FY as FHIR-tjänsteyta
+        participant IX as Informationsindex
+        participant LG as Åtkomstlogg
+    end
 
     K->>GW: GET /fhir/{vg-hsa-id}/Condition?patient={pnr}
     GW->>AT: Validera token
@@ -166,9 +170,13 @@ Konsumentens token saknar rätt scope eller är ogiltigt.
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant GW as API Gateway
-    participant AT as Åtkomstintygstjänst
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant GW as API Gateway
+        participant AT as Åtkomstintygstjänst
+    end
 
     K->>GW: GET /fhir/{vg-hsa-id}/Condition?patient={pnr}
     GW->>AT: Validera token
@@ -183,13 +191,19 @@ SOAP-anropet misslyckas (timeout, fel).
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant GW as API Gateway
-    participant FY as FHIR-tjänsteyta
-    participant SC as SOAP-klient
-    participant VP as NTjP/VP
-    participant PROD as Regionens producent
-    participant LG as Åtkomstlogg
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant GW as API Gateway
+        participant FY as FHIR-tjänsteyta
+        participant SC as SOAP-klient
+        participant LG as Åtkomstlogg
+    end
+    box rgb(220,220,255) Befintlig infrastruktur
+        participant VP as NTjP/VP
+        participant PROD as Regionens producent
+    end
 
     K->>GW: GET /fhir/{vg-hsa-id}/Condition?patient={pnr}
     Note over GW: Token validerat (utelämnat)
@@ -215,11 +229,15 @@ SOAP-anropet lyckas men all returnerad data filtreras bort av spärrtjänsten.
 
 ```mermaid
 sequenceDiagram
-    actor K as Konsument
-    participant FY as FHIR-tjänsteyta
-    participant MM as Mappningsmotor
-    participant SP as Spärr/filtrering
-    participant LG as Åtkomstlogg
+    box rgb(255,255,255) Konsument
+        actor K as Konsument
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant FY as FHIR-tjänsteyta
+        participant MM as Mappningsmotor
+        participant SP as Spärr/filtrering
+        participant LG as Åtkomstlogg
+    end
 
     Note over FY: Autentisering, index, TAK, SOAP-hämtning OK (utelämnat)
 
@@ -270,14 +288,20 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    actor FV as Förvaltare
-    participant TK as Tjänstekatalog
-    participant TAK as Adapter-TAK
-    participant FMK as Federationsmedlemskap
-    participant NS as NTK-synk
-    participant FS as Federationssynk
-    participant eHM_NTK as eHM NTK
-    participant eHM_FED as eHM Fed.katalog
+    box rgb(255,255,255) Förvaltare
+        actor FV as Förvaltare
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant TK as Tjänstekatalog
+        participant TAK as Adapter-TAK
+        participant FMK as Federationsmedlemskap
+        participant NS as NTK-synk
+        participant FS as Federationssynk
+    end
+    box rgb(220,220,255) Externa tjänster
+        participant eHM_NTK as eHM NTK
+        participant eHM_FED as eHM Fed.katalog
+    end
 
     FV->>TK: Registrera VG: HSA-id, endpoint, informationstyper
     Note over TK: TX-20: Manuell konfiguration i MVP
@@ -325,10 +349,14 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant EI as Engagemangsindex
-    participant PS as PDI-synk
-    participant PROJ as Lokal projektion
-    participant eHM_PDI as eHM PDI
+    box rgb(255,255,204) Ineras infrastruktur
+        participant EI as Engagemangsindex
+        participant PS as PDI-synk
+        participant PROJ as Lokal projektion
+    end
+    box rgb(220,220,255) Externa tjänster
+        participant eHM_PDI as eHM PDI
+    end
 
     EI->>PS: ProcessNotification (ny post)
     Note over EI,PS: TX-30: Patientid + VG + informationstyp
@@ -347,10 +375,14 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant EI as Engagemangsindex
-    participant PS as PDI-synk
-    participant PROJ as Lokal projektion
-    participant eHM_PDI as eHM PDI
+    box rgb(255,255,204) Ineras infrastruktur
+        participant EI as Engagemangsindex
+        participant PS as PDI-synk
+        participant PROJ as Lokal projektion
+    end
+    box rgb(220,220,255) Externa tjänster
+        participant eHM_PDI as eHM PDI
+    end
 
     EI->>PS: ProcessNotification (borttagen post)
     Note over EI,PS: TX-30: Borttagning
@@ -388,9 +420,13 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    actor KF as Konsumentens<br/>förvaltare
-    participant KMK as Klientmetadatakatalog
-    participant AT as Åtkomstintygstjänst
+    box rgb(255,255,255) Konsument
+        actor KF as Konsumentens<br/>förvaltare
+    end
+    box rgb(255,255,204) Ineras infrastruktur
+        participant KMK as Klientmetadatakatalog
+        participant AT as Åtkomstintygstjänst
+    end
 
     KF->>KMK: Registrera klient: org-id, publika nycklar, önskade scopes
     Note over KMK: TX-40: Manuell i MVP
