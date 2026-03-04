@@ -17,16 +17,31 @@ Dokumentet är organiserat i tre nivåer:
 | API Gateway | TLS, routing, rate limit, åtkomstkontroll | Permanent |
 | Åtkomstintygstjänst | OAuth2-tokenvalidering, klientauktorisation | Permanent |
 | FHIR-tjänsteyta | Logisk FHIR-server per VG, sökning, Bundle-bygge | Permanent |
+| Regelverksproxy | Spärr/filtrering, åtkomstloggning, samtyckesstyrning – tillämpas på aggregerat svar innan det lämnar bryggan; kan placeras framför en VG:s native FHIR-server utan mappningslagret | Permanent |
 | Informationsindex | Patientförekomst per VG (EI-baserat) | Permanent |
-| Tjänstekatalog | Endpoint och informationstyper per VG | Permanent |
+| Tjänstekatalog | Endpoint, informationstyper **och backend-typ (FHIR eller SOAP)** per VG | Permanent |
 | Adapter-TAK | VG HSA-id → logisk adress i NTjP | Övergång |
 | Mappningsmotor | FHIR↔SOAP, kodverksöversättning | Övergång (mönstret permanent) |
 | SOAP-klient | RIVTA BP 2.1, mTLS, felhantering | Övergång |
-| Spärr/filtrering | Utgångsfiltrering mot spärrunderlag | Permanent (mönstret) |
-| Åtkomstlogg | Loggpost per patientdataåtkomst | Permanent |
+| Spärr/filtrering | Utgångsfiltrering mot spärrunderlag – ingår i Regelverksproxy | Permanent (mönstret) |
+| Åtkomstlogg | Loggpost per patientdataåtkomst – ingår i Regelverksproxy | Permanent |
 | PDI-synk | EI → eHM:s PDI | Permanent |
 | NTK-synk | Tjänstekatalog → eHM:s NTK | Permanent |
 | Federationssynk | Medlemskap → eHM:s katalog | Permanent |
+
+### Ansvarsfördelning: FHIR-tjänsteyta vs. Regelverksproxy
+
+FHIR-tjänsteytan delas konceptuellt i två ansvarsområden med olika livslängd:
+
+| Ansvarsområde | Innehåll | Livslängd |
+|---------------|----------|-----------|
+| **Mappning och orkestrering** | FHIR↔SOAP-översättning, EI-uppslag, TAK-uppslag, Bundle-bygge | Övergång – försvinner när VG:er har native FHIR |
+| **Regelverksproxy** | Spärr, filtrering, åtkomstlogg, samtycke | Permanent – tillämpas oavsett om bakändan är SOAP eller FHIR |
+
+Proxyn tillämpas alltid på det *aggregerade* svaret, d.v.s. efter att data hämtats och normaliserats från alla berörda VG:er. Det innebär att:
+- Åtkomstloggen skriver **en post per konsumentanrop** (inte per VG-anrop bakom kulisserna)
+- PDL-kravet "konsumenten kan inte skilja 'ingen data' från 'allt spärrat'" gäller det samlade resultatet
+- `Bundle.total` och interna resursreferenser (t.ex. `Provenance.target`) uppdateras efter filtrering
 
 ---
 
@@ -509,4 +524,20 @@ Ska `GET /fhir/{vg-hsa-id}/metadata` vara ett eget användningsfall (UC-05) elle
 
 ## Öppen fråga: Aggregering
 
-Sekvensdiagrammet i den bifogade bilden visar en aggregeringsmodell där 1177/Journalen hämtar data från multipla VG:er parallellt (via index → parallella hämtningar). MVP:n täcker en VG i taget, men designen bör vara förberedd för ett framtida UC-05: "Hämta diagnosinformation från alla VG:er med data om en patient" – vilket kräver tvärsökning via informationsindex + parallella SOAP-anrop, samma mönster som AgP idag fast med FHIR som utgående format.
+Sekvensdiagrammet i den bifogade bilden visar en aggregeringsmodell där 1177/Journalen hämtar data från multipla VG:er parallellt (via index → parallella hämtningar). MVP:n täcker en VG i taget, men designen bör vara förberedd för ett framtida UC-05: "Hämta diagnosinformation från alla VG:er med data om en patient" – vilket kräver tvärsökning via informationsindex + parallella anrop, samma mönster som AgP idag fast med FHIR som utgående format.
+
+### Designprinciper för UC-05 att ha med sig redan nu
+
+**Utåt ser lösningen ut som en VG:s FHIR-server.** Konsumenten anropar ett FHIR-API med ett VG HSA-id i URL:en. I aggregeringsfallet kan det HSA-id:t tillhöra bryggan/Inera snarare än en enskild region – konsumenten behöver inte känna till om svaret aggregerats.
+
+**URL-mönster för aggregering** (förslag):
+- Per VG (MVP): `GET /fhir/{vg-hsa-id}/Condition?patient={pnr}`
+- Aggregerat (UC-05): `GET /fhir/{inera-aggregator-hsa-id}/Condition?patient={pnr}`
+
+**Tjänstekatalog måste hålla backend-typ.** När bryggan i UC-05 slår upp vilka VG:er som har data (via EI) och sedan ska hämta den, behöver den veta om respektive VG exponerar FHIR eller SOAP. Tjänstekatalogen behöver därför innehålla `backendTyp: FHIR | SOAP` per VG-endpoint, så att bryggan kan välja rätt adapter.
+
+**Regelverksproxyn tillämpas en gång på det aggregerade resultatet** – inte per VG-anrop. Annars riskerar man:
+- Flera loggposter för samma konsumentanrop
+- Inkonsekvent filtrering om spärr täcker data från flera VG:er
+
+**Deduplicering** av resurser som förekommer hos flera VG:er bör adresseras i UC-05-specen (t.ex. samma diagnos registrerad i två system).
