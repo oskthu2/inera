@@ -66,10 +66,10 @@ Konsument söker diagnoser för en patient hos en specifik vårdgivare. Bryggan 
 
 ```mermaid
 sequenceDiagram
-    box rgb(227,242,253) Konsument
+    box rgb(255,255,255) Konsument
         actor K as Konsument
     end
-    box rgb(74,14,46) Ineras infrastruktur
+    box rgb(255,255,204) Ineras infrastruktur
         participant GW as API Gateway
         participant AT as Åtkomsintygstjänst
         participant FY as FHIR-tjänsteyta
@@ -80,7 +80,7 @@ sequenceDiagram
         participant SP as Spärr/filtrering
         participant LG as Åtkomstlogg
     end
-    box rgb(198,40,40) Befintlig infrastruktur
+    box rgb(220,220,255) Befintlig infrastruktur
         participant VP as NTjP/VP
         participant PROD as Regionens<br/>tjänsteproducent
     end
