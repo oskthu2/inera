@@ -1,3 +1,4 @@
+```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'fontSize': '12px'}}}%%
 flowchart LR
 
@@ -73,3 +74,4 @@ flowchart LR
     class NT,NU,NH,NL,NF invisible
 
     linkStyle 4,5,6,7,8 stroke:transparent,stroke-width:0px
+```

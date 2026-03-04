@@ -1,3 +1,4 @@
+```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'fontSize': '12px'}}}%%
 flowchart LR
 
@@ -87,3 +88,4 @@ flowchart LR
 
     %% Gör kommentarpilar osynliga
     linkStyle 9,10,11,12,13 stroke:transparent,stroke-width:0px
+```
