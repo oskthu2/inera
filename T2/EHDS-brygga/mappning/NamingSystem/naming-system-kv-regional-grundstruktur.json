@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-regional-grundstruktur",
+  "name": "KvRegionalGrundstruktur",
+  "title": "Kv Regional grundstruktur - hälso- och sjukvård",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Beskriver struktur för regional hälso- och sjukvård.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.47",
+      "comment": "OID för Kv Regional grundstruktur från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-regional-grundstruktur",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

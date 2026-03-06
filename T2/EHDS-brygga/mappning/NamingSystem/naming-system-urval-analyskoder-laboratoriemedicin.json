@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-analyskoder-laboratoriemedicin",
+  "name": "UrvalAnalyskoderLaboratoriemedicin",
+  "title": "Urval analyskoder laboratoriemedicin",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urval ur NPU-kodverket för att beskriva analyser inom laboratoriemedicin.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.108.1.1",
+      "comment": "OID för urval analyskoder laboratoriemedicin från Equalis"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-analyskoder-laboratoriemedicin",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

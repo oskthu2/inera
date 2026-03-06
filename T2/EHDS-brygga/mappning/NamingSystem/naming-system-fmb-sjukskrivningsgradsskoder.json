@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-fmb-sjukskrivningsgradsskoder",
+  "name": "FmbSjukskrivningsgradsskoder",
+  "title": "Försäkringsmedicinskt beslutsstöd sjukskrivningsgradsskoder",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Försäkringsmedicinskt beslutsstöd sjukskrivningsgradsskoder (Socialstyrelsen FMB-förvaltningen). Ta kontakt med FMB-förvaltningen för att få tillgång till kodverket.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.3.1.14",
+      "comment": "OID för Försäkringsmedicinskt beslutsstöd sjukskrivningsgradsskoder från Socialstyrelsen FMB-förvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/fmb-sjukskrivningsgradsskoder",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

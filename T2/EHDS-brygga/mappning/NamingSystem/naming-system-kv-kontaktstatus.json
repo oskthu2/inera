@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-kontaktstatus",
+  "name": "KvKontaktstatus",
+  "title": "Kv kontaktstatus",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger vilken status vårdkontakten har.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.44",
+      "comment": "OID för Kv kontaktstatus från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-kontaktstatus",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

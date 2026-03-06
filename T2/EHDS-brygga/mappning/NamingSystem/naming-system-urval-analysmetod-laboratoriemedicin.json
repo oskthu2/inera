@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-analysmetod-laboratoriemedicin",
+  "name": "UrvalAnalysmetodLaboratoriemedicin",
+  "title": "Urval analysmetod laboratoriemedicin",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urval ur Snomed CT för att beskriva principer för analysmetoder inom laboratoriemedicin.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.18",
+      "comment": "OID för urval analysmetod laboratoriemedicin från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-analysmetod-laboratoriemedicin",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

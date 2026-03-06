@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-provbehallare-laboratoriemedicin",
+  "name": "UrvalProvbehallare Laboratoriemedicin",
+  "title": "Urval provbehållare laboratoriemedicin",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urval ur Snomed CT för att beskriva provbehållare för laboratoriemedicin. Refset-ID: 500071000057102.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.12",
+      "comment": "OID för urval provbehållare laboratoriemedicin från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-provbehallare-laboratoriemedicin",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

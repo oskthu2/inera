@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-smitvag",
+  "name": "KvSmitvag",
+  "title": "Kv smittväg",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger hur en uppmärksammad sjukdom smittar. OBS: Formellt kodverk saknas enligt källfilen.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.3.16",
+      "comment": "OID för Kv smittväg från Inera kodverksförvaltning. OBS: formellt kodverk saknas enligt källfilen."
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-smitvag",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-godkanda-system-id",
+  "name": "HsaGodkandaSystemId",
+  "title": "HSA Godkända system-id",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för godkända system-id.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.98",
+      "comment": "OID för HSA Godkända system-id från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-godkanda-system-id",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

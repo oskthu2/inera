@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-sokord-kommunal-adressbok-utbildning",
+  "name": "UrvalSokordKommunalAdressbokUtbildning",
+  "title": "Urval sökord kommunal adressbok utbildning",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urvalet innefattar sökord som är relevanta inom utbildningsområdet.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.54",
+      "comment": "OID för urval sökord kommunal adressbok utbildning från Inera kodverksförvaltning. OBS: samma OID (1.2.752.129.5.1.54) som Kv samarbetsområde — se EXTERNAL-ISSUES.md."
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-sokord-kommunal-adressbok-utbildning",
+      "preferred": true,
+      "comment": "TODO: verifiera URI. OBS: OID-kollision med Kv samarbetsområde."
+    }
+  ]
+}

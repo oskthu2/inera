@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-diagnostic-report-status",
+  "name": "DiagnosticReportStatus",
+  "title": "DiagnosticReportStatus",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Status för diagnostikrapporten, översatt.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "2.16.840.1.113883.4.642.4.236",
+      "comment": "OID för DiagnosticReportStatus från HL7"
+    },
+    {
+      "type": "uri",
+      "value": "http://hl7.org/fhir/diagnostic-report-status",
+      "preferred": true,
+      "comment": "Kanonisk URI från HL7 FHIR"
+    }
+  ]
+}

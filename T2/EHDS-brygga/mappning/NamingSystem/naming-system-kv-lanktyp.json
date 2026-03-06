@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-lanktyp",
+  "name": "KvLanktyp",
+  "title": "Kv länktyp",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Länktyp.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.1.1",
+      "comment": "OID för Kv länktyp från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-lanktyp",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

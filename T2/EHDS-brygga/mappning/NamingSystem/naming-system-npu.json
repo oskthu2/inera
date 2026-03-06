@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-npu",
+  "name": "NPU",
+  "title": "Nomenclature of properties and units, NPU",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Register med systematiska, unika benämningar och koder för laboratorieundersökningar.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.108.1",
+      "comment": "OID för NPU från Equalis"
+    },
+    {
+      "type": "uri",
+      "value": "http://npu-terminology.org",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

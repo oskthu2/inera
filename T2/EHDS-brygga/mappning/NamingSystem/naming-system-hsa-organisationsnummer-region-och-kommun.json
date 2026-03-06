@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-organisationsnummer-region-och-kommun",
+  "name": "HsaOrganisationsnummerRegionOchKommun",
+  "title": "HSA Organisationsnummer region och kommun",
+  "status": "active",
+  "kind": "identifier",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA identifierarsystem för organisationsnummer för region och kommun.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.1",
+      "comment": "OID för HSA Organisationsnummer region och kommun från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/identifier/hsa-organisationsnummer-region-och-kommun",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-behörighetsbegransning",
+  "name": "Behörighetsbegransning",
+  "title": "Behörighetsbegränsning",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Behörighetsbegränsning (Socialstyrelsen, HOSP-förvaltningen).",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.3.1.5",
+      "comment": "OID för Behörighetsbegränsning från Socialstyrelsen, HOSP-förvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/behorighetsbegransning",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

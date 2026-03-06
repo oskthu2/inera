@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-korkortsolamplighet",
+  "name": "KvKorkortsolamplighet",
+  "title": "Kv körkortsolämplighet",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverket innehåller koder som beskriver läkarens anmälan om huruvida patienten är olämplig eller sannolikt olämplig att inneha körkort, körkortstillstånd, traktorkort eller taxiförarlegitimation.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.4",
+      "comment": "OID för Kv körkortsolämplighet från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-korkortsolamplighet",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

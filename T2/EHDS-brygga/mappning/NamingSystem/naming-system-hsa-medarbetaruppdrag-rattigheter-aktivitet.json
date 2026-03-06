@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-medarbetaruppdrag-rattigheter-aktivitet",
+  "name": "HsaMedarbetaruppdragRattigheterAktivitet",
+  "title": "HSA Medarbetaruppdragets rättigheter aktivitet",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för medarbetaruppdragets rättigheter aktivitet.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.29.23.1.102",
+      "comment": "OID för HSA Medarbetaruppdragets rättigheter aktivitet från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-medarbetaruppdrag-rattigheter-aktivitet",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

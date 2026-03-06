@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-legitimerad-yrkesgrupp",
+  "name": "HsaLegitimeradYrkesgrupp",
+  "title": "HSA Legitimerad yrkesgrupp",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för legitimerad yrkesgrupp.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.29.23.1.6",
+      "comment": "OID för HSA Legitimerad yrkesgrupp från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-legitimerad-yrkesgrupp",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

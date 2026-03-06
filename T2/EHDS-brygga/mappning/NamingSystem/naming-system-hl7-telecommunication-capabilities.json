@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hl7-telecommunication-capabilities",
+  "name": "HL7TelecommunicationCapabilities",
+  "title": "HL7 TelecommunicationCapabilities",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HL7 TelecommunicationCapabilities kodsystem.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "2.16.840.1.113883.5.1118",
+      "comment": "OID för HL7 TelecommunicationCapabilities från HL7"
+    },
+    {
+      "type": "uri",
+      "value": "http://terminology.hl7.org/CodeSystem/v3-TelecommunicationCapabilities",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

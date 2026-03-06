@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hl7-v2-administrative-sex",
+  "name": "HL7V2AdministrativeSex",
+  "title": "HL7 v2 Administrative Sex",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HL7 v2 Administrative Sex kodsystem.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "2.16.840.1.133883.18.2",
+      "comment": "OID för HL7 v2 Administrative Sex från HL7. OBS: OID i källfilen är 2.16.840.1.133883.18.2 — avviker från standard 2.16.840.1.113883.18.2 (ett extra 3 i sjätte segmentet). Se EXTERNAL-ISSUES.md."
+    },
+    {
+      "type": "uri",
+      "value": "http://terminology.hl7.org/CodeSystem/v2-0001",
+      "preferred": true,
+      "comment": "TODO: verifiera URI. Kanonisk HL7 v2 table 0001."
+    }
+  ]
+}

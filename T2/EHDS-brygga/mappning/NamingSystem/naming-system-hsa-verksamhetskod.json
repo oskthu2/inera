@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-verksamhetskod",
+  "name": "HsaVerksamhetskod",
+  "title": "HSA Verksamhetskod",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för verksamhetskod.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.3",
+      "comment": "OID för HSA Verksamhetskod från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-verksamhetskod",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

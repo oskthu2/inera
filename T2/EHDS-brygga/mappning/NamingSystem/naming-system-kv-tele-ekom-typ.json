@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-tele-ekom-typ",
+  "name": "KvTeleEkomTyp",
+  "title": "Kv tele ekom typ",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger vilken typ av telekommunikationsutrustning som avses.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.30",
+      "comment": "OID för Kv tele ekom typ från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-tele-ekom-typ",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

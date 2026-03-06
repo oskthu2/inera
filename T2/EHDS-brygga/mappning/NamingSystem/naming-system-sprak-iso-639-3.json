@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-sprak-iso-639-3",
+  "name": "SprakISO6393",
+  "title": "Språkkoder, ISO 639-3",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Internationella språkkoder inklusive teckenspråk.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.0.639.3",
+      "comment": "OID för ISO 639-3 från SIL International"
+    },
+    {
+      "type": "uri",
+      "value": "http://iso639-3.sil.org",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

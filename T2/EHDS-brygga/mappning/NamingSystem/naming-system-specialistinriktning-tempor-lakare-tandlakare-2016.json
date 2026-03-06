@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-specialistinriktning-tempor-lakare-tandlakare-2016",
+  "name": "SpecialistinriktningTemporLakareTandlakare2016",
+  "title": "Specialistinriktning temporär läkare eller tandläkare 2016",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Specialistinriktning temporär läkare eller tandläkare 2016 (Socialstyrelsen, HOSP-förvaltningen).",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.3.1.15",
+      "comment": "OID för Specialistinriktning temporär läkare eller tandläkare 2016 från Socialstyrelsen, HOSP-förvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/specialistinriktning-tempor-lakare-tandlakare-2016",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

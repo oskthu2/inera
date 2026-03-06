@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-atc",
+  "name": "ATC",
+  "title": "Anatomical Therapeutic Chemical Classification, ATC",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Klassificeringssystem för läkemedel.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "2.16.840.1.113883.6.73",
+      "comment": "OID för ATC från Läkemedelsverket"
+    },
+    {
+      "type": "uri",
+      "value": "http://www.whocc.no/atc",
+      "preferred": true,
+      "comment": "Kanonisk URI för WHO ATC"
+    }
+  ]
+}

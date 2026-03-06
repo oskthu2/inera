@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-samarbetsomrade",
+  "name": "KvSamarbetsomrade",
+  "title": "Kv samarbetsområde",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverket anger hur spridd en artefakt är bland regionerna.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.54",
+      "comment": "OID för Kv samarbetsområde från Terminologitjänsten"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-samarbetsomrade",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

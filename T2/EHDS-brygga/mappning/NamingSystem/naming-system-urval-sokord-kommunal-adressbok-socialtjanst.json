@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-sokord-kommunal-adressbok-socialtjanst",
+  "name": "UrvalSokordKommunalAdressbokSocialtjanst",
+  "title": "Urval sökord kommunal adressbok, Socialtjänst och kommunal hälso- och sjukvård",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverket innefattar sökord som är relevanta inom socialtjänst och kommunal hälso- och sjukvård.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.25",
+      "comment": "OID för urval sökord kommunal adressbok, Socialtjänst från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-sokord-kommunal-adressbok-socialtjanst",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

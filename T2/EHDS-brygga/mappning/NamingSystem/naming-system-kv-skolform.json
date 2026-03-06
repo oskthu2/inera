@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-skolform",
+  "name": "KvSkolform",
+  "title": "Kv skolform",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverk som anger typ av skolform som bedrivs enligt skollagen 2010:800.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.53",
+      "comment": "OID för Kv skolform från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-skolform",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

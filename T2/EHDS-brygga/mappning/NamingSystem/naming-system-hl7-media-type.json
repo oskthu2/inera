@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hl7-media-type",
+  "name": "HL7MediaType",
+  "title": "HL7 Media type",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HL7 Media type kodsystem.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "2.16.840.1.113883.4.642.3.458",
+      "comment": "OID för HL7 Media type från HL7"
+    },
+    {
+      "type": "uri",
+      "value": "urn:ietf:bcp:13",
+      "preferred": true,
+      "comment": "TODO: verifiera URI — MIME-typer definieras av IANA/IETF BCP 13"
+    }
+  ]
+}

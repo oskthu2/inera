@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kko",
+  "name": "KKO",
+  "title": "Klassifikation av kontaktorsaker, KKO",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Klassifikation av kontaktorsaker.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.1.3.4.1.1",
+      "comment": "OID för Klassifikation av kontaktorsaker (KKO) från Socialstyrelsen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kko",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-typ-av-vard-och-omsorgsplan",
+  "name": "KvTypAvVardOchOmsorgsplan",
+  "title": "Kv typ av vård- och omsorgsplan",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Beskriver vilken typ en vård- eller omsorgsplan är.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.55",
+      "comment": "OID för Kv typ av vård- och omsorgsplan från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-typ-av-vard-och-omsorgsplan",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

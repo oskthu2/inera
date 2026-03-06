@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-befattning",
+  "name": "HsaBefattning",
+  "title": "HSA Befattning",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för befattning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.4",
+      "comment": "OID för HSA Befattning från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-befattning",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

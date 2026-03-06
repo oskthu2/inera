@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-sokord-kommunal-adressbok-overformyndarverksamhet",
+  "name": "UrvalSokordKommunalAdressbokOverformyndarverksamhet",
+  "title": "Urval sökord kommunal adressbok, Överförmyndarverksamhet",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urvalet innefattar sökord som är relevanta inom överförmyndarverksamheten.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.61",
+      "comment": "OID för urval sökord kommunal adressbok, Överförmyndarverksamhet från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-sokord-kommunal-adressbok-overformyndarverksamhet",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-nsl",
+  "name": "NSL",
+  "title": "Nationellt substansregister för läkemedel, NSL",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Innehåller kvalitetssäkrad information om aktiva substanser och ett urval av hjälpämnen som förekommer i svenska läkemedel.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.45",
+      "comment": "OID för NSL från Läkemedelsverket"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/nsl",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-status-vardbegaran",
+  "name": "KvStatusVardbegaran",
+  "title": "Kv status vårdbegäran",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Syftet med kodverket är att visa de olika status som en skriftlig vårdbegäran kan erhålla.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.2.43",
+      "comment": "OID för Kv status vårdbegäran från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-status-vardbegaran",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

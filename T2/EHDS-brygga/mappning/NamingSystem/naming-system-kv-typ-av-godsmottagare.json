@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-typ-av-godsmottagare",
+  "name": "KvTypAvGodsmottagare",
+  "title": "Kv typ av godsmottagare",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverk som anger typ av godsmottagare.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.51",
+      "comment": "OID för Kv typ av godsmottagare från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-typ-av-godsmottagare",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

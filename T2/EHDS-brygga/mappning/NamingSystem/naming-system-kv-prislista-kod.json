@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-prislista-kod",
+  "name": "KvPrislistaKod",
+  "title": "Kv prislista kod",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av olika prislistor.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.41",
+      "comment": "OID för Kv prislista kod från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-prislista-kod",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

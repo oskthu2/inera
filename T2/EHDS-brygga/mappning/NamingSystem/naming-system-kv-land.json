@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-land",
+  "name": "KvLand",
+  "title": "Kv land",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Landskod. Baseras på ISO 3166-1.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.19",
+      "comment": "OID för Kv land från Inera kodverksförvaltning/OID-förvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-land",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

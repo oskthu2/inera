@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-gruppforskrivarkod",
+  "name": "HsaGruppforskrivarkod",
+  "title": "HSA Gruppförskrivarkod",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för gruppförskrivarkod.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.95",
+      "comment": "OID för HSA Gruppförskrivarkod från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-gruppforskrivarkod",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

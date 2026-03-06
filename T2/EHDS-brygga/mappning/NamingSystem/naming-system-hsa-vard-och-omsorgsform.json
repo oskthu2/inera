@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-vard-och-omsorgsform",
+  "name": "HsaVardOchOmsorgsform",
+  "title": "HSA Vård- och omsorgsform",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för vård- och omsorgsform.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.13",
+      "comment": "OID för HSA Vård- och omsorgsform från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-vard-och-omsorgsform",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

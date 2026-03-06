@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-typ-av-besok",
+  "name": "KvTypAvBesok",
+  "title": "Kv typ av besök",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av patientbesök.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.43",
+      "comment": "OID för Kv typ av besök från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-typ-av-besok",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

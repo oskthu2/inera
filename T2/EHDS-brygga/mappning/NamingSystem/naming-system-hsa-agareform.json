@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-agareform",
+  "name": "HsaAgareform",
+  "title": "HSA Ägarform",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för ägarform.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.14",
+      "comment": "OID för HSA Ägarform från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-agareform",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

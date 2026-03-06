@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-yrkeskod",
+  "name": "KvYrkeskod",
+  "title": "Kv yrkeskod",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av yrkeskod enligt förteckning Legitimerad yrkesgrupp från Svensk författningssamling.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.29",
+      "comment": "OID för Kv yrkeskod från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-yrkeskod",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

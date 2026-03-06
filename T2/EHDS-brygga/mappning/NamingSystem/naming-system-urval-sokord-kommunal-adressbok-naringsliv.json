@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-sokord-kommunal-adressbok-naringsliv",
+  "name": "UrvalSokordKommunalAdressbokNaringsliv",
+  "title": "Urval sökord kommunal adressbok, Näringsliv, arbete och integration",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverket innefattar sökord som är relevanta inom näringsliv, arbete och integration.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.26",
+      "comment": "OID för urval sökord kommunal adressbok, Näringsliv från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-sokord-kommunal-adressbok-naringsliv",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

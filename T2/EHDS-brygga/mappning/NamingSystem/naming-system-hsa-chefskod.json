@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-chefskod",
+  "name": "HsaChefskod",
+  "title": "HSA Chefskod",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för chefskod.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.29.23.1.103",
+      "comment": "OID för HSA Chefskod från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-chefskod",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

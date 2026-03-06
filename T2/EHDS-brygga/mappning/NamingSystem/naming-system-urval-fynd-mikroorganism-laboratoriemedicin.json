@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-fynd-mikroorganism-laboratoriemedicin",
+  "name": "UrvalFyndMikroorganismLaboratoriemedicin",
+  "title": "Urval fynd mikroorganism laboratoriemedicin",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urval ur Snomed CT för att beskriva mikroorganismer för laboratoriemedicin. Refset-ID: 500061000057107.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.9",
+      "comment": "OID för urval fynd mikroorganism laboratoriemedicin från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-fynd-mikroorganism-laboratoriemedicin",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

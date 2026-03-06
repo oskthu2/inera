@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-sokord-regional-adressbok",
+  "name": "KvSokordRegionalAdressbok",
+  "title": "Kv sökord regional adressbok",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverket innefattar sökord som är relevanta inom regional verksamhet.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.48",
+      "comment": "OID för Kv sökord regional adressbok från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-sokord-regional-adressbok",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

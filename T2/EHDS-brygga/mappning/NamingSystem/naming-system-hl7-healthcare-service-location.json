@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hl7-healthcare-service-location",
+  "name": "HL7HealthcareServiceLocation",
+  "title": "HL7 Healthcare Service Location",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSLOC innehåller beskrivande koder för olika funktionella delar av vårdapparaten, översatt.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "2.16.840.1.113883.6.259",
+      "comment": "OID för HL7 Healthcare Service Location (HSLOC) från CDC"
+    },
+    {
+      "type": "uri",
+      "value": "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html",
+      "preferred": true,
+      "comment": "TODO: verifiera URI — HSLOC ägs av CDC/NHSN"
+    }
+  ]
+}

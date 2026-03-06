@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-sokord-kommunal-adressbok",
+  "name": "KvSokordKommunalAdressbok",
+  "title": "Kv sökord kommunal adressbok",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverk med nationellt gemensamma sökord som ska kopplas till SDK-adressbok.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.30",
+      "comment": "OID för Kv sökord kommunal adressbok från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-sokord-kommunal-adressbok",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

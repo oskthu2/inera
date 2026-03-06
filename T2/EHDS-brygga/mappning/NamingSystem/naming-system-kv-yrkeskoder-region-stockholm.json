@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-yrkeskoder-region-stockholm",
+  "name": "KvYrkeskoderRegionStockholm",
+  "title": "Kv yrkeskoder (Region Stockholm)",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av yrkeskod enligt förteckning Legitimerad yrkesgrupp. Region Stockholm.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.97.3.2.8.8",
+      "comment": "OID för Kv yrkeskoder från Region Stockholm"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-yrkeskoder-region-stockholm",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-hpv-status-cervixscreening",
+  "name": "UrvalHpvStatusCervixscreening",
+  "title": "Urval HPV-status cervixscreening",
+  "status": "retired",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "INAKTIV. Urval av koder från Snomed CT som anger om provtagning påvisat högrisk HPV eller inte.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.16",
+      "comment": "OID för urval HPV-status cervixscreening från Inera kodverksförvaltning. Status: INAKTIV."
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-hpv-status-cervixscreening",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

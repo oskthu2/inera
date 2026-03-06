@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-kommun",
+  "name": "KvKommun",
+  "title": "Kv Kommun",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger kod för kommun. Baserat på SCB:s kodverk. OBS: samma OID som HSA Kommunkod.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.17",
+      "comment": "OID för Kv Kommun från Inera kodverksförvaltning/OID-förvaltning. OBS: samma OID som HSA Kommunkod."
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-kommun",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

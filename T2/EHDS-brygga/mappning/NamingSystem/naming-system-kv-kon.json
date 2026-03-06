@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-kon",
+  "name": "KvKon",
+  "title": "Kv kön",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger administrativt kön på en person. Bygger på ISO/IEC 5218:2022.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.1",
+      "comment": "OID för Kv kön från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-kon",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-anatomisk-lokalisation-laboratoriemedicin",
+  "name": "UrvalAnatomiskLokalisationLaboratoriemedicin",
+  "title": "Urval anatomisk lokalisation laboratoriemedicin",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urval ur Snomed CT för att beskriva lokalisation inom laboratoriemedicin. Refset-ID: 500091000057101.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.7",
+      "comment": "OID för urval anatomisk lokalisation laboratoriemedicin från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-anatomisk-lokalisation-laboratoriemedicin",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

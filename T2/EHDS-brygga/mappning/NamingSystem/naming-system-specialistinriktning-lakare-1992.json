@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-specialistinriktning-lakare-1992",
+  "name": "SpecialistinriktningLakare1992",
+  "title": "Specialistinriktning läkare 1992",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Specialistinriktning läkare 1992 (Socialstyrelsen, HOSP-förvaltningen).",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.3.1.6",
+      "comment": "OID för Specialistinriktning läkare 1992 från Socialstyrelsen, HOSP-förvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/specialistinriktning-lakare-1992",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

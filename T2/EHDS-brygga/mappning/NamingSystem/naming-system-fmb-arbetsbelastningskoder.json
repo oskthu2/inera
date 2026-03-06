@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-fmb-arbetsbelastningskoder",
+  "name": "FmbArbetsbelastningskoder",
+  "title": "Försäkringsmedicinskt beslutsstöd arbetsbelastningskoder",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Försäkringsmedicinskt beslutsstöd arbetsbelastningskoder (Socialstyrelsen FMB-förvaltningen). Ta kontakt med FMB-förvaltningen för att få tillgång till kodverket.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.3.1.13",
+      "comment": "OID för Försäkringsmedicinskt beslutsstöd arbetsbelastningskoder från Socialstyrelsen FMB-förvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/fmb-arbetsbelastningskoder",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

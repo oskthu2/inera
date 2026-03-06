@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-specialistinriktning-lakare-2008",
+  "name": "SpecialistinriktningLakare2008",
+  "title": "Specialistinriktning läkare 2008",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Specialistinriktning läkare 2008 (Socialstyrelsen, HOSP-förvaltningen).",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.3.1.8",
+      "comment": "OID för Specialistinriktning läkare 2008 från Socialstyrelsen, HOSP-förvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/specialistinriktning-lakare-2008",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

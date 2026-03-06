@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kva-socialstyrelsen",
+  "name": "KVASocialstyrelsen",
+  "title": "Koder, kodtexter för Klassifikation av vårdåtgärder, KVÅ (Socialstyrelsen OID)",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Klassifikation av vårdåtgärder, KVÅ. Socialstyrelsen OID. OBS: ns-kva.json täcker OID 1.2.752.129.2.2.2.1 med URI http://electronichealth.se/id/kva — verifiera om detta är samma kodsystem.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.1.3.2.3.4",
+      "comment": "OID för KVÅ från Socialstyrelsen Klassifikationsförvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/id/kva",
+      "preferred": true,
+      "comment": "TODO: verifiera URI. OBS: ns-kva.json använder OID 1.2.752.129.2.2.2.1 med samma URI — möjlig dubblett eller två skilda OID:er för samma kodsystem."
+    }
+  ]
+}

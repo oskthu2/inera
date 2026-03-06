@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-vardtjanst",
+  "name": "HsaVardtjanst",
+  "title": "HSA Vårdtjänst",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för vårdtjänst. OBS: samma OID (1.2.752.129.5.1.19) som Ineras urval vårdtjänst.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.19",
+      "comment": "OID för HSA Vårdtjänst från HSA förvaltningsgrupp, Inera. OBS: samma OID som Ineras urval vårdtjänst."
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-vardtjanst",
+      "preferred": true,
+      "comment": "TODO: verifiera URI. OBS: OID-kollision med urval vårdtjänst — se EXTERNAL-ISSUES.md."
+    }
+  ]
+}

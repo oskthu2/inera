@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-reserverade-funktionsnamn",
+  "name": "HsaReserveradeFunktionsnamn",
+  "title": "HSA Reserverade funktionsnamn",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för reserverade funktionsnamn.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.99",
+      "comment": "OID för HSA Reserverade funktionsnamn från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-reserverade-funktionsnamn",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

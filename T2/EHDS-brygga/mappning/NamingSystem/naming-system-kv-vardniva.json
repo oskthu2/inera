@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-vardniva",
+  "name": "KvVardniva",
+  "title": "Kv vårdnivå",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av vårdnivå.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.28",
+      "comment": "OID för Kv vårdnivå från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-vardniva",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

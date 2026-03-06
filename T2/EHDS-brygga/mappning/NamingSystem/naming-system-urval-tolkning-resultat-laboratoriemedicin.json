@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-tolkning-resultat-laboratoriemedicin",
+  "name": "UrvalTolkningResultatLaboratoriemedicin",
+  "title": "Urval tolkning resultat laboratoriemedicin",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Urval ur Snomed CT för att beskriva tolkning av fynd för laboratoriemedicin. Refset-ID: 500051000057105.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.14",
+      "comment": "OID för urval tolkning resultat laboratoriemedicin från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-tolkning-resultat-laboratoriemedicin",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

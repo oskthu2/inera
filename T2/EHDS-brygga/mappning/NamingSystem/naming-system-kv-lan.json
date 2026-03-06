@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-lan",
+  "name": "KvLan",
+  "title": "Kv län",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger kod för län. Baserat på SCB:s kodverk.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.18",
+      "comment": "OID för Kv län från Inera kodverksförvaltning/OID-förvaltning. OBS: samma OID som HSA Länskod."
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-lan",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

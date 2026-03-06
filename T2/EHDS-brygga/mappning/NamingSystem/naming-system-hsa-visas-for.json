@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-visas-for",
+  "name": "HsaVisasFör",
+  "title": "HSA Visas för",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för visas för.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.29.23.1.11",
+      "comment": "OID för HSA Visas för från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-visas-for",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-urval-mediatyper-elektronisk-remiss",
+  "name": "UrvalMediatyperElektroniskRemiss",
+  "title": "Urval mediatyper elektronisk remiss",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger tillåtna mediatyper för en fil som skickas som bilaga i Elektronisk remiss.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.60",
+      "comment": "OID för urval mediatyper elektronisk remiss från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/urval-mediatyper-elektronisk-remiss",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

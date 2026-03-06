@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-orsak-till-kreditering",
+  "name": "KvOrsakTillKreditering",
+  "title": "Kv orsak till kreditering",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av orsaker till kreditering.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.39",
+      "comment": "OID för Kv orsak till kreditering från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-orsak-till-kreditering",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

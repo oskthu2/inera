@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-specialistinriktning-tandlakare-1993",
+  "name": "SpecialistinriktningTandlakare1993",
+  "title": "Specialistinriktning tandläkare 1993",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Specialistinriktning tandläkare 1993 (Socialstyrelsen, HOSP-förvaltningen).",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.116.3.1.10",
+      "comment": "OID för Specialistinriktning tandläkare 1993 från Socialstyrelsen, HOSP-förvaltningen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/specialistinriktning-tandlakare-1993",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

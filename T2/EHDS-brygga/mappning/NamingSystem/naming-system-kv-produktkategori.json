@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-produktkategori",
+  "name": "KvProduktkategori",
+  "title": "Kv produktkategori",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av olika prissättningar.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.42",
+      "comment": "OID för Kv produktkategori från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-produktkategori",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

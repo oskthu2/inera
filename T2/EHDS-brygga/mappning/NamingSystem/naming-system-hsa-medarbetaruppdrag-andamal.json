@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-medarbetaruppdrag-andamal",
+  "name": "HsaMedarbetaruppdragAndamal",
+  "title": "HSA Medarbetaruppdragets ändamål",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för medarbetaruppdragets ändamål.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.29.23.1.100",
+      "comment": "OID för HSA Medarbetaruppdragets ändamål från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-medarbetaruppdrag-andamal",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

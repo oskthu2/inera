@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hsa-utokad-yrkeskod",
+  "name": "HsaUtokadYrkeskod",
+  "title": "HSA Utökad yrkeskod",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "HSA kodverk för utökad yrkeskod.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.96",
+      "comment": "OID för HSA Utökad yrkeskod från HSA förvaltningsgrupp, Inera"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/hsa-utokad-yrkeskod",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

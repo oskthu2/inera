@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-hl7-role-class",
+  "name": "HL7RoleClass",
+  "title": "HL7 RoleClass",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodsystemet innehåller beskrivningar av roller.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "2.16.840.1.113883.5.110",
+      "comment": "OID för HL7 RoleClass från HL7"
+    },
+    {
+      "type": "uri",
+      "value": "http://terminology.hl7.org/CodeSystem/v3-RoleClass",
+      "preferred": true,
+      "comment": "Kanonisk URI från HL7 terminology"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-kommunal-adressbok-socialtjanst",
+  "name": "KvKommunalAdressbokSocialtjanst",
+  "title": "Kv kommunal adressbok - Socialtjänst och kommunal hälso- och sjukvård",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Beskriver struktur för socialtjänst och kommunal hälso- och sjukvård.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.23",
+      "comment": "OID för Kv kommunal adressbok - Socialtjänst från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-kommunal-adressbok-socialtjanst",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-patientavgift-nedsatt-kategori",
+  "name": "KvPatientavgiftNedsattKategori",
+  "title": "Kv patientavgift nedsatt kategori",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av orsaker till nedsatt patientavgift.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.40",
+      "comment": "OID för Kv patientavgift nedsatt kategori från Inera kodverksförvaltning"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-patientavgift-nedsatt-kategori",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-npl",
+  "name": "NPL",
+  "title": "Nationellt produktregister för läkemedel, NPL",
+  "status": "active",
+  "kind": "identifier",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Nationellt produktregister för läkemedel.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.3.1.1",
+      "comment": "OID för NPL från Läkemedelsverket"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/identifier/npl",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}
