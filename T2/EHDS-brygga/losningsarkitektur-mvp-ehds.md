@@ -259,13 +259,15 @@ sequenceDiagram
 | TX-03 | FHIR-sökningsparsa | API Gateway → FHIR-tjänsteyta | Intern | FHIR search URL + query params | Parsade sökparametrar |
 | TX-04 | Indexuppslag | FHIR-tjänsteyta → Informationsindex | Intern | VG HSA-id + personnummer | Boolean: engagemang finns/saknas |
 | TX-05 | TAK-uppslag | FHIR-tjänsteyta → Adapter-TAK | Intern | VG HSA-id + informationstyp | Logisk adress + TK-version |
-| TX-06 | FHIR→SOAP-översättning | FHIR-tjänsteyta → Mappningsmotor | Intern | FHIR sökparametrar | GetDiagnosis SOAP-request |
+| TX-06 | FHIR→SOAP-översättning | FHIR-tjänsteyta → Mappningsmotor | Intern | FHIR sökparametrar | GetDiagnosis SOAP-request + post-query-filter |
 | TX-07 | SOAP-anrop | Mappningsmotor → SOAP-klient | Intern | SOAP-request + logisk adress | Svar eller felkod |
 | TX-08 | NTjP-routing | SOAP-klient → NTjP/VP | SOAP/HTTPS mTLS | GetDiagnosis + logisk adress | GetDiagnosisResponse |
 | TX-09 | SOAP→FHIR-översättning | SOAP-klient → Mappningsmotor | Intern | GetDiagnosisResponse | FHIR Condition[] + Provenance[] |
 | TX-10 | Spärrfiltrering | FHIR-tjänsteyta → Spärr/filtrering | Intern | FHIR Condition[] + patient + konsument-kontext | Filtrerad FHIR Condition[] |
 | TX-11 | Bundle-bygge | FHIR-tjänsteyta (intern) | — | Filtrerade resurser | FHIR Bundle (searchset) |
 | TX-12 | Åtkomstloggning | FHIR-tjänsteyta → Åtkomstlogg | Intern/asynkron | Klient-id, patient, typ, tid, resultat | Bekräftelse |
+
+> TX-06 och TX-09 använder en tre-lagers mappningsarkitektur (NamingSystem, ConceptMap, datatypbibliotek). Se [mappningsarkitektur.md](mappningsarkitektur.md) för detaljerade specifikationer och interna flödesdiagram (FL-M-01, FL-M-02).
 
 ---
 
@@ -443,91 +445,6 @@ sequenceDiagram
 |-------|------|-------------|----------|
 | TX-40 | Registrera klient | Förvaltare → Klientmetadatakatalog | Ansvarig part, nycklar, scopes |
 | TX-41 | Klientuppslag | Åtkomstintygstjänst → Klientmetadatakatalog | Vid tokenvalidering |
-
----
-
-## Transaktionsspecifikation: TX-06 FHIR→SOAP-översättning (exempel)
-
-Nedan exemplifieras detaljnivån för en enskild transaktion. Samma format kan användas för alla TX.
-
-### Identitet
-- **TX-id:** TX-06
-- **Namn:** FHIR→SOAP-översättning (Condition → GetDiagnosis)
-- **Feature:** F1.2 Mappningsmotor
-
-### In
-FHIR sökparametrar (parsade):
-
-| FHIR-parameter | Typ | Exempel |
-|----------------|-----|---------|
-| patient | reference/identifier | `patient=http://electronichealth.se/identifier/personnummer\|191212121212` |
-| category | token | `category=encounter-diagnosis` |
-| code | token | `code=http://hl7.org/fhir/sid/icd-10-se\|E11` |
-| onset-date | date | `onset-date=ge2024-01-01` |
-| clinical-status | token | `clinical-status=active` |
-
-### Mappningsregler
-
-| FHIR-parameter | → | SOAP-element | Regel |
-|----------------|---|-------------|-------|
-| patient (personnummer) | → | `<person-id extension="191212121212" root="1.2.752.129.2.1.3.1"/>` | OID för personnummer |
-| category | → | (post-query filtering) | TK stöder ej category-filter; filtrera efter hämtning |
-| code | → | (post-query filtering) | TK returnerar alla diagnoser; filtrera på code |
-| onset-date | → | `<tidperiod><start>20240101</start></tidperiod>` | Konvertera FHIR-datumprefix till TK-tidperiod |
-| clinical-status | → | (post-query filtering) | TK saknar statusfilter |
-
-### Ut
-GetDiagnosis SOAP-request:
-
-```xml
-<GetDiagnosis xmlns="urn:riv:clinicalprocess:healthcond:description:GetDiagnosisResponder:1">
-  <person-id extension="191212121212" root="1.2.752.129.2.1.3.1"/>
-  <tidperiod>
-    <start>20240101</start>
-  </tidperiod>
-</GetDiagnosis>
-```
-
-### Felhantering
-- Saknad obligatorisk parameter (patient): returnera 400 + OperationOutcome innan SOAP-anrop
-- Ogiltigt personnummer-format: returnera 400 + OperationOutcome
-
----
-
-## Transaktionsspecifikation: TX-09 SOAP→FHIR-översättning (exempel)
-
-### Identitet
-- **TX-id:** TX-09
-- **Namn:** SOAP→FHIR-översättning (GetDiagnosisResponse → Condition[])
-- **Feature:** F1.2 Mappningsmotor
-
-### In
-GetDiagnosisResponse med diagnos-poster.
-
-### Mappningsregler per diagnos
-
-| SOAP-element | → | FHIR-attribut | Regel |
-|-------------|---|---------------|-------|
-| `diagnos/diagnosKod/@code` | → | `Condition.code.coding[0].code` | Direkt |
-| `diagnos/diagnosKod/@codeSystem` | → | `Condition.code.coding[0].system` | OID → URI: `1.2.752.116.1.1.1.1.3` → `http://hl7.org/fhir/sid/icd-10-se` |
-| `diagnos/diagnosKod/@displayName` | → | `Condition.code.coding[0].display` | Direkt |
-| `diagnos/beskrivning` | → | `Condition.code.text` | Fritext |
-| `diagnos/diagnosTidpunkt` | → | `Condition.onsetDateTime` | `yyyyMMdd` → `yyyy-MM-dd` |
-| `diagnos/typ` | → | `Condition.category` | Mappningstabell: `huvuddiagnos` → encounter-diagnosis |
-| `diagnos/status` | → | `Condition.clinicalStatus` | Mappningstabell |
-| `diagnos/registreringsEnhet/enhets-id` | → | `Condition.encounter.performer` → `Organization` | `Reference(Organization/{HSA-id})` |
-| (metadata) | → | `Condition.meta.source` | Bryggans identifierare + TK-version |
-| (per diagnos) | → | `Provenance.target` | Referens till Condition |
-| (per diagnos) | → | `Provenance.agent.who` | Referens till producerande organisation |
-| (fast) | → | `Provenance.activity` | `#derivation` (transformerad data) |
-
-### Ut
-Array av FHIR Condition + matchande Provenance-resurser.
-
-### Felhantering
-- SOAP-svar med tekniskt fel: logga, returnera OperationOutcome
-- Diagnos saknar obligatoriskt fält (t.ex. diagnosKod): hoppa över diagnosen, logga varning
-- Okänt kodverk-OID: inkludera med OID som system-URI, logga
 
 ---
 
