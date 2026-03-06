@@ -1,0 +1,258 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "cm-GetDiagnosis-attributmappning",
+  "url": "https://inera.se/fhir/ehds-brygga/ConceptMap/cm-GetDiagnosis-attributmappning",
+  "version": "0.1.0",
+  "name": "GetDiagnosisAttributmappning",
+  "title": "GetDiagnosis attributmappning — SOAP↔FHIR Condition",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Fältnivåmappning mellan GetDiagnosis TKB (RIV-TA) och FHIR Condition. Icke-standard användning av ConceptMap: source är XPath mot SOAP-svaret, target är FHIRPath mot Condition-resursen. relationship-koden skiljer direkta mappningar (equivalent) från transformationsregler (inexact). Behandlingsregel finns i comment-fältet. Se https://ineraservices.bitbucket.io/TKB_clinicalprocess_healthcond_description/StructureDefinition-getdiagnosis.html för logisk modell.",
+  "purpose": "Lager 3 i mappningsarkitekturen — dokumentation av attributmappning per TK. Körs av mappningsmotorn vid TX-09 (SOAP→FHIR Condition).",
+  "sourceUri": "urn:riv:clinicalprocess:healthcond:description:GetDiagnosisResponder:1",
+  "targetUri": "http://hl7.org/fhir/StructureDefinition/Condition",
+  "group": [
+    {
+      "_source_comment": "Identifierare och metadata för Condition-resursen",
+      "source": "urn:riv:clinicalprocess:healthcond:description:GetDiagnosisResponder:1",
+      "target": "http://hl7.org/fhir/StructureDefinition/Condition",
+      "element": [
+
+        {
+          "code": "diagnos/diagnosId",
+          "display": "Diagnos unik identifierare",
+          "target": [
+            {
+              "code": "Condition.identifier",
+              "display": "Identifier",
+              "relationship": "equivalent",
+              "comment": "Mappa diagnosId till Condition.identifier. System = käll-systemets NamingSystem-URI. TODO: verifiera fältnamn mot logisk modell."
+            }
+          ]
+        },
+
+        {
+          "_comment": "=== DIAGNOSKODSÄTTNING ===",
+          "code": "diagnos/diagnosKod/@code",
+          "display": "Diagnoskod (kod)",
+          "target": [
+            {
+              "code": "Condition.code.coding[0].code",
+              "relationship": "equivalent",
+              "comment": "Direkt mappning av koden (ICD-10, SNOMED, KVÅ etc.)."
+            }
+          ]
+        },
+        {
+          "code": "diagnos/diagnosKod/@codeSystem",
+          "display": "Diagnoskod (kodsystem OID)",
+          "target": [
+            {
+              "code": "Condition.code.coding[0].system",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: OID → URI via NamingSystem (lager 2a). Anropa ns-icd-10-se, ns-kva etc. beroende på OID. Om OID saknas i NamingSystem: använd OID som system-URI (urn:oid:<OID>), logga varning."
+            }
+          ]
+        },
+        {
+          "code": "diagnos/diagnosKod/@displayName",
+          "display": "Diagnoskod (visningsnamn)",
+          "target": [
+            {
+              "code": "Condition.code.coding[0].display",
+              "relationship": "equivalent",
+              "comment": "Direkt mappning."
+            }
+          ]
+        },
+        {
+          "code": "diagnos/diagnosKodKlartext",
+          "display": "Diagnos klartext",
+          "target": [
+            {
+              "code": "Condition.code.text",
+              "relationship": "equivalent",
+              "comment": "Fritext-beskrivning av diagnosen. Mappa direkt. TODO: verifiera fältnamn mot logisk modell (kan heta 'beskrivning' eller 'diagnosKodKlartext')."
+            }
+          ]
+        },
+
+        {
+          "_comment": "=== DIAGNOSTYP ===",
+          "code": "diagnos/diagnosTyp/@code",
+          "display": "Diagnos typ (kod)",
+          "target": [
+            {
+              "code": "Condition.category.coding[0].code",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: via ConceptMap cm-diagnos-typ ($translate). Källkod (HU/BI/SÖ/…) → FHIR category-kod."
+            }
+          ]
+        },
+        {
+          "code": "diagnos/diagnosTyp/@codeSystem",
+          "display": "Diagnos typ (kodsystem OID)",
+          "target": [
+            {
+              "code": "Condition.category.coding[0].system",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: OID → URI via NamingSystem. Alternativt: cm-diagnos-typ anger fast target-system; codeSystem behöver ej mappas separat. TODO: klargör hantering."
+            }
+          ]
+        },
+
+        {
+          "_comment": "=== TIDPUNKTER ===",
+          "code": "diagnos/diagnosTidpunkt",
+          "display": "Tidpunkt för diagnossättning",
+          "target": [
+            {
+              "code": "Condition.onsetDateTime",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: RIV-TA datum (yyyyMMdd eller yyyyMMddHHmmss) → FHIR dateTime (yyyy-MM-dd eller yyyy-MM-ddTHH:mm:ss). Anropa datatypbibliotek (lager 1): rivta-date-to-fhir."
+            }
+          ]
+        },
+        {
+          "code": "diagnos/registreringsDatum",
+          "display": "Datum för registrering",
+          "target": [
+            {
+              "code": "Condition.recordedDate",
+              "relationship": "equivalent",
+              "comment": "TRANSFORMATION: RIV-TA datum → FHIR date. Anropa datatypbibliotek. TODO: verifiera fältnamn mot logisk modell."
+            }
+          ]
+        },
+
+        {
+          "_comment": "=== STATUS ===",
+          "code": "diagnos/registreringsStatus/@code",
+          "display": "Registreringsstatus (kod)",
+          "target": [
+            {
+              "code": "Condition.clinicalStatus.coding[0].code",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: via ConceptMap cm-diagnos-status ($translate). OBS: aktuella koder och fältnamn ej bekräftade mot TKB. TODO: verifiera."
+            }
+          ]
+        },
+
+        {
+          "_comment": "=== VÅRDENHET ===",
+          "code": "diagnos/skapadAv/enhet/enhetsId/@extension",
+          "display": "Registrerande enhets HSA-id (värde)",
+          "target": [
+            {
+              "code": "Condition.recorder",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: Skapa Reference(Organization). Organization.identifier.value = extension-värdet. System via NamingSystem ns-hsa-id. Slå upp eller skapa Organisation-resurs inline. TODO: verifiera XPath mot logisk modell och klargör om Organization ska inkluderas i Bundle eller bara refereras."
+            }
+          ]
+        },
+        {
+          "code": "diagnos/skapadAv/enhet/enhetsId/@root",
+          "display": "Registrerande enhets HSA-id (OID)",
+          "target": [
+            {
+              "code": "Condition.recorder → Organization.identifier.system",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: OID → URI via NamingSystem ns-hsa-id."
+            }
+          ]
+        },
+
+        {
+          "_comment": "=== PROVENANCE (genereras per Condition) ===",
+          "code": "diagnos",
+          "display": "Hel diagnos-post (metadata för Provenance)",
+          "target": [
+            {
+              "code": "Provenance",
+              "relationship": "inexact",
+              "comment": "GENERERA en Provenance-resurs per Condition. Provenance.target = Reference(Condition). Provenance.activity = #derivation. Provenance.agent.who = Reference(Organization) (producerande vårdenhet). Provenance.recorded = nu (tidpunkt för bryggans översättning). Provenance.entity.role = #source, .entity.what = logisk adress + TK-version."
+            }
+          ]
+        },
+
+        {
+          "_comment": "=== FÄLT UTAN FHIR-MOTSVARIGHET ===",
+          "code": "diagnos/utfordarHSAId",
+          "display": "Utförarens HSA-id",
+          "target": [
+            {
+              "code": "TODO",
+              "relationship": "unmatched",
+              "comment": "Inget direkt FHIR Condition-attribut. Alternativ: Condition.encounter → Encounter.participant, eller Provenance.agent[utförare]. TODO: verifiera fältnamn och besluta hantering."
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "_source_comment": "Sökparametrar FHIR→SOAP (TX-06, ingående riktning)",
+      "source": "http://hl7.org/fhir/StructureDefinition/Condition",
+      "target": "urn:riv:clinicalprocess:healthcond:description:GetDiagnosisResponder:1",
+      "element": [
+        {
+          "code": "patient (identifier)",
+          "display": "Patient-sökparameter",
+          "target": [
+            {
+              "code": "personId/@extension + @root",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: Extrahera system+value ur patient-parametern. Slå upp system URI → OID via NamingSystem. Bygg <personId extension='{value}' root='{OID}'/>. TODO: verifiera SOAP-elementnamn mot TKB (personId eller person-id)."
+            }
+          ]
+        },
+        {
+          "code": "onset-date (ge/le prefix)",
+          "display": "Datumintervall för diagnossättning",
+          "target": [
+            {
+              "code": "fromDatum / tomDatum",
+              "relationship": "inexact",
+              "comment": "TRANSFORMATION: ge-prefix → fromDatum, le-prefix → tomDatum. Konvertera yyyy-MM-dd → yyyyMMdd via datatypbibliotek. Om enbart ge: sätt fromDatum, lämna tomDatum tomt. TODO: verifiera elementnamn mot TKB."
+            }
+          ]
+        },
+        {
+          "code": "category",
+          "display": "Condition.category (diagnostyp)",
+          "target": [
+            {
+              "code": "(post-query filter)",
+              "relationship": "unmatched",
+              "comment": "TK stöder ej filter på diagnostyp. Alla diagnoser hämtas och filtreras i FHIR-tjänsteytan efter SOAP-svar (TX-10/TX-11)."
+            }
+          ]
+        },
+        {
+          "code": "code",
+          "display": "Condition.code (diagnoskod)",
+          "target": [
+            {
+              "code": "(post-query filter)",
+              "relationship": "unmatched",
+              "comment": "TK stöder ej kodfilter i anropet. Filtrera i FHIR-tjänsteytan efter SOAP-svar."
+            }
+          ]
+        },
+        {
+          "code": "clinical-status",
+          "display": "Condition.clinicalStatus",
+          "target": [
+            {
+              "code": "(post-query filter)",
+              "relationship": "unmatched",
+              "comment": "TK stöder ej statusfilter i anropet. Filtrera i FHIR-tjänsteytan efter SOAP-svar."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

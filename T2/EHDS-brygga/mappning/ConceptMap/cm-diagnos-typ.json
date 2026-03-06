@@ -1,0 +1,80 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "cm-diagnos-typ",
+  "url": "https://inera.se/fhir/ehds-brygga/ConceptMap/cm-diagnos-typ",
+  "version": "0.1.0",
+  "name": "GetDiagnosisDiagnosTypToConditionCategory",
+  "title": "GetDiagnosis diagnosTyp → Condition.category",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Översätter RIV-TA GetDiagnosis diagnosTyp-koder till FHIR Condition.category. Källkodsystem och exakta koder ska verifieras mot TKB clinicalprocess:healthcond:description. Se https://ineraservices.bitbucket.io/core/ConceptMap-getdiagnosis-tkb-to-condition.html",
+  "purpose": "Lager 2b i mappningsarkitekturen. Anropas av mappningsmotorn via $translate vid TX-09 (SOAP→FHIR).",
+  "sourceUri": "urn:riv:clinicalprocess:healthcond:description:diagnosTyp",
+  "targetUri": "http://terminology.hl7.org/CodeSystem/condition-category",
+  "group": [
+    {
+      "source": "urn:riv:clinicalprocess:healthcond:description:diagnosTyp",
+      "_source": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/codesystem-oid",
+            "valueString": "TODO: OID för diagnosTyp-kodverket — hämta från TKB"
+          }
+        ]
+      },
+      "target": "http://terminology.hl7.org/CodeSystem/condition-category",
+      "element": [
+        {
+          "code": "HU",
+          "display": "Huvuddiagnos",
+          "target": [
+            {
+              "code": "encounter-diagnosis",
+              "display": "Encounter Diagnosis",
+              "relationship": "equivalent",
+              "comment": "Direkt mappning. Huvuddiagnos sätts i samband med vårdtillfälle."
+            }
+          ]
+        },
+        {
+          "code": "BI",
+          "display": "Bidiagnos",
+          "target": [
+            {
+              "code": "encounter-diagnosis",
+              "display": "Encounter Diagnosis",
+              "relationship": "inexact",
+              "comment": "Bidiagnos representeras som encounter-diagnosis men kan inte utan vidare särskiljas från HU i Condition.category. Om distinktionen behövs: lägg till Condition.extension eller Condition.code.coding med lokalt system. TODO: verifiera mot Ineras FHIR-profil."
+            }
+          ]
+        },
+        {
+          "code": "SÖ",
+          "display": "Sökorsak",
+          "target": [
+            {
+              "code": "problem-list-item",
+              "display": "Problem List Item",
+              "relationship": "inexact",
+              "comment": "Sökorsak klassas som problem-list-item eftersom det är det patientrapporterade/kliniska bekymret. TODO: verifiera att denna mappning stämmer med klinisk semantik i svensk kontext."
+            }
+          ]
+        },
+        {
+          "code": "OA",
+          "display": "Orsak till åtgärd",
+          "target": [
+            {
+              "code": "encounter-diagnosis",
+              "display": "Encounter Diagnosis",
+              "relationship": "inexact",
+              "comment": "TODO: verifieras — koden OA är ej bekräftad i TKB. Kan vara ett annat värde."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

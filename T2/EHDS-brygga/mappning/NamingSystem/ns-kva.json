@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "ns-kva",
+  "name": "SEKVAKlassifikationAvVardatgarder",
+  "title": "KVÅ — Klassifikation av vårdåtgärder",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodsystem KVÅ (Socialstyrelsen). Används för att översätta RIV-TA diagnosKod/@codeSystem OID till FHIR Condition.code.coding.system URI vid KVÅ-kodade åtgärdsdiagnoser.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.2.1",
+      "comment": "OID för KVÅ"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/id/kva",
+      "preferred": true,
+      "comment": "Kanonisk URI för KVÅ i svensk e-hälsa"
+    }
+  ]
+}
