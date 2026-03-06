@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-filformat",
+  "name": "SEKvFilformat",
+  "title": "Kv filformat",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Beskriver olika format som en fil kan ha. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.59",
+      "comment": "OID tilldelad av Inera för Kv filformat"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-filformat",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

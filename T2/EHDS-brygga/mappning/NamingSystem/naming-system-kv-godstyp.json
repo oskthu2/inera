@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-godstyp",
+  "name": "SEKvGodstyp",
+  "title": "Kv godstyp",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverk som anger vilken godstyp som hanteras hos godsmottagaren. Kodverket används i e-handelssammanhang. Förvaltare: Inera Kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.50",
+      "comment": "OID tilldelad av Inera för Kv godstyp"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-godstyp",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-betalningsforbindelsetyp-avtal",
+  "name": "SEKvBetalningsforbindelsetypAvtal",
+  "title": "Kv betalningsförbindelsetyp avtal",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av olika typer av avtal som reglerar betalningsförbindelse. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.2.44",
+      "comment": "OID tilldelad av Inera för Kv betalningsförbindelsetyp avtal"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-betalningsforbindelsetyp-avtal",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

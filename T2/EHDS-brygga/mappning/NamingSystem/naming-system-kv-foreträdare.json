@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-foreträdare",
+  "name": "SEKvForeträdare",
+  "title": "Kv företrädare",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "I vissa fall företräds en person av någon annan utsedd fysisk person. Detta kodverk anger typen av denna företrädare. Kodverket baseras på Socialstyrelsens beskrivning av de typer rollen företrädare kan vara. Förvaltare: Inera Kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.23",
+      "comment": "OID tilldelad av Inera för Kv företrädare"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-foreträdare",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

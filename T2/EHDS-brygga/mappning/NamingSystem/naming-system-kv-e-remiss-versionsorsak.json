@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-e-remiss-versionsorsak",
+  "name": "SEKvERemissVersionsorsak",
+  "title": "Kv e-remiss versionsorsak",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger orsaken till att en ny version av en eRemiss har skapats. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.32",
+      "comment": "OID tilldelad av Inera för Kv e-remiss versionsorsak"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-e-remiss-versionsorsak",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

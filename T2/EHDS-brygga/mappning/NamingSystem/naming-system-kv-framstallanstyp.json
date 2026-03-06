@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-framstallanstyp",
+  "name": "SEKvFramstallanstyp",
+  "title": "Kv framställantyp",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger typ av framställan. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.2.24",
+      "comment": "OID tilldelad av Inera för Kv framställantyp"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-framstallanstyp",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

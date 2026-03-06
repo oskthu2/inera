@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-allvarlighetsgrad",
+  "name": "SEKvAllvarlighetsgrad",
+  "title": "Kv allvarlighetsgrad",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger bedömning av en överkänslighets allvarlighet. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.3.3",
+      "comment": "OID tilldelad av Inera för Kv allvarlighetsgrad"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-allvarlighetsgrad",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

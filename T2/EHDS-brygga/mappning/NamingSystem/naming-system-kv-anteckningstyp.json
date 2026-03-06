@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-anteckningstyp",
+  "name": "SEKvAnteckningstyp",
+  "title": "Kv anteckningstyp",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverket beskriver vilken typ av anteckning en journalhandling är. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.2.11",
+      "comment": "OID tilldelad av Inera för Kv anteckningstyp"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-anteckningstyp",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-form-status",
+  "name": "SEKvFormStatus",
+  "title": "Kv form status",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger status på ett formulär. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.33",
+      "comment": "OID tilldelad av Inera för Kv form status"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-form-status",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

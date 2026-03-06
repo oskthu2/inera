@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-fakturaformat",
+  "name": "SEKvFakturaformat",
+  "title": "Kv fakturaformat",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverk som anger vilken typ av faktura, faktureringsmetod, som fakturaadressaten kan hantera. Kodverket används i e-handelssammanhang. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.52",
+      "comment": "OID tilldelad av Inera för Kv fakturaformat. OBS: Denna OID delas med Kv kommunal adressbok - Utbildning enligt källfilen — möjlig felaktig registrering."
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-fakturaformat",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

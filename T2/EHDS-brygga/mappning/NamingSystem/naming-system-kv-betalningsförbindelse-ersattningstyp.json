@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-betalningsforbindelse-ersattningstyp",
+  "name": "SEKvBetalningsforbindelseErsattningstyp",
+  "title": "Kv betalningsförbindelse ersättningstyp",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kategorisering av ersättning från patientens hemlandsting. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.36",
+      "comment": "OID tilldelad av Inera för Kv betalningsförbindelse ersättningstyp"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-betalningsforbindelse-ersattningstyp",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

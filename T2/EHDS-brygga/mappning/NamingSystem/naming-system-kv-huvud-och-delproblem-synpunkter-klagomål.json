@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-huvud-och-delproblem-synpunkter-klagomål",
+  "name": "SEKvHuvudOchDelproblemSynpunkterKlagomål",
+  "title": "Kv huvud- och delproblem avseende synpunkter och klagomål",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverket omfattar koder som kan användas för att kategorisera synpunkter och klagomål utifrån vilket huvud- respektive delproblem som de avser. Förvaltare: Inera Kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.22",
+      "comment": "OID tilldelad av Inera för Kv huvud- och delproblem avseende synpunkter och klagomål"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-huvud-och-delproblem-synpunkter-klagomål",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

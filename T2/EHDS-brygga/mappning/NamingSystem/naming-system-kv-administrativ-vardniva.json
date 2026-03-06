@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-administrativ-vardniva",
+  "name": "SEKvAdministrativVardniva",
+  "title": "Kv administrativ vårdnivå",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Kodverk som anger nivå av specialisering i hälso- och sjukvård utifrån patienters vårdbehov och huvudmans organisation och som används för att administrera ersättning till verksamhet för utförd vård. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.5.1.46",
+      "comment": "OID tilldelad av Inera för Kv administrativ vårdnivå"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-administrativ-vardniva",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}

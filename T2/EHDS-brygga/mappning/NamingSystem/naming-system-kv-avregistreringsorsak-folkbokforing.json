@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "naming-system-kv-avregistreringsorsak-folkbokforing",
+  "name": "SEKvAvregistreringsOrsakFolkbokforing",
+  "title": "Kv avregistreringsorsak folkbokföringen",
+  "status": "active",
+  "kind": "codesystem",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Anger anledning till varför person är avregistrerad i folkbokföringen. Förvaltare: Inera kodverksförvaltning.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.2.1.21",
+      "comment": "OID tilldelad av Inera för Kv avregistreringsorsak folkbokföringen"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/CodeSystem/kv-avregistreringsorsak-folkbokforing",
+      "preferred": true,
+      "comment": "TODO: verifiera URI"
+    }
+  ]
+}
