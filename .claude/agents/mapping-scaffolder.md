@@ -142,3 +142,11 @@ Prompt: `"Uppdatera mappning/README.md med de nya artefakterna för {TK-namn} oc
 ### När du INTE ska delegera
 - Om `code-reviewer` returnerar ❌ Fel: åtgärda felen själv innan du delegerar till `doc-updater`
 - Om användaren explicit bett om bara scaffolding utan granskning
+
+## Rapportera externa källproblem
+
+Om du under scaffolding stöter på ett problem i en extern källa (FSH-fil från Bitbucket, TKB-spec, Inera IG) — t.ex. felaktigt fältnamn, saknad grupp i ConceptMap, motstridiga kodvärden — **delegera registrering till `doc-updater`** direkt, utan att avvakta resten av flödet.
+
+Prompt: `"Registrera nytt externt problem i EXTERNAL-ISSUES.md: Källa: {url/fil}, Typ: {typ}, Påverkar: {TK}, Beskrivning: {beskrivning}, Workaround: {hur vi hanterat det i artefakten}."`
+
+Läs också `mappning/EXTERNAL-ISSUES.md` tidigt i arbetet — om ett känt problem påverkar den TK du scaffoldar, tillämpa dess dokumenterade workaround direkt istället för att behandla det som nytt.

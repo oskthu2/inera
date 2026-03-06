@@ -102,6 +102,16 @@ Prompt: `"Granskningsresultat: {lista varningar}. Uppdatera dokumentationen för
 - ✅ OK-resultat: returnera granskningen utan delegering
 - 📋 TODO-inventering: returnera listan utan delegering (det är användarens beslut att prioritera)
 
+## Konsultera EXTERNAL-ISSUES.md före flaggning
+
+Läs alltid `mappning/EXTERNAL-ISSUES.md` i början av en granskning. Om ett avvikande fältnamn, en saknad mappning eller ett felaktigt kodvärde matchar ett känt issue:
+- Notera issue-ID i din rapport: `(känt: ISSUE-NNN)`
+- Sänk prioriteten om workaround redan är dokumenterad
+- Rapportera INTE som nytt ❌ Fel om det är ett känt externt problem med aktiv workaround
+
+Om du hittar ett nytt externt källproblem under granskning: delegera registrering till `doc-updater`.
+Prompt: `"Registrera nytt externt problem i EXTERNAL-ISSUES.md: Källa: {url/fil}, Typ: {typ}, Påverkar: {TK}, Beskrivning: {beskrivning}, Workaround: {om känd}."`
+
 ## Filer att känna till
 
 ```
@@ -109,6 +119,7 @@ T2/EHDS-brygga/
 ├── mappningsarkitektur.md              Arkitekturbeslut (normativ)
 ├── losningsarkitektur-mvp-ehds.md      TX-specifikationer
 └── mappning/
+    ├── EXTERNAL-ISSUES.md              Kända problem i externa källor (läs alltid)
     ├── NamingSystem/*.json
     ├── ConceptMap/cm-diagnos-typ.json
     ├── ConceptMap/cm-diagnos-status.json

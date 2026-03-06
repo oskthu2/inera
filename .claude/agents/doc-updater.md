@@ -7,6 +7,7 @@ description: |
   - En arkitekturändring påverkar flera länkade dokument
   - mappningsarkitektur.md eller losningsarkitektur-mvp-ehds.md ska synkas
   - En TODO-markering i docs ska stängas med en faktisk specifikation
+  - Ett problem i en extern källa (Bitbucket, spec) ska registreras i EXTERNAL-ISSUES.md
 tools:
   - Read
   - Edit
@@ -30,7 +31,9 @@ T2/EHDS-brygga/
 ├── mappningsarkitektur.md           Tre-lagers-modellen, FL-M-01/M-02, TX-06/09-spec
 ├── FL-01.1.md                       Sekvensdiagram UC-01 flöde
 ├── formagekarta-EHDS-brygga_v3.md   Förmågekarta
-└── mappning/README.md               Artefaktöversikt med statusar
+└── mappning/
+    ├── README.md                    Artefaktöversikt med statusar
+    └── EXTERNAL-ISSUES.md           ← Kända problem i externa källor (din fil)
 ```
 
 ## Tre-lagers-mappningsarkitektur (kärnkoncept)
@@ -55,6 +58,29 @@ Lager 1: Datatypbibliotek (rivta-fhir-types) — RIV-TA↔FHIR datatyper
 - FL-M-01 (FHIR→SOAP) och FL-M-02 (SOAP→FHIR) ska reflektera vilket lager som anropas
 - TX-06/TX-09 steg-tabeller ska ha kolumnerna: Steg | Beskrivning | Artefakt
 - Artefaktkolumnen ska namnge exakt vilken fil (t.ex. `GetDiagnosis-mappning.yaml`, `cm-diagnos-typ.json`)
+
+### mappning/EXTERNAL-ISSUES.md — kända problem i externa källor
+
+Du äger denna fil. Lägg till en post **när som helst** en agent eller användare stöter på ett problem i en extern källa (Bitbucket-ConceptMap, TKB-spec, FSH-fil från Inera, etc.) som inte kan åtgärdas av oss direkt.
+
+**När du ska registrera:**
+- `mapping-scaffolder` eller `code-reviewer` rapporterar att en extern källa innehåller felaktigt innehåll
+- Användaren visar ett externt dokument med en uppenbar bugg eller otydlighet
+- En workaround har tillämpats i en artefakt på grund av en känd extern brist
+
+**Format per post:**
+```
+### [ISSUE-NNN] Kort titel
+- **Källa:** URL eller filnamn
+- **Typ:** bugg | otydlighet | avvikelse | saknas
+- **Påverkar:** TK-namn eller artefakt
+- **Status:** öppen | workaround | stängd
+- **Upptäckt:** YYYY-MM-DD av {agent eller användare}
+- **Beskrivning:** Vad problemet är.
+- **Workaround:** Hur vi hanterar det (om relevant).
+```
+
+Numrera sekventiellt (ISSUE-001, ISSUE-002, ...). Flytta till "Stängda problem" när källan är fixad och workaround inte längre behövs.
 
 ### mappning/README.md statuskolumn
 | Symbol | Innebörd |
