@@ -18,7 +18,7 @@
       "type": "uri",
       "value": "http://electronichealth.se/identifier/personnummer",
       "preferred": true,
-      "comment": "Kanonisk URI, används som FHIR identifier.system"
+      "comment": "Bekräftad av HL7 Sweden basprofiler v1.1.0 (Aliases.fsh $personnummer, SRC-016)"
     }
   ]
 }

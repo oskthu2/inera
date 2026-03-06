@@ -70,6 +70,19 @@ Underhålls manuellt. Konsulteras av `mapping-scaffolder`, `code-reviewer` och `
 
 ## HL7 / FHIR — internationella standarder
 
+### [SRC-016] HL7 Sweden basprofiler (FHIR IG)
+- **Typ:** profil
+- **URL:** https://build.fhir.org/ig/HL7Sweden/basprofiler-r4/ ; https://github.com/HL7Sweden/basprofiler-r4
+- **Ägs av:** HL7 Sweden
+- **Används för:** Auktoritativ källa för svenska FHIR-identifierarsystem-URI:er.
+  Bekräftar `http://electronichealth.se/identifier/` som bas-URI för personnummer,
+  samordningsnummer, LMA-nummer och nationelltReservnummer. Definierar
+  OID `1.2.752.29.4.19` för HSA-id (avviker från RIV-TA OID `1.2.752.129.2.1.4.1`).
+- **Lokalt spegel/kopia:** —
+- **Notering:** Paket `hl7se.fhir.base#1.1.0`, FHIR R4. Använder OID-format
+  (`urn:oid:...`) för yrkeskodverk (legitimation, förskrivarkod) istället för
+  URI-format — dessa har *inte* `http://electronichealth.se/CodeSystem/`-URI.
+
 ### [SRC-005] HL7 FHIR R4 specifikation
 - **Typ:** spec
 - **URL:** https://hl7.org/fhir/R4/
