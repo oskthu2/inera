@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "ns-hsa-id",
+  "name": "SEHSAID",
+  "title": "HSA-id",
+  "status": "active",
+  "kind": "identifier",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Identifierarsystem för HSA-id. Används för att översätta RIV-TA enhets-id/@root (OID) till FHIR Organization.identifier.system (URI) och vice versa.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.1.4.1",
+      "comment": "OID tilldelad av Inera för HSA-id"
+    },
+    {
+      "type": "uri",
+      "value": "https://www.riv.se/infrastructure/technical/frameworks/infrastructure-concepts/hsa-id",
+      "preferred": true,
+      "comment": "Kanonisk URI från RIV-TA, används som FHIR identifier.system"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType": "NamingSystem",
+  "id": "ns-personnummer",
+  "name": "SEPersonnummer",
+  "title": "Svenskt personnummer",
+  "status": "active",
+  "kind": "identifier",
+  "date": "2026-03-06",
+  "publisher": "Inera EHDS-brygga",
+  "description": "Identifierarsystem för svenska personnummer. Används för att översätta RIV-TA person-id/@root (OID) till FHIR Patient.identifier.system (URI) och vice versa.",
+  "uniqueId": [
+    {
+      "type": "oid",
+      "value": "1.2.752.129.2.1.3.1",
+      "comment": "OID tilldelad av Inera för personnummer"
+    },
+    {
+      "type": "uri",
+      "value": "http://electronichealth.se/identifier/personnummer",
+      "preferred": true,
+      "comment": "Kanonisk URI, används som FHIR identifier.system"
+    }
+  ]
+}

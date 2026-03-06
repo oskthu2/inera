@@ -1,0 +1,70 @@
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 1,
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "meta": {
+          "source": "urn:inera:ehds-brygga:GetDiagnosis:1"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-se",
+              "code": "E11",
+              "display": "Diabetes mellitus typ 2"
+            }
+          ],
+          "text": "Typ 2-diabetes med god glukoskontroll"
+        },
+        "onsetDateTime": "2023-06-15",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis"
+              }
+            ]
+          }
+        ],
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Provenance",
+        "target": [
+          { "reference": "Condition/TODO" }
+        ],
+        "activity": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-DataOperation",
+              "code": "DERIVE"
+            }
+          ]
+        },
+        "agent": [
+          {
+            "who": {
+              "identifier": {
+                "system": "https://www.riv.se/infrastructure/technical/frameworks/infrastructure-concepts/hsa-id",
+                "value": "SE2321000016-1001"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GetDiagnosisResponse med tom diagnoser-lista -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetDiagnosisResponse xmlns="urn:riv:clinicalprocess:healthcond:description:GetDiagnosisResponder:1">
+      <diagnoser/>
+    </GetDiagnosisResponse>
+  </soap:Body>
+</soap:Envelope>
