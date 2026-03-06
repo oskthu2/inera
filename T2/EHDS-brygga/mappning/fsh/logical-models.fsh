@@ -1,0 +1,41 @@
+// Logical Models from normalized Excel (FSH-konvertering.xlsx)
+// With fallback to Word parsing for services without Excel FSH
+// Generated automatically - do not edit manually
+
+Logical: GetDiagnosisLM
+Id: getdiagnosis
+Title: "GetDiagnosis Logical Model"
+Description: "Logical model from GetDiagnosis service contract (from normalized Excel)"
+
+* diagnosis 1..1 BackboneElement "Information om diagnos" "Information om diagnos"
+* diagnosis.diagnosisHeader 1..1 BackboneElement "Header-information" "."
+* diagnosis.diagnosisHeader.documentId 1..1 string "Unikt dokument-ID" "Diagnosens identitet som är unik inom källsystemet. "
+* diagnosis.diagnosisHeader.sourceSystemHSAId 1..1 Identifier "Systemets HSA-id" "HSA-id för det system tillgängliggör informationen."
+* diagnosis.diagnosisHeader.patientId 1..1 Identifier "Patientens ID" "Identifierare för patient."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional 1..1 BackboneElement "Ansvarig vårdpersonal" "Ansvarig vårdpersonal"
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.authorTime 1..1 dateTime "Registreringstid" "Tidpunkt då informationen registrerades."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalHSAId 0..1 Identifier "Författarens HSA-id" "Författarens HSA-id."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalName 0..1 string "Författarens namn" "Namn på författaren. Om tillgängligt ska detta anges."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalRoleCode 0..1 CodeableConcept "Författarens befattning" "Information om personens befattning. Om möjligt ska kodverket Befattning (OID 1.2.752.129.2.2.1.4) användas. I de fall kodverket Befattning ej kan användas, men information om befattning finns tillgänglig, måste vårdgivaren ange en OID på det organisationsinterna kodverk som används istället."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit 0..1 BackboneElement "Organisationstillhörighet" "Organisationstillhörighet"
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit.orgUnitHSAId 1..1 Identifier "Organisationsenhetens HSA-id" "HSA-id för organisationsenhet."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit.orgUnitName 1..1 string "Organisationsenhetens namn" "Namnet på den organisation som författaren är uppdragstagare på."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit.orgUnitTelecom 0..1 string "Telefonnummer till enheten" "Telefon till organisationsenhet."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit.orgUnitEmail 0..1 string "E-post till enheten" "Epost till organisationsenhet."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit.orgUnitAddress 0..1 string "Postadress för enheten" "Postadress för den organisation som författaren är uppdragstagare på."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit.orgUnitLocation 0..1 string "Fysisk plats för enheten" "Text som anger namnet på plats eller ort för organisationens fysiska placering."
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalCareUnitHSAId 0..1 Identifier "HSA-id för vårdenhet" "HSA-id för vårdenhet"
+* diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalCareGiverHSAId 0..1 Identifier "HSA-id för vårdgivare" "HSA-id för vårdgivare"
+* diagnosis.diagnosisHeader.legalAuthenticator 0..1 BackboneElement "signering" "signering"
+* diagnosis.diagnosisHeader.legalAuthenticator.legalAuthenticatorTime 1..1 dateTime "Tidpunkt för signatur" "Tidpunkt för signatur"
+* diagnosis.diagnosisHeader.legalAuthenticator.legalAuthenticatorHSAId 0..1 Identifier "Signerande persons HSA-id" "Signerande persons HSA-id"
+* diagnosis.diagnosisHeader.legalAuthenticator.legalAuthenticatorName 0..1 Identifier "Signerande persons namn" "Signerande persons namn"
+* diagnosis.diagnosisHeader.approvedForPatient 1..1 boolean "Godkänd för patientvisning" "Anger om information får delas till patient. Värdet sätts i sådant fall till true, i annat fall till false."
+* diagnosis.diagnosisHeader.careContactId 0..1 string "Vårdkontakts-ID" "Vårdkontakts-id. Id för den vårdkontakt vid vilken funktionsstatusbedömningen gjorts."
+* diagnosis.diagnosisBody 1..1 BackboneElement "Diagnos" "Diagnos"
+* diagnosis.diagnosisBody.typeOfDiagnosis 1..1 CodeableConcept "Typ av diagnos" "Bedömningskategori. Beskriver vilken kategori av bedömning som är gjord. Tillåtna värden är pad-pad (för PADL-bedömning) och fun-fun (för funktionsnedsättningsbedömningar)."
+* diagnosis.diagnosisBody.chronicDiagnosis 0..1 boolean "Kronisk diagnos" "Kronisk diagnos"
+* diagnosis.diagnosisBody.diagnosisTime 0..1 dateTime "Tidpunkt för diagnos" "Bedömningstidpunkt.händelsetidpunkt."
+* diagnosis.diagnosisBody.diagnosisCode 1..1 CodeableConcept "Diagnoskod" "Kod för PADL-bedömning. Om code anges ska också codeSystem samt displayName anges."
+* diagnosis.diagnosisBody.relatedDiagnosis 0..* BackboneElement "Relaterad diagnos" "Referens till bidiagnos eller …"
+* diagnosis.diagnosisBody.relatedDiagnosis.documentId 1..1 string "Relaterat dokument-ID" "Relaterat dokument-ID"

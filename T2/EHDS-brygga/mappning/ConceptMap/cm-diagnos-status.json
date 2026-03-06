@@ -3,62 +3,58 @@
   "id": "cm-diagnos-status",
   "url": "https://inera.se/fhir/ehds-brygga/ConceptMap/cm-diagnos-status",
   "version": "0.1.0",
-  "name": "GetDiagnosisDiagnosStatusToConditionClinicalStatus",
-  "title": "GetDiagnosis diagnosStatus → Condition.clinicalStatus",
+  "name": "GetDiagnosisDiagnosisStatusToConditionClinicalStatus",
+  "title": "GetDiagnosis diagnosisStatus → Condition.clinicalStatus",
   "status": "draft",
   "experimental": true,
   "date": "2026-03-06",
   "publisher": "Inera EHDS-brygga",
-  "description": "Översätter RIV-TA GetDiagnosis registreringsStatus (eller motsvarande statusfält) till FHIR Condition.clinicalStatus. Fältnamn och koder ska verifieras mot TKB.",
-  "purpose": "Lager 2b i mappningsarkitekturen. Anropas av mappningsmotorn via $translate vid TX-09 (SOAP→FHIR).",
-  "sourceUri": "urn:riv:clinicalprocess:healthcond:description:diagnosStatus",
+  "description": "Översätter RIV-TA GetDiagnosis diagnosisStatus-koder till FHIR Condition.clinicalStatus. Fältnamn: diagnosis.diagnosisBody.diagnosisStatus (ej definierat i logical-models.fsh v0.1 — finns i TKB). Källkoder och kodsystems-OID är inte specificerade i FSH — hämta från TKB.",
+  "purpose": "Lager 2b i mappningsarkitekturen. Anropas via $translate vid TX-09 (SOAP→FHIR). Se getdiagnosis-tkb-to-condition: group[1].element[9] (equivalence=wider). OBS: nullified=true → verificationStatus=entered-in-error hanteras separat (group[1].element[15]).",
+  "sourceUri": "urn:riv:clinicalprocess:healthcond:description:diagnosisStatus",
   "targetUri": "http://terminology.hl7.org/CodeSystem/condition-clinical",
   "group": [
     {
-      "source": "urn:riv:clinicalprocess:healthcond:description:diagnosStatus",
-      "_source": {
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/codesystem-oid",
-            "valueString": "TODO: OID för statuskodsystemet — hämta från TKB"
-          }
-        ]
-      },
+      "source": "urn:riv:clinicalprocess:healthcond:description:diagnosisStatus",
+      "_source_comment": "TODO: Ersätt sourceUri med korrekt OID-baserat kodsystem från TKB",
       "target": "http://terminology.hl7.org/CodeSystem/condition-clinical",
       "element": [
         {
-          "code": "aktuell",
-          "display": "Aktuell",
+          "code": "TODO-aktiv",
+          "display": "Aktiv/aktuell diagnos",
+          "_code_comment": "TODO: Verifiera exakt kod mot TKB.",
           "target": [
             {
               "code": "active",
               "display": "Active",
-              "relationship": "equivalent",
-              "comment": "Direkt mappning. Diagnosen är aktiv/aktuell."
+              "equivalence": "equivalent",
+              "comment": "Diagnosen är aktiv/aktuell."
             }
           ]
         },
         {
-          "code": "ej_aktuell",
-          "display": "Ej aktuell",
+          "code": "TODO-inaktiv",
+          "display": "Inaktiv/ej aktuell diagnos",
+          "_code_comment": "TODO: Verifiera exakt kod mot TKB.",
           "target": [
             {
               "code": "inactive",
               "display": "Inactive",
-              "relationship": "equivalent",
-              "comment": "Diagnosen är avslutad eller ej längre aktuell. TODO: verifiera exakt kod i TKB (kan vara 'makulerad', 'avslutad' etc.)."
+              "equivalence": "equivalent",
+              "comment": "Diagnosen är avslutad eller ej längre aktuell."
             }
           ]
         },
         {
-          "code": "makulerad",
-          "display": "Makulerad",
+          "code": "TODO-resolved",
+          "display": "Tillstånd besvarat/läkt",
+          "_code_comment": "TODO: Verifiera om RIV-TA har en distinktion active/resolved eller bara active/inactive.",
           "target": [
             {
-              "code": "entered-in-error",
-              "display": "Entered in Error",
-              "relationship": "equivalent",
-              "comment": "Makulerad post mappas till entered-in-error. OBS: Condition med clinicalStatus=entered-in-error bör normalt INTE returneras i sökresultat. Filtrera bort i TX-10 eller TX-11. TODO: verifiera kod i TKB."
+              "code": "resolved",
+              "display": "Resolved",
+              "equivalence": "inexact",
+              "comment": "Om TKB har ett 'läkt'- eller 'avslutat'-värde separerat från 'inaktiv'. TODO: bekräfta."
             }
           ]
         }

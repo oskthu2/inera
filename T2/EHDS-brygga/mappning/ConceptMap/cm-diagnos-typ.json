@@ -3,74 +3,58 @@
   "id": "cm-diagnos-typ",
   "url": "https://inera.se/fhir/ehds-brygga/ConceptMap/cm-diagnos-typ",
   "version": "0.1.0",
-  "name": "GetDiagnosisDiagnosTypToConditionCategory",
-  "title": "GetDiagnosis diagnosTyp → Condition.category",
+  "name": "GetDiagnosisTypeOfDiagnosisToConditionCategory",
+  "title": "GetDiagnosis typeOfDiagnosis → Condition.category",
   "status": "draft",
   "experimental": true,
   "date": "2026-03-06",
   "publisher": "Inera EHDS-brygga",
-  "description": "Översätter RIV-TA GetDiagnosis diagnosTyp-koder till FHIR Condition.category. Källkodsystem och exakta koder ska verifieras mot TKB clinicalprocess:healthcond:description. Se https://ineraservices.bitbucket.io/core/ConceptMap-getdiagnosis-tkb-to-condition.html",
-  "purpose": "Lager 2b i mappningsarkitekturen. Anropas av mappningsmotorn via $translate vid TX-09 (SOAP→FHIR).",
-  "sourceUri": "urn:riv:clinicalprocess:healthcond:description:diagnosTyp",
+  "description": "Översätter RIV-TA GetDiagnosis typeOfDiagnosis-koder till FHIR Condition.category. Fältnamn: diagnosis.diagnosisBody.typeOfDiagnosis (1..1 CodeableConcept). Källkoder och kodsystems-OID är inte specificerade i logical-models.fsh — hämta från TKB-specifikationen.",
+  "purpose": "Lager 2b i mappningsarkitekturen. Anropas via $translate vid TX-09 (SOAP→FHIR). Se getdiagnosis-tkb-to-condition: group[1].element[8] (equivalence=wider).",
+  "sourceUri": "urn:riv:clinicalprocess:healthcond:description:typeOfDiagnosis",
   "targetUri": "http://terminology.hl7.org/CodeSystem/condition-category",
   "group": [
     {
-      "source": "urn:riv:clinicalprocess:healthcond:description:diagnosTyp",
-      "_source": {
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/codesystem-oid",
-            "valueString": "TODO: OID för diagnosTyp-kodverket — hämta från TKB"
-          }
-        ]
-      },
+      "source": "urn:riv:clinicalprocess:healthcond:description:typeOfDiagnosis",
+      "_source_comment": "TODO: Ersätt sourceUri med korrekt OID-baserat system från TKB",
       "target": "http://terminology.hl7.org/CodeSystem/condition-category",
       "element": [
         {
-          "code": "HU",
+          "code": "TODO-HU",
           "display": "Huvuddiagnos",
+          "_code_comment": "TODO: Verifiera kod mot TKB. Förmodad kod baserat på RIV-TA-konvention.",
           "target": [
             {
               "code": "encounter-diagnosis",
               "display": "Encounter Diagnosis",
-              "relationship": "equivalent",
+              "equivalence": "equivalent",
               "comment": "Direkt mappning. Huvuddiagnos sätts i samband med vårdtillfälle."
             }
           ]
         },
         {
-          "code": "BI",
+          "code": "TODO-BI",
           "display": "Bidiagnos",
+          "_code_comment": "TODO: Verifiera kod mot TKB.",
           "target": [
             {
               "code": "encounter-diagnosis",
               "display": "Encounter Diagnosis",
-              "relationship": "inexact",
-              "comment": "Bidiagnos representeras som encounter-diagnosis men kan inte utan vidare särskiljas från HU i Condition.category. Om distinktionen behövs: lägg till Condition.extension eller Condition.code.coding med lokalt system. TODO: verifiera mot Ineras FHIR-profil."
+              "equivalence": "inexact",
+              "comment": "Bidiagnos representeras som encounter-diagnosis. Kan inte särskiljas från huvuddiagnos i Condition.category utan tillägg. TODO: klargör om en extension eller extra coding behövs."
             }
           ]
         },
         {
-          "code": "SÖ",
+          "code": "TODO-SÖ",
           "display": "Sökorsak",
+          "_code_comment": "TODO: Verifiera kod mot TKB.",
           "target": [
             {
               "code": "problem-list-item",
               "display": "Problem List Item",
-              "relationship": "inexact",
-              "comment": "Sökorsak klassas som problem-list-item eftersom det är det patientrapporterade/kliniska bekymret. TODO: verifiera att denna mappning stämmer med klinisk semantik i svensk kontext."
-            }
-          ]
-        },
-        {
-          "code": "OA",
-          "display": "Orsak till åtgärd",
-          "target": [
-            {
-              "code": "encounter-diagnosis",
-              "display": "Encounter Diagnosis",
-              "relationship": "inexact",
-              "comment": "TODO: verifieras — koden OA är ej bekräftad i TKB. Kan vara ett annat värde."
+              "equivalence": "inexact",
+              "comment": "Sökorsak klassas som problem-list-item. TODO: verifiera klinisk semantik."
             }
           ]
         }

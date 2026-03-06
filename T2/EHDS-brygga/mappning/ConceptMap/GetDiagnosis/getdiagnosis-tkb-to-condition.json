@@ -1,0 +1,227 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "getdiagnosis-tkb-to-condition",
+  "url": "https://inera.se/fhir/core/ConceptMap/getdiagnosis-tkb-to-condition",
+  "version": "0.2.0",
+  "name": "ConceptMapGetDiagnosisTKBToCondition",
+  "title": "ConceptMap GetDiagnosis TKB to FHIR Condition",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-11-24",
+  "publisher": "Inera AB",
+  "contact": [{ "telecom": [{ "system": "url", "value": "https://www.inera.se" }] }],
+  "description": "Complete mapping from GetDiagnosis TKB service to FHIR Condition and Provenance resources. TKB Service: GetDiagnosis v2.0/v3.0. TKB Domain: clinicalprocess:healthcond:description v2.1/v3.0. Logical Model: GetDiagnosisLM.",
+  "jurisdiction": [{ "coding": [{ "system": "urn:iso:std:iso:3166", "code": "SE", "display": "Sweden" }] }],
+  "sourceUri": "https://rivta.se/domains/clinicalprocess/healthcond/description/GetDiagnosisResponder/2",
+  "targetCanonical": "http://hl7.org/fhir/StructureDefinition/Condition",
+  "group": [
+    {
+      "_comment": "GROUP 0: Query parameters — not mapped to resources, used as FHIR search parameters",
+      "source": "https://rivta.se/domains/clinicalprocess/healthcond/description/GetDiagnosisResponder/2",
+      "target": "http://hl7.org/fhir/StructureDefinition/Bundle",
+      "element": [
+        {
+          "code": "patientId",
+          "display": "Query parameter: Patient ID filter",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED. Used as search parameter: GET /Condition?subject=Patient/191212121212" }]
+        },
+        {
+          "code": "careUnitHSAid",
+          "display": "Query parameter: Filter by care unit HSA-ID",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED. Used as search parameter: GET /Condition?asserter.onBehalfOf.identifier=https://hsaid.se|SE2321000016-A001" }]
+        },
+        {
+          "code": "timePeriod",
+          "display": "Query parameter: Time period filter (from-to)",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED. Used as search parameter: GET /Condition?recorded-date=ge2025-01-01&recorded-date=le2025-12-31" }]
+        }
+      ]
+    },
+    {
+      "_comment": "GROUP 1: diagnosis → FHIR Condition",
+      "source": "https://rivta.se/domains/clinicalprocess/healthcond/description/GetDiagnosisResponder/2",
+      "target": "http://hl7.org/fhir/StructureDefinition/Condition",
+      "element": [
+        {
+          "code": "diagnosis.diagnosisHeader.documentId",
+          "display": "Diagnosis ID (unique business identifier)",
+          "target": [{ "code": "identifier", "equivalence": "equivalent", "comment": "Unique diagnosis identifier within source system. System derived from sourceSystemHSAid." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.patientId",
+          "display": "Patient ID (personnummer/samordningsnummer/reservnummer)",
+          "target": [{ "code": "subject", "equivalence": "equivalent", "comment": "Reference to Patient with Swedish national identifier. OID 1.2.752.129.2.1.3.1 (personnummer), 1.2.752.129.2.1.3.3 (samordningsnummer)" }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.approvedForPatient",
+          "display": "Approved for patient access (true/false)",
+          "target": [{ "code": "meta.security", "equivalence": "equivalent", "comment": "If false, add security label NOPATIENT to restrict patient access (menprövningsflagga)." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisCode",
+          "display": "Diagnosis code (ICD-10-SE, KVÅ)",
+          "target": [{ "code": "code", "equivalence": "equivalent", "comment": "ICD-10-SE (http://hl7.org/fhir/sid/icd-10) or KVÅ codes. code.coding.code, code.coding.display, code.text. May have multiple codings." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisCode.code",
+          "display": "Diagnosis code value",
+          "target": [{ "code": "code.coding.code", "equivalence": "equivalent", "comment": "ICD-10-SE code value (e.g., I10, E11.9). System: http://hl7.org/fhir/sid/icd-10" }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisCode.codeSystem",
+          "display": "Diagnosis code system OID",
+          "target": [{ "code": "code.coding.system", "equivalence": "relatedto", "comment": "OID → FHIR URL. ICD-10-SE OID → http://hl7.org/fhir/sid/icd-10. KVÅ → Swedish classification URL. Se NamingSystem-resurser i mappning/NamingSystem/." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisCode.displayName",
+          "display": "Diagnosis text/display name",
+          "target": [{ "code": "code.coding.display", "equivalence": "equivalent", "comment": "Human-readable diagnosis name. Also populate code.text for overall display." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisCode.originalText",
+          "display": "Original diagnosis text",
+          "target": [{ "code": "code.text", "equivalence": "equivalent", "comment": "Free-text diagnosis description. Use when no exact code match." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.typeOfDiagnosis",
+          "display": "Diagnosis type (primär, sekundär, underdiagnos)",
+          "target": [{ "code": "category", "equivalence": "wider", "comment": "Swedish diagnosis types → FHIR category. Requires ConceptMap cm-diagnos-typ. Use condition-category: problem-list-item|encounter-diagnosis." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisStatus",
+          "display": "Diagnosis clinical status",
+          "target": [{ "code": "clinicalStatus", "equivalence": "wider", "comment": "Swedish status → FHIR clinicalStatus (active|recurrence|relapse|inactive|remission|resolved). Requires ConceptMap cm-diagnos-status." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.verificationStatus",
+          "display": "Diagnosis verification status (confirmed, provisional, differential)",
+          "target": [{ "code": "verificationStatus", "equivalence": "equivalent", "comment": "FHIR verificationStatus: unconfirmed|provisional|differential|confirmed|refuted|entered-in-error" }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisSeverity",
+          "display": "Diagnosis severity (mild, moderate, severe)",
+          "target": [{ "code": "severity", "equivalence": "equivalent", "comment": "Use SNOMED CT severity codes: 255604002 (mild), 6736007 (moderate), 24484000 (severe)" }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.diagnosisTime",
+          "display": "Diagnosis date/time",
+          "target": [{ "code": "onsetDateTime", "equivalence": "wider", "comment": "When condition started → onsetDateTime. When diagnosis recorded → recordedDate. Use based on context." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.careContactId",
+          "display": "Care contact ID (encounter context)",
+          "target": [{ "code": "encounter", "equivalence": "equivalent", "comment": "Reference to Encounter when diagnosis made during care contact." }]
+        },
+        {
+          "code": "diagnosis.diagnosisBody.bodyStructure",
+          "display": "Body structure/location",
+          "target": [{ "code": "bodySite", "equivalence": "equivalent", "comment": "Body site affected by condition. Use SNOMED CT body structure codes." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.nullified",
+          "display": "Diagnosis nullified flag",
+          "target": [{ "code": "verificationStatus", "equivalence": "equivalent", "comment": "If nullified=true, set verificationStatus=entered-in-error. Store nullifiedReason in Provenance." }]
+        }
+      ]
+    },
+    {
+      "_comment": "GROUP 2: diagnosisHeader → FHIR Provenance",
+      "source": "https://rivta.se/domains/clinicalprocess/healthcond/description/GetDiagnosisResponder/2",
+      "target": "http://hl7.org/fhir/StructureDefinition/Provenance",
+      "element": [
+        {
+          "code": "diagnosis.diagnosisHeader.sourceSystemHSAId",
+          "display": "Source system HSA-ID",
+          "target": [{ "code": "entity.what", "equivalence": "equivalent", "comment": "HSA-ID of source system. Also mapped to Condition.meta.source as https://hsaid.se/{HSA-ID}. Provenance.entity.role=source." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.accountableHealthcareProfessional.authorTime",
+          "display": "Author time (registration timestamp)",
+          "target": [{ "code": "recorded", "equivalence": "equivalent", "comment": "When diagnosis was recorded. Also mapped to Condition.recordedDate." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalHSAId",
+          "display": "Healthcare professional HSA-ID",
+          "target": [{ "code": "agent.who", "equivalence": "equivalent", "comment": "Reference to Practitioner with HSA-ID. Provenance.agent.type=author. Also in Condition.recorder/asserter." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalName",
+          "display": "Healthcare professional name",
+          "target": [{ "code": "agent.who.display", "equivalence": "equivalent", "comment": "Display name. Full Practitioner resource should have structured name." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalRoleCode",
+          "display": "Healthcare professional role/befattning",
+          "target": [{ "code": "agent.role", "equivalence": "relatedto", "comment": "Professional role (befattning). Use KV Befattning (OID 1.2.752.129.2.2.1.4). Also in Practitioner.qualification." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalOrgUnit",
+          "display": "Organization unit (where professional works)",
+          "target": [{ "code": "agent.onBehalfOf", "equivalence": "equivalent", "comment": "Reference to Organization (organizational unit). Full details (HSA-ID, name, telecom, address, location) in Organization resource." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalCareUnitHSAId",
+          "display": "Care unit HSA-ID (vårdenhet)",
+          "target": [{ "code": "entity.what", "equivalence": "equivalent", "comment": "HSA-ID for care unit. Reference to Organization. Part of PDL hierarchy." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.accountableHealthcareProfessional.healthcareProfessionalCareGiverHSAId",
+          "display": "Care provider HSA-ID (vårdgivare)",
+          "target": [{ "code": "entity.what", "equivalence": "equivalent", "comment": "HSA-ID for care provider. Top-level organization in PDL hierarchy. Reference to Organization." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.legalAuthenticator.legalAuthenticatorTime",
+          "display": "Attestation timestamp",
+          "target": [{ "code": "occurredDateTime", "equivalence": "equivalent", "comment": "Time of juridisk attestering. Provenance.occurredDateTime." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.legalAuthenticator.legalAuthenticatorHSAId",
+          "display": "Legal authenticator HSA-ID",
+          "target": [{ "code": "agent.who", "equivalence": "equivalent", "comment": "Reference to Practitioner who attested diagnosis. Provenance.agent with type=legal." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.nullifiedReason",
+          "display": "Reason for nullification",
+          "target": [{ "code": "reason", "equivalence": "relatedto", "comment": "Why diagnosis was nullified. Store in Provenance.reason when verificationStatus=entered-in-error." }]
+        }
+      ]
+    },
+    {
+      "_comment": "GROUP 3: Unmapped / deprecated / query result fields",
+      "source": "https://rivta.se/domains/clinicalprocess/healthcond/description/GetDiagnosisResponder/2",
+      "target": "http://hl7.org/fhir/StructureDefinition/Bundle",
+      "element": [
+        {
+          "code": "diagnosis.diagnosisHeader.documentTitle",
+          "display": "Document title",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED. Cardinality 0..0 for GetDiagnosis. Use diagnosisCode.displayName instead." }]
+        },
+        {
+          "code": "diagnosis.diagnosisHeader.documentTime",
+          "display": "Document time",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED. Cardinality 0..0 for GetDiagnosis. Use authorTime or diagnosisTime instead." }]
+        },
+        {
+          "code": "result.resultCode",
+          "display": "Result code (OK, INFO, ERROR)",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED to resources. HTTP status: OK→200, INFO→200 with warnings, ERROR→4xx/5xx. Bundle-level OperationOutcome for details." }]
+        },
+        {
+          "code": "result.errorCode",
+          "display": "Error code",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED to resources. Use in OperationOutcome.issue.code when resultCode=ERROR." }]
+        },
+        {
+          "code": "result.logId",
+          "display": "Log ID (UUID for troubleshooting)",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED to resources. Use in OperationOutcome.issue.diagnostics or X-Request-Id header." }]
+        },
+        {
+          "code": "result.message",
+          "display": "Result message",
+          "target": [{ "equivalence": "unmatched", "comment": "NOT MAPPED to resources. User-facing message in OperationOutcome.issue.diagnostics." }]
+        }
+      ]
+    }
+  ]
+}
