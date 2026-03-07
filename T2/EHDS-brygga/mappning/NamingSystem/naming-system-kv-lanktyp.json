@@ -5,20 +5,20 @@
   "title": "Kv länktyp",
   "status": "active",
   "kind": "codesystem",
-  "date": "2026-03-06",
+  "date": "2026-03-07",
   "publisher": "Inera EHDS-brygga",
   "description": "Länktyp.",
   "uniqueId": [
     {
       "type": "oid",
-      "value": "1.2.752.129.2.2.1.1.1",
-      "comment": "OID för Kv länktyp från Inera kodverksförvaltning"
+      "value": "1.2.752.129.2.2.2.1.1",
+      "comment": "OID för Kv länktyp enligt terminologitjänsten (bekräftad 2026-03-07). OBS: källfilen (Kodverk, urval och identifierare.md) angav OID 1.2.752.129.2.2.1.1.1 — ett segment skiljer sig (.2.2.1.1.1 vs .2.2.2.1.1). Terminologitjänstens OID används som auktoritativ källa. Se EXTERNAL-ISSUES.md ISSUE-010."
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-lanktyp",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_lanktyp",
       "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "comment": "Bekräftad URI från terminologitjänsten 2026-03-07."
     }
   ]
 }
