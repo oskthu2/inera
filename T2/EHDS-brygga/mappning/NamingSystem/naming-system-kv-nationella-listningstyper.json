@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-nationella-listningstyper",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv-nationella-listningstyper",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

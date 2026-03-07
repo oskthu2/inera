@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-typ-av-besok",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_typ_av_besok",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-sprak",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/sprak_17_v3.2.1",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

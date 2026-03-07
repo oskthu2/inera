@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-typ-av-godsmottagare",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_typ_av_godsmottagare",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

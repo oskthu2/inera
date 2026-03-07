@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-samarbetsomrade",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_samarbetsomrade",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-form-av-framstallning",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_form_av_framstallan",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

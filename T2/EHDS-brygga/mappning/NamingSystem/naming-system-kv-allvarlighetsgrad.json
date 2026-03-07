@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-allvarlighetsgrad",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_allvarlighetsgrad_93_v0.9",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

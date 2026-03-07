@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/hsa-utokad-yrkeskod",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_utokad_yrkeskod",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-skyddad-yrkestitel-ej-legitimerad",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_skyddad_yrkestitel_ej_legitimerad",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

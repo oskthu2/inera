@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-korkortsolamplighet",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv-korkortsolamplighet",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-prislista-kod",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_prislista_kod",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

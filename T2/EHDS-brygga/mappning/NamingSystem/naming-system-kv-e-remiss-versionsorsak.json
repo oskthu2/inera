@@ -16,7 +16,7 @@
     },
     {
       "type": "uri",
-      "value": "http://electronichealth.se/CodeSystem/kv-e-remiss-versionsorsak",
+      "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_e_remiss_versionsorsak",
       "preferred": true,
       "comment": "TODO: verifiera URI"
     }

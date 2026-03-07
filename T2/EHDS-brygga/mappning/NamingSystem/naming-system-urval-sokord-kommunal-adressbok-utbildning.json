@@ -18,7 +18,7 @@
       "type": "uri",
       "value": "http://electronichealth.se/CodeSystem/urval-sokord-kommunal-adressbok-utbildning",
       "preferred": true,
-      "comment": "TODO: verifiera URI. OBS: OID-kollision med Kv samarbetsområde."
+      "comment": "TODO: verifiera URI mot terminologitjänsten. OID 1.2.752.129.5.1.54 kolliderar med kv_samarbetsomrade i terminologitjänsten — se EXTERNAL-ISSUES.md. URL ej uppdaterad automatiskt p.g.a. OID-kollision."
     }
   ]
 }
