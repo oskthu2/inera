@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "https://terminologitjansten.inera.se/nationella-aretefakter/kodverk/npu",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }

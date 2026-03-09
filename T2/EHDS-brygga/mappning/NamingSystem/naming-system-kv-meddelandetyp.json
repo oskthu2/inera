@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_meddelandetyp",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }

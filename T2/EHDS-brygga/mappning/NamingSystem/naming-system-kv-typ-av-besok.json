@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/kv_typ_av_besok",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }
