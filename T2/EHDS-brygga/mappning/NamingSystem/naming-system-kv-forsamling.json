@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "http://electronichealth.se/CodeSystem/kv-forsamling",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }

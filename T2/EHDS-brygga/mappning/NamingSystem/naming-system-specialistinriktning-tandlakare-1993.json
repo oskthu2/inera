@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "http://electronichealth.se/CodeSystem/specialistinriktning-tandlakare-1993",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }

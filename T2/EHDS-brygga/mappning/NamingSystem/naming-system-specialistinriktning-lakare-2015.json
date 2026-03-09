@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "http://electronichealth.se/CodeSystem/specialistinriktning-lakare-2015",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }

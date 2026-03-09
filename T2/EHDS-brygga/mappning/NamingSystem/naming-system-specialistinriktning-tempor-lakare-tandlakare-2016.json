@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "http://electronichealth.se/CodeSystem/specialistinriktning-tempor-lakare-tandlakare-2016",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }

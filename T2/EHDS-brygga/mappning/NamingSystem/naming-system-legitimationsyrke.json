@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "http://electronichealth.se/CodeSystem/legitimationsyrke",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }
