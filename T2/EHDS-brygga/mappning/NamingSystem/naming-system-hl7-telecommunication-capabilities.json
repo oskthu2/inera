@@ -17,8 +17,7 @@
     {
       "type": "uri",
       "value": "http://terminology.hl7.org/CodeSystem/v3-TelecommunicationCapabilities",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "preferred": true
     }
   ]
 }

@@ -16,9 +16,8 @@
     },
     {
       "type": "uri",
-      "value": "http://iso639-3.sil.org",
-      "preferred": true,
-      "comment": "TODO: verifiera URI"
+      "value": "http://terminology.hl7.org/CodeSystem/iso639-3",
+      "preferred": true
     }
   ]
 }
