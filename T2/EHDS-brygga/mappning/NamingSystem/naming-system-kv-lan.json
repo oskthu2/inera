@@ -12,7 +12,7 @@
     {
       "type": "oid",
       "value": "1.2.752.129.2.2.1.18",
-      "comment": "OID för Kv län från Inera kodverksförvaltning/OID-förvaltning. OBS: samma OID som HSA Länskod."
+      "comment": "OID för Kv län / HSA Länskod"
     },
     {
       "type": "uri",

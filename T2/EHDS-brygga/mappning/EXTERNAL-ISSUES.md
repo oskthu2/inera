@@ -47,33 +47,6 @@ Underhålls av `doc-updater`. Konsulteras av `code-reviewer` och `mapping-scaffo
 - **Beskrivning:** OID 1.2.752.129.5.1.54 används i källfilen för "Kv samarbetsområde" (Ineras kodverk, rad 65) och "urval sökord kommunal adressbok utbildning" (Ineras urval, rad 131). Det är oklart vilket som har rätt OID.
 - **Workaround:** Båda filerna skapades med OID-kollisionsnotering i comment-fältet. Behöver utredas mot Inera kodverksförvaltning.
 
-### [ISSUE-004] OID-kollision: HSA Kommunkod och Kv Kommun delar OID 1.2.752.129.2.2.1.17
-- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`
-- **Typ:** otydlighet
-- **Påverkar:** naming-system-kv-kommun.json
-- **Status:** workaround
-- **Upptäckt:** 2026-03-06 av mapping-scaffolder
-- **Beskrivning:** OID 1.2.752.129.2.2.1.17 används för "Kv Kommun" (Ineras kodverk) och "Kommunkod" (HSA). Det är troligen samma underliggande SCB-kodverk men det är oklart om det är en identisk representation.
-- **Workaround:** En gemensam fil naming-system-kv-kommun.json skapades med notering om kollisionen.
-
-### [ISSUE-005] OID-kollision: HSA Länskod och Kv län delar OID 1.2.752.129.2.2.1.18
-- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`
-- **Typ:** otydlighet
-- **Påverkar:** naming-system-kv-lan.json
-- **Status:** workaround
-- **Upptäckt:** 2026-03-06 av mapping-scaffolder
-- **Beskrivning:** OID 1.2.752.129.2.2.1.18 används för "Kv län" (Ineras kodverk) och "Länskod" (HSA). Troligen samma SCB-baserade kodverk.
-- **Workaround:** En gemensam fil naming-system-kv-lan.json skapades med notering om kollisionen.
-
-### [ISSUE-006] OID-kollision: HSA Vårdtjänst och Ineras urval vårdtjänst delar OID 1.2.752.129.5.1.19
-- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`
-- **Typ:** avvikelse
-- **Påverkar:** naming-system-hsa-vardtjanst.json
-- **Status:** workaround
-- **Upptäckt:** 2026-03-06 av mapping-scaffolder
-- **Beskrivning:** OID 1.2.752.129.5.1.19 används för "Vårdtjänst" (HSA-sektion) och "urval vårdtjänst" (Ineras urval-sektion). Oklart om det är samma kodverk.
-- **Workaround:** Filen naming-system-hsa-vardtjanst.json skapades med kollisionsnotering.
-
 ### [ISSUE-007] Möjlig felstavad OID för HL7 v2 Administrative Sex i källfilen
 - **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`, rad 158
 - **Typ:** bugg
@@ -82,15 +55,6 @@ Underhålls av `doc-updater`. Konsulteras av `code-reviewer` och `mapping-scaffo
 - **Upptäckt:** 2026-03-06 av mapping-scaffolder
 - **Beskrivning:** Källfilen anger OID 2.16.840.1.**133**883.18.2 för HL7 v2 Administrative Sex. Standard HL7-OID-prefixet är 2.16.840.1.**113**883 — det verkar som att ett extra "3" har infogats (133883 istället för 113883). Korrekt OID bör vara 2.16.840.1.113883.18.2.
 - **Workaround:** Filen naming-system-hl7-v2-administrative-sex.json skapades med OID från källfilen (2.16.840.1.133883.18.2) men med en varning i comment-fältet.
-
-### [ISSUE-008] OID-kollision: KVÅ har två OID:er (ns-kva.json och Socialstyrelsen)
-- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`, rad 164; `ns-kva.json`
-- **Typ:** avvikelse
-- **Påverkar:** naming-system-kva-socialstyrelsen.json, ns-kva.json
-- **Status:** workaround
-- **Upptäckt:** 2026-03-06 av mapping-scaffolder
-- **Beskrivning:** KVÅ verkar ha två OID:er: 1.2.752.116.1.3.2.3.4 (Socialstyrelsen Klassifikationsförvaltningen, enligt källfilen) och 1.2.752.129.2.2.2.1 (ns-kva.json). Båda pekas mot samma URI http://electronichealth.se/id/kva. Oklart om det är samma kodsystem eller om den ena OID:en är föråldrad.
-- **Workaround:** Separat fil naming-system-kva-socialstyrelsen.json skapades för Socialstyrelsen-OID:en med kollisionsnotering.
 
 ### [ISSUE-009] Många poster i källfilen saknar OID (har UUID, SKV termkod, SCTID, eller "Saknas")
 - **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`
@@ -132,4 +96,38 @@ Underhålls av `doc-updater`. Konsulteras av `code-reviewer` och `mapping-scaffo
 
 ## Stängda problem
 
-*(inga ännu)*
+### [ISSUE-004] HSA Kommunkod och Kv Kommun delar OID 1.2.752.129.2.2.1.17
+- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`
+- **Typ:** otydlighet
+- **Påverkar:** naming-system-kv-kommun.json
+- **Status:** stängd
+- **Upptäckt:** 2026-03-06 av mapping-scaffolder
+- **Stängd:** 2026-03-15
+- **Beskrivning:** OID 1.2.752.129.2.2.1.17 listas under två namn i källfilen ("Kv Kommun" och "Kommunkod" i HSA). Dessa är synonyma namn på samma SCB-baserade kodverk. Eftersom OID:en är den auktoritativa identifieraren är det inte en konflikt — en enda NamingSystem-fil täcker båda namnen.
+
+### [ISSUE-005] HSA Länskod och Kv län delar OID 1.2.752.129.2.2.1.18
+- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`
+- **Typ:** otydlighet
+- **Påverkar:** naming-system-kv-lan.json
+- **Status:** stängd
+- **Upptäckt:** 2026-03-06 av mapping-scaffolder
+- **Stängd:** 2026-03-15
+- **Beskrivning:** OID 1.2.752.129.2.2.1.18 listas under två namn ("Kv län" och "Länskod" i HSA). Synonyma namn på samma SCB-baserade kodverk. En enda NamingSystem-fil täcker båda.
+
+### [ISSUE-006] HSA Vårdtjänst och Ineras urval vårdtjänst delar OID 1.2.752.129.5.1.19
+- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`
+- **Typ:** otydlighet
+- **Påverkar:** naming-system-hsa-vardtjanst.json
+- **Status:** stängd
+- **Upptäckt:** 2026-03-06 av mapping-scaffolder
+- **Stängd:** 2026-03-15
+- **Beskrivning:** OID 1.2.752.129.5.1.19 listas under två namn i källfilen ("Vårdtjänst" i HSA-sektionen och "urval vårdtjänst" i urval-sektionen). Synonyma namn på samma kodverk. En enda NamingSystem-fil täcker båda.
+
+### [ISSUE-008] KVÅ har två OID:er (Inera/RIV-TA och Socialstyrelsen)
+- **Källa:** `T2/EHDS-brygga/mappning/NamingSystem/Kodverk, urval och identifierare.md`, rad 164; `ns-kva.json`
+- **Typ:** avvikelse
+- **Påverkar:** ns-kva.json
+- **Status:** stängd
+- **Upptäckt:** 2026-03-06 av mapping-scaffolder
+- **Stängd:** 2026-03-15
+- **Beskrivning:** KVÅ har två OID:er — 1.2.752.116.1.3.2.3.4 (Socialstyrelsen Klassifikationsförvaltningen) och 1.2.752.129.2.2.2.1 (Inera/RIV-TA) — båda för samma URI http://electronichealth.se/id/kva. FHIR NamingSystem hanterar detta naturligt med flera uniqueId-poster av typ OID. naming-system-kva-socialstyrelsen.json togs bort och Socialstyrelsen-OID:en lades till direkt i ns-kva.json.

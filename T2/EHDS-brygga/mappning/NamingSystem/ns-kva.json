@@ -12,7 +12,12 @@
     {
       "type": "oid",
       "value": "1.2.752.129.2.2.2.1",
-      "comment": "OID för KVÅ"
+      "comment": "OID för KVÅ (Inera/RIV-TA)"
+    },
+    {
+      "type": "oid",
+      "value": "1.2.752.116.1.3.2.3.4",
+      "comment": "OID för KVÅ (Socialstyrelsen Klassifikationsförvaltningen)"
     },
     {
       "type": "uri",

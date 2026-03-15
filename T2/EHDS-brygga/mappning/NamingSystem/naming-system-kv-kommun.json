@@ -7,12 +7,12 @@
   "kind": "codesystem",
   "date": "2026-03-06",
   "publisher": "Inera EHDS-brygga",
-  "description": "Anger kod för kommun. Baserat på SCB:s kodverk. OBS: samma OID som HSA Kommunkod.",
+  "description": "Anger kod för kommun. Baserat på SCB:s kodverk. Används även i HSA under beteckningen Kommunkod.",
   "uniqueId": [
     {
       "type": "oid",
       "value": "1.2.752.129.2.2.1.17",
-      "comment": "OID för Kv Kommun från Inera kodverksförvaltning/OID-förvaltning. OBS: samma OID som HSA Kommunkod."
+      "comment": "OID för Kv Kommun / HSA Kommunkod"
     },
     {
       "type": "uri",
