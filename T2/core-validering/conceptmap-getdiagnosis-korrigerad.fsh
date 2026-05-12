@@ -1,6 +1,17 @@
 // ============================================================================
 // KORRIGERAD: conceptmap-getdiagnosis.fsh
 // Korrigeringar: CM-01, CM-02, CM-03, CM-04, CM-05, CM-06
+//
+// CM-02: Följande fält från originalfilen är BORTTAGNA HELT eftersom de
+// saknar motsvarighet i TKB GetDiagnosis XSD och FSH-modell:
+//   - diagnosis.diagnosisBody.diagnosisStatus
+//   - diagnosis.diagnosisBody.verificationStatus
+//   - diagnosis.diagnosisBody.diagnosisSeverity
+//   - diagnosis.diagnosisBody.bodyStructure
+//   - diagnosis.diagnosisBody.nullified
+//   - diagnosis.diagnosisBody.nullifiedReason
+// Dessa är FHIR Condition-attribut projicerade bakåt på TKB-modellen.
+// De ska inte förekomma som källkoder i en ConceptMap vars källa är TKB.
 // ============================================================================
 
 Instance: getdiagnosis-tkb-to-condition

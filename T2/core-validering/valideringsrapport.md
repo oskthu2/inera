@@ -34,17 +34,17 @@ Concept mapen anger source-koden `#diagnosis.diagnosisBody.diagnosisType` men de
 * group[1].element[0].code = #diagnosis.diagnosisBody.typeOfDiagnosis
 ```
 
-**CM-02: Fabricerade källfält som inte finns i TKB**
+**CM-02: Fabricerade källfält som inte finns i TKB — borttagna helt**
 
-Concept mapen innehåller mappningar för fält som inte existerar i TKB GetDiagnosis (varken i XSD eller FSH-modell):
-- `#diagnosis.diagnosisBody.diagnosisStatus` — finns ej i TKB
-- `#diagnosis.diagnosisBody.verificationStatus` — finns ej i TKB
-- `#diagnosis.diagnosisBody.diagnosisSeverity` — finns ej i TKB
-- `#diagnosis.diagnosisBody.bodyStructure` — finns ej i TKB
-- `#diagnosis.diagnosisBody.nullified` — finns ej i TKB
-- `#diagnosis.diagnosisBody.nullifiedReason` — finns ej i TKB
+Concept mapen innehöll mappningar för fält som inte existerar i TKB GetDiagnosis (varken i XSD eller FSH-modell):
+- `#diagnosis.diagnosisBody.diagnosisStatus`
+- `#diagnosis.diagnosisBody.verificationStatus`
+- `#diagnosis.diagnosisBody.diagnosisSeverity`
+- `#diagnosis.diagnosisBody.bodyStructure`
+- `#diagnosis.diagnosisBody.nullified`
+- `#diagnosis.diagnosisBody.nullifiedReason`
 
-Dessa är FHIR Condition-attribut som projicerats bakåt på TKB-modellen. Korrigering: flytta till unmapped-gruppen med kommentar att de saknar TKB-källa, eller ta bort helt.
+Dessa är FHIR Condition-attribut projicerade bakåt på TKB-modellen. En ConceptMap vars källa är TKB får inte innehålla källkoder som saknar TKB-förankring — det ger en falsk bild av vad tjänstekontraktet levererar. **Åtgärd: borttagna helt** från den korrigerade filen.
 
 **CM-03: Fel ICD-10-SE URI i kommentar**
 
@@ -202,7 +202,7 @@ Notera: ICD-10-SE i profilen (`conditionBaseInera.fsh` ICD10SECS CodeSystem) har
 |-----------|----------|--------|
 | P1 – Blockerande | CM-01 | Fixa fältnamn `diagnosisType` → `typeOfDiagnosis` |
 | P1 – Blockerande | CB-01 | Fixa dubbelt FSH `contains`-uttryck |
-| P1 – Blockerande | CM-02 | Ta bort fabricerade källfält, flytta till unmapped |
+| P1 – Blockerande | CM-02 | Fabricerade källfält borttagna helt |
 | P2 – Viktig | CM-04 | Lägg till kodöversättningar Huvuddiagnos/Bidiagnos → encounter-diagnosis |
 | P2 – Viktig | PB-01 | Lägg till legalAuthenticator-slice i ProvenanceBaseInera |
 | P2 – Viktig | CB-04 | Modellera chronicDiagnosis som extension |
