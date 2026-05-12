@@ -8,7 +8,7 @@ description: >-
   HL7 FHIR R4 för datautbyte mellan LMA-plattformar och konsumerande system.
 status: draft
 version: 0.1.0
-fhirVersion: 4.0.1
+fhirVersion: 5.0.0
 copyrightYear: 2025+
 releaseLabel: draft
 publisher:
@@ -111,7 +111,7 @@ groups:
     resources:
       - Patient/example-brukare-01
       - Device/example-automat-01
-      - DeviceUseStatement/example-koppling-01
+      - DeviceAssociation/example-koppling-01
       - MedicationDispense/example-overlamnande-01
       - MedicationAdministration/example-administrering-01
       - SupplyDelivery/example-pafyllnad-01

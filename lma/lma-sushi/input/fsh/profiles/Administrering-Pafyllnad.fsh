@@ -17,11 +17,11 @@ hanteras via ny post med `partOf`-referens till ursprungsposten.
 Kodurval `VS-Administreringsorsak` tillhör **omvårdnadslagret** och innehåller
 enbart omvårdnadsbedömda orsaker: brukare-avböjde, brukare-ej-anträffad,
 medicinsk-orsak. Tekniska felkoder från automaten (enhetslager) ingår **inte**
-– dessa representeras i `LMALakemedelsoverlamnande.statusReason`."""
+– dessa representeras i `LMALakemedelsoverlamnande.notPerformedReason`."""
 
-// Medicinidentitet – krävs av basklass
-* medication[x] MS
-* medication[x] ^short = "Läkemedel"
+// Medicinidentitet – CodeableReference i R5
+* medication MS
+* medication ^short = "Läkemedel"
 
 // Status – omvårdnadslager
 * status 1..1 MS
@@ -34,18 +34,18 @@ medicinsk-orsak. Tekniska felkoder från automaten (enhetslager) ingår **inte**
 * statusReason ^short = "Administreringsorsak (omvårdnadslager) – VS-Administreringsorsak Preferred"
 * statusReason ^comment = """Tillhör **omvårdnadslagret**. Inkluderar enbart
 omvårdnadsbedömda orsaker: brukare-avböjde | brukare-ej-anträffad | medicinsk-orsak.
-Tekniska felkoder (enhetslagret) ingår EJ – se LMALakemedelsoverlamnande.statusReason."""
+Tekniska felkoder (enhetslagret) ingår EJ – se LMALakemedelsoverlamnande.notPerformedReason."""
 
 // Brukare
 * subject 1..1 MS
 * subject only Reference(LMABrukare)
 * subject ^short = "Brukare (Reference LMABrukare)"
 
-// Faktisk tidpunkt – HSLF-FS 2016:40
-* effective[x] 1..1 MS
-* effective[x] only dateTime
-* effective[x] ^short = "Faktisk administreringstidpunkt (HSLF-FS 2016:40)"
-* effective[x] ^comment = "SHALL anges. HSLF-FS 2016:40 kräver att administreringstidpunkt dokumenteras."
+// Faktisk tidpunkt – HSLF-FS 2016:40 (occurence[x] i R5, ersätter effective[x] från R4)
+* occurence[x] 1..1 MS
+* occurence[x] only dateTime
+* occurence[x] ^short = "Faktisk administreringstidpunkt (HSLF-FS 2016:40)"
+* occurence[x] ^comment = "SHALL anges. HSLF-FS 2016:40 kräver att administreringstidpunkt dokumenteras."
 
 // Utförande personal – HSA-id obligatoriskt
 * performer 1..* MS
@@ -61,14 +61,14 @@ identifier.system = urn:oid:1.2.752.129.2.1.4.1 (HSA-id). PDL 3:5§."""
 * request ^short = "Bakomliggande ordination (SHOULD)"
 * request ^comment = "SHOULD referera till MedicationRequest. HSLF-FS 2016:40."
 
-// Referens till överlämning
+// Referens till överlämning – i R5 stöds nu Reference(MedicationDispense) i partOf
 * partOf MS
-* partOf only Reference(MedicationAdministration)
-* partOf ^short = "Relaterad administrering (SHOULD)"
-* partOf ^comment = """SHOULD referera till en annan MedicationAdministration (FHIR R4
-begränsar MedicationAdministration.partOf till Reference(MedicationAdministration|Procedure)).
-Kopplingen till LMALakemedelsoverlamnande (MedicationDispense) kan inte uttryckas
-via partOf i R4 – se standardens avsnitt 6.4.7 för alternativa spårningsstrategier."""
+* partOf only Reference(MedicationAdministration or LMALakemedelsoverlamnande)
+* partOf ^short = "Relaterad administrering eller överlämning (SHOULD)"
+* partOf ^comment = """SHOULD referera till en annan MedicationAdministration eller
+till LMALakemedelsoverlamnande (MedicationDispense). I FHIR R5 stöds
+Reference(MedicationDispense) i partOf, vilket möjliggör direkt spårning
+mellan omvårdnadslager och enhetslager. Se standardens avsnitt 6.4.7."""
 
 // Metadata – oföränderlig post
 * meta.lastUpdated MS
