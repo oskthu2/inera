@@ -1,6 +1,6 @@
 ### LMA API-standard – FHIR Implementation Guide
 
-**Version:** 0.1.0-draft &nbsp;|&nbsp; **Canonical:** `https://sis.se/fhir/lma` &nbsp;|&nbsp; **FHIR R4** (4.0.1)
+**Version:** 0.3.0-draft &nbsp;|&nbsp; **Canonical:** `https://sis.se/fhir/lma` &nbsp;|&nbsp; **FHIR R5** (5.0.0)
 {:.stu-note}
 
 > **Status:** Detta dokument är ett arbetsutkast framtaget av arbetsgruppen för SIS/TR
@@ -9,7 +9,7 @@
 ### Syfte
 
 Denna FHIR Implementation Guide specificerar hur informationsmodellen i SIS/TR
-*API-standard för läkemedelsautomater* realiseras med HL7 FHIR R4. IG:n riktar sig
+*API-standard för läkemedelsautomater* realiseras med HL7 FHIR R5. IG:n riktar sig
 till systemutvecklare och integratörer som implementerar datautbyte mot LMA-plattformar.
 
 IG:n är normativ för den tekniska FHIR-implementeringen. Standarden är normativ för
@@ -25,7 +25,7 @@ Larmhanteringslager (option) profileras inte i denna version.
 | | |
 |--|--|
 | Paket-id | `sis.se.tk334.ag10.lma` |
-| FHIR-version | R4 (4.0.1) |
+| FHIR-version | R5 (5.0.0) |
 | Utgivare | SIS/TR – Arbetsgrupp Läkemedelsautomater |
 | Canonical | `https://sis.se/fhir/lma` |
 
