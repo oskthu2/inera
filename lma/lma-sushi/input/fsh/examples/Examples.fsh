@@ -38,16 +38,17 @@ Usage: #example
 Instance: example-koppling-01
 InstanceOf: LMAKoppling
 Title: "Exempelkoppling – brukare 4711 till automat 0042"
-Description: "Exempelinstans för LMAKoppling. Aktiv koppling sedan 2025-01-15."
+Description: "Exempelinstans för LMAKoppling (DeviceAssociation R5). Aktiv koppling sedan 2025-01-15."
 Usage: #example
 
-* status = #active
+* status = #attached
 * subject = Reference(example-brukare-01)
-* timingPeriod.start = "2025-01-15T09:00:00Z"
+* period.start = "2025-01-15T09:00:00Z"
 * device = Reference(example-automat-01)
-* source.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
-* source.identifier.value = "SE2321000016-HSA123"
-* source.display = "Leg. sjuksköterska Anna Lindqvist"
+* operation[+].status = http://hl7.org/fhir/CodeSystem/deviceassociation-operationstatus#on "On"
+* operation[=].operator[+].identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
+* operation[=].operator[=].identifier.value = "SE2321000016-HSA123"
+* operation[=].operator[=].display = "Leg. sjuksköterska Anna Lindqvist"
 
 
 Instance: example-overlamnande-01
@@ -58,7 +59,7 @@ Usage: #example
 
 * dosageInstruction.timing.event = "2025-06-15T08:00:00Z"
 * status = #completed
-* medicationCodeableConcept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
+* medication.concept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
 * subject = Reference(example-brukare-01)
 * performer.actor = Reference(example-automat-01)
 * whenHandedOver = "2025-06-15T08:01:23Z"
@@ -73,8 +74,8 @@ Usage: #example
 * dosageInstruction.timing.event = "2025-06-15T20:00:00Z"
 * status = #declined
 // Felkod tillhör enhetslagret
-* statusReasonCodeableConcept = LMAOverlamninsfelkod#mekaniskt-fel "Mekaniskt fel"
-* medicationCodeableConcept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
+* notPerformedReason.concept = LMAOverlamninsfelkod#mekaniskt-fel "Mekaniskt fel"
+* medication.concept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
 * subject = Reference(example-brukare-01)
 * performer.actor = Reference(example-automat-01)
 
@@ -82,18 +83,18 @@ Usage: #example
 Instance: example-administrering-01
 InstanceOf: LMALakemedelsadministrering
 Title: "Exempeladministrering – genomförd av sjuksköterska"
-Description: "Exempelinstans för LMALakemedelsadministrering. Kopplar till föregående överlämning."
+Description: "Exempelinstans för LMALakemedelsadministrering. Kopplar till föregående överlämning via partOf (möjligt i R5)."
 Usage: #example
 
 * status = #completed
-* medicationCodeableConcept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
+* medication.concept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
 * subject = Reference(example-brukare-01)
-* effectiveDateTime = "2025-06-15T08:05:00Z"
-* performer.actor.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
-* performer.actor.identifier.value = "SE2321000016-HSA456"
-* performer.actor.display = "Leg. sjuksköterska Karin Holm"
-// Obs: länk till LMALakemedelsoverlamnande kan ej uttryckas via partOf i R4
-// (partOf tillåter bara Reference(MedicationAdministration|Procedure))
+* occurenceDateTime = "2025-06-15T08:05:00Z"
+* performer.actor.reference.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
+* performer.actor.reference.identifier.value = "SE2321000016-HSA456"
+* performer.actor.reference.display = "Leg. sjuksköterska Karin Holm"
+// R5: partOf stöder nu Reference(MedicationDispense) – direkt länk till LMALakemedelsoverlamnande
+* partOf = Reference(example-overlamnande-01)
 
 
 Instance: example-administrering-avbojde-01
@@ -106,12 +107,12 @@ Usage: #example
 * status = #not-done
 // Orsak tillhör omvårdnadslagret – INTE ett tekniskt fel
 * statusReason = LMAAdministreringsorsak#brukare-avbojde "Brukare avböjde"
-* medicationCodeableConcept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
+* medication.concept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
 * subject = Reference(example-brukare-01)
-* effectiveDateTime = "2025-06-16T08:10:00Z"
-* performer.actor.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
-* performer.actor.identifier.value = "SE2321000016-HSA456"
-* performer.actor.display = "Leg. sjuksköterska Karin Holm"
+* occurenceDateTime = "2025-06-16T08:10:00Z"
+* performer.actor.reference.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
+* performer.actor.reference.identifier.value = "SE2321000016-HSA456"
+* performer.actor.reference.display = "Leg. sjuksköterska Karin Holm"
 
 
 Instance: example-pafyllnad-01

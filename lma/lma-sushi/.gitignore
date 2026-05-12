@@ -1,0 +1,7 @@
+# SUSHI-genererad output – körs lokalt, versionshanteras ej
+fsh-generated/
+
+# IG Publisher output
+output/
+input-cache/
+temp/
