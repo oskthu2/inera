@@ -1,0 +1,26 @@
+{
+  "resourceType": "DeviceUseStatement",
+  "id": "example-koppling-01",
+  "meta": {
+    "profile": [
+      "https://sis.se/fhir/lma/StructureDefinition/LMAKoppling"
+    ]
+  },
+  "status": "active",
+  "subject": {
+    "reference": "Patient/example-brukare-01"
+  },
+  "timingPeriod": {
+    "start": "2025-01-15T09:00:00Z"
+  },
+  "device": {
+    "reference": "Device/example-automat-01"
+  },
+  "source": {
+    "identifier": {
+      "system": "urn:oid:1.2.752.129.2.1.4.1",
+      "value": "SE2321000016-HSA123"
+    },
+    "display": "Leg. sjuksköterska Anna Lindqvist"
+  }
+}

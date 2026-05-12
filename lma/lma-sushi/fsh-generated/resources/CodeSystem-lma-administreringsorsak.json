@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "LMAAdministreringsorsak",
+  "id": "lma-administreringsorsak",
+  "title": "LMA Administreringsorsak",
+  "description": "Orsak till utebliven eller avbruten läkemedelsadministrering.\n**Omvårdnadslager.** Bedöms och dokumenteras av hälso- och sjukvårdspersonal.",
+  "url": "https://sis.se/fhir/lma/CodeSystem/lma-administreringsorsak",
+  "concept": [
+    {
+      "code": "brukare-avbojde",
+      "display": "Brukare avböjde",
+      "definition": "Brukaren avböjde att ta emot läkemedlet. Omvårdnadsbedömning krävs."
+    },
+    {
+      "code": "brukare-ej-antraffad",
+      "display": "Brukare ej anträffad",
+      "definition": "Brukaren var inte anträffbar vid administreringstillfället. Omvårdnadsbedömning krävs."
+    },
+    {
+      "code": "medicinsk-orsak",
+      "display": "Medicinsk orsak",
+      "definition": "En medicinsk orsak förhindrade administreringen. Bedöms av ansvarig hälso- och sjukvårdspersonal."
+    },
+    {
+      "code": "okant",
+      "display": "Okänt",
+      "definition": "Orsaken är okänd."
+    }
+  ],
+  "count": 4
+}
