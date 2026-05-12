@@ -89,7 +89,7 @@ dosförpackande (dosdispensering). Se ANMÄRKNING i standardens avsnitt 6.4.7.
 
 // Felkod – enhetslager, Preferred (notPerformedReason ersätter statusReason[x] i R5)
 * notPerformedReason MS
-* notPerformedReason.concept from VS-Overlamninsfelkod (preferred)
+* notPerformedReason from VS-Overlamninsfelkod (preferred)
 * notPerformedReason ^short = "Felkod (enhetslager) – VS-Overlamninsfelkod Preferred"
 * notPerformedReason ^comment = """SHOULD anges när status = misslyckad.
 Tillhör **enhetslagret**: mekaniskt-fel | produkt-slut | sensorfel | okänt.

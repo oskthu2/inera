@@ -51,7 +51,7 @@ Tekniska felkoder (enhetslagret) ingår EJ – se LMALakemedelsoverlamnande.notP
 * performer 1..* MS
 * performer ^short = "Utförande personal (HSA-id)"
 * performer.actor 1..1 MS
-* performer.actor only Reference(Practitioner or PractitionerRole)
+* performer.actor only CodeableReference(Practitioner or PractitionerRole)
 * performer.actor ^short = "Reference(Practitioner) med HSA-id"
 * performer.actor ^comment = """SHALL vara Reference(Practitioner) med
 identifier.system = urn:oid:1.2.752.129.2.1.4.1 (HSA-id). PDL 3:5§."""

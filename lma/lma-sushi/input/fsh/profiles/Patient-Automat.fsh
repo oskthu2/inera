@@ -124,5 +124,4 @@ Se avsnitt 6.1 i standarden för principiell motivering (IHE SDPi/BICEPS)."""
 // om de mäts vid en viss frekvens eller händelse. Se profildeskription ovan.
 
 // Aktiv period
-* statusReason MS
-* statusReason ^short = "Statusorsak / period"
+// statusReason finns ej i Device R5 (togs bort från R4)

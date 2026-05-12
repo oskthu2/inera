@@ -90,9 +90,9 @@ Usage: #example
 * medication.concept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
 * subject = Reference(example-brukare-01)
 * occurenceDateTime = "2025-06-15T08:05:00Z"
-* performer.actor.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
-* performer.actor.identifier.value = "SE2321000016-HSA456"
-* performer.actor.display = "Leg. sjuksköterska Karin Holm"
+* performer.actor.reference.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
+* performer.actor.reference.identifier.value = "SE2321000016-HSA456"
+* performer.actor.reference.display = "Leg. sjuksköterska Karin Holm"
 // R5: partOf stöder nu Reference(MedicationDispense) – direkt länk till LMALakemedelsoverlamnande
 * partOf = Reference(example-overlamnande-01)
 
@@ -110,9 +110,9 @@ Usage: #example
 * medication.concept = http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown "Unknown"
 * subject = Reference(example-brukare-01)
 * occurenceDateTime = "2025-06-16T08:10:00Z"
-* performer.actor.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
-* performer.actor.identifier.value = "SE2321000016-HSA456"
-* performer.actor.display = "Leg. sjuksköterska Karin Holm"
+* performer.actor.reference.identifier.system = "urn:oid:1.2.752.129.2.1.4.1"
+* performer.actor.reference.identifier.value = "SE2321000016-HSA456"
+* performer.actor.reference.display = "Leg. sjuksköterska Karin Holm"
 
 
 Instance: example-pafyllnad-01
