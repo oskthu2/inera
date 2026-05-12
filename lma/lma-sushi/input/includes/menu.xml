@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   menu.xml – Navigationsmeny för LMA FHIR IG
-  Uppdateras manuellt (overridar sushi-config.yaml menu-property).
+  Används av fhir.base.template för att rendera toppmenyn.
 -->
 <div>
   <ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
@@ -14,7 +14,6 @@
       <ul class="dropdown-menu">
         <li><a href="logical-model.html">Lagermodell och klasser</a></li>
         <li><a href="mappings.html">Mappning till FHIR</a></li>
-        <li><a href="conceptmaps.html">Terminologimodell</a></li>
       </ul>
     </li>
     <li class="dropdown">
@@ -33,6 +32,5 @@
       </ul>
     </li>
     <li><a href="artifacts.html">Artefakter</a></li>
-    <li><a href="changelog.html">Ändringslogg</a></li>
   </ul>
 </div>

@@ -78,7 +78,7 @@ Description: """Fysisk läkemedelsautomat registrerad som medicinteknisk produkt
 Attributen driftsstatus, anslutningsstatus och batteriNivå tillhör **enhetslagret**
 men modelleras **inte** direkt på Device-resursen. De bör i stället antingen:
 - hämtas i realtid via `DeviceMetric`-resursen
-  (se https://hl7.org/fhir/R5/devicemetric.html), eller
+  (se https://hl7.org/fhir/R4/devicemetric.html), eller
 - lagras som `Observation` om de mäts vid en viss frekvens eller händelse.
 
 Se avsnitt 6.1 i standarden för principiell motivering (IHE SDPi/BICEPS)."""
@@ -120,8 +120,9 @@ Se avsnitt 6.1 i standarden för principiell motivering (IHE SDPi/BICEPS)."""
 
 // driftsstatus, anslutningsstatus, batteriNivå – modelleras ej på Device
 // Dessa attribut hämtas i realtid via DeviceMetric-resursen
-// (https://hl7.org/fhir/R5/devicemetric.html) eller lagras som Observation
+// (https://hl7.org/fhir/R4/devicemetric.html) eller lagras som Observation
 // om de mäts vid en viss frekvens eller händelse. Se profildeskription ovan.
 
 // Aktiv period
-// statusReason finns ej i Device R5 (togs bort från R4)
+* statusReason MS
+* statusReason ^short = "Statusorsak / period"

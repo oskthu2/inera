@@ -7,8 +7,8 @@ description: >-
   Specificerar hur informationsmodellen för läkemedelsautomater realiseras med
   HL7 FHIR R4 för datautbyte mellan LMA-plattformar och konsumerande system.
 status: draft
-version: 0.3.0
-fhirVersion: 5.0.0
+version: 0.1.0
+fhirVersion: 4.0.1
 copyrightYear: 2025+
 releaseLabel: draft
 publisher:
@@ -41,7 +41,6 @@ menu:
   Logisk modell:
     Lagermodell och klasser: logical-model.html
     Mappning till FHIR: mappings.html
-    Terminologimodell: conceptmaps.html
   Profiler:
     Översikt: profiles.html
     LMABrukare: StructureDefinition-LMABrukare.html
@@ -51,7 +50,6 @@ menu:
     LMALakemedelsadministrering: StructureDefinition-LMALakemedelsadministrering.html
     LMAPafyllnad: StructureDefinition-LMAPafyllnad.html
   Artefakter: artifacts.html
-  Ändringslogg: changelog.html
 
 # ─── PAGE ORDER ─────────────────────────────────────────────────────────────
 pages:
@@ -63,14 +61,10 @@ pages:
     title: Lagermodell och klasser
   mappings.md:
     title: Mappning till FHIR
-  conceptmaps.md:
-    title: Terminologimodell och concept maps
   profiles.md:
     title: Profilöversikt
   artifacts.md:
     title: Alla artefakter
-  changelog.md:
-    title: Ändringslogg
 
 # ─── GROUPS ─────────────────────────────────────────────────────────────────
 groups:
@@ -117,7 +111,7 @@ groups:
     resources:
       - Patient/example-brukare-01
       - Device/example-automat-01
-      - DeviceAssociation/example-koppling-01
+      - DeviceUseStatement/example-koppling-01
       - MedicationDispense/example-overlamnande-01
       - MedicationAdministration/example-administrering-01
       - SupplyDelivery/example-pafyllnad-01

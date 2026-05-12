@@ -1,24 +1,24 @@
 // ============================================================================
-// LMAKoppling – DeviceAssociation (FHIR R5)
+// LMAKoppling – DeviceUseStatement
 // Lager: enhetslager
 // ============================================================================
 Profile: LMAKoppling
-Parent: DeviceAssociation
+Parent: DeviceUseStatement
 Id: LMAKoppling
 Title: "LMA Koppling"
 Description: """Kopplingen brukare–automat. Representerar det administrativa
 beslutet att en brukare betjänas av en specifik automat under en tidsavgränsad
 period. Lager: enhetslager.
 
-I FHIR R5 realiseras kopplingen med `DeviceAssociation` som ersatt
-`DeviceUseStatement` från R4. Period och utförarinformation hanteras
-direkt på resursen. Konceptmappning av status: active→attached, completed→explanted."""
+**FHIR-migreringsbana:** I FHIR R4 används `DeviceUseStatement`. I FHIR R5/R6
+ersätts denna resurs av `DeviceAssociation` med tydligare semantik. IG:ns
+profil är designad för att underlätta framtida migrering: logiska attribut
+är namngivna i enlighet med R5-resursen."""
 
 // Status
 * status 1..1 MS
 * status ^short = "Kopplingsstatus"
-* status ^comment = """Använd koderna från deviceassociation-status (R5).
-Konceptmappning från R4 device-statement-status: active→attached, completed→explanted."""
+* status ^comment = """Använd FHIR-koderna från device-statement-status. Konceptmappning: active=aktiv, completed=avslutad, on-hold=pausad."""
 
 // Brukare
 * subject 1..1 MS
@@ -26,26 +26,28 @@ Konceptmappning från R4 device-statement-status: active→attached, completed�
 * subject ^short = "Brukare (Reference LMABrukare)"
 
 // Giltighetstid
-* period 1..1 MS
-* period ^short = "Giltighetstid (giltigFrån / giltigTill)"
-* period ^comment = """`period.start` = giltigFrån (1..1, obligatorisk).
-`period.end` = giltigTill (0..1). Null indikerar aktiv koppling.
+* timing[x] 1..1 MS
+* timing[x] only Period
+* timing[x] ^short = "Giltighetstid (giltigFrån / giltigTill)"
+* timing[x] ^comment = """`timingPeriod.start` = giltigFrån (1..1, obligatorisk).
+`timingPeriod.end` = giltigTill (0..1). Null indikerar aktiv koppling.
 PDL 3 kap. kräver att kopplingens giltighetstid kan återges."""
-* period.start 1..1 MS
-* period.end MS
+* timingPeriod.start 1..1 MS
+* timingPeriod.end MS
 
 // Automat
 * device 1..1 MS
 * device only Reference(LMAAutomat)
 * device ^short = "Automat (Reference LMAAutomat)"
 
-// Ansvarig förskrivare – via operation.operator (R5 DeviceAssociation)
-* operation MS
-* operation.status MS
-* operation.operator MS
-* operation.operator only Reference(Practitioner)
-* operation.operator ^short = "Ansvarig förskrivare (HSA-id)"
-* operation.operator ^comment = "Reference(Practitioner) med HSA-id. Anges om kopplingen är ordinationsbaserad. PDL 3:5§."
+// Ansvarig förskrivare
+* recordedOn MS
+* recordedOn ^short = "Tidpunkt då kopplingen registrerades"
+
+* source MS
+* source only Reference(Practitioner)
+* source ^short = "Ansvarig förskrivare (HSA-id)"
+* source ^comment = "Reference(Practitioner) med HSA-id. Anges om kopplingen är ordinationsbaserad. PDL 3:5§."
 
 
 // ============================================================================
@@ -64,7 +66,7 @@ Läkemedelsöverlämnande för att skilja automatens handling från apotekets
 dosförpackande (dosdispensering). Se ANMÄRKNING i standardens avsnitt 6.4.7.
 
 **Lageruppdelning av felkoder:**
-- `notPerformedReason` (felkod) tillhör **enhetslagret**: mekaniskt-fel, produkt-slut, sensorfel.
+- `statusReason` (felkod) tillhör **enhetslagret**: mekaniskt-fel, produkt-slut, sensorfel.
 - Dessa koder ska **inte** förekomma i `MedicationAdministration.statusReason`
   (omvårdnadslagret)."""
 
@@ -76,25 +78,30 @@ dosförpackande (dosdispensering). Se ANMÄRKNING i standardens avsnitt 6.4.7.
 * dosageInstruction.timing.event ^short = "Planerad tidpunkt för överlämning (SHALL)"
 * dosageInstruction.timing.event ^comment = """SHALL anges med minst en planerad överlämnandetidpunkt.
 `whenHandedOver` representerar faktisk tidpunkt; planerad tidpunkt anges i
-`dosageInstruction.timing.event` (Dosage.timing.event i R5)."""
+`dosageInstruction.timing.event`. I FHIR R5 tydliggörs strukturen som Dosage.timing.event."""
 
-// Medicinidentitet – CodeableReference i R5
-* medication MS
-* medication ^short = "Läkemedel (referens till Dospåse/Medication eller kod)"
+// Medicinidentitet – krävs av basklass
+* medication[x] MS
+* medication[x] ^short = "Läkemedel (referens till Dospåse/Medication eller kod)"
 
 // Status – enhetslager
 * status 1..1 MS
 * status ^short = "Utfäll (enhetslager)"
 * status ^comment = """Rapporteras av automaten. Konceptmappning: completed=lyckad, declined=misslyckad, unknown=okänt. Se LMA-koder i CodeSystem/lma-overlamningstfall."""
 
-// Felkod – enhetslager, Preferred (notPerformedReason ersätter statusReason[x] i R5)
-* notPerformedReason MS
-* notPerformedReason from VS-Overlamninsfelkod (preferred)
-* notPerformedReason ^short = "Felkod (enhetslager) – VS-Overlamninsfelkod Preferred"
-* notPerformedReason ^comment = """SHOULD anges när status = misslyckad.
+// Felkod – enhetslager, Preferred
+* statusReason[x] MS
+* statusReason[x] only CodeableConcept
+* statusReason[x] from VS-Overlamninsfelkod (preferred)
+* statusReason[x] ^short = "Felkod (enhetslager) – VS-Overlamninsfelkod Preferred"
+* statusReason[x] ^comment = """SHOULD anges när status = misslyckad.
 Tillhör **enhetslagret**: mekaniskt-fel | produkt-slut | sensorfel | okänt.
 Blanda INTE med omvårdnadslager-orsaker (MedicationAdministration.statusReason).
-`notPerformedReason` (CodeableReference) ersätter `statusReason[x]` från R4."""
+
+OBS (FHIR R5-notering): `statusReason[x]` bennmns `notPerformedReason` i FHIR R5
+för MedicationDispense. Attributet **saknas** i basresursen MedicationAdministration
+i både R4 och R5 – där anges orsaken via `statusReason` som är av typen
+CodeableConcept[0..*] utan reference-alternativ."""
 
 // Brukare
 * subject 1..1 MS
