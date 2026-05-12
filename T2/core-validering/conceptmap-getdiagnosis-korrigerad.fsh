@@ -31,6 +31,7 @@ Mappning från GetDiagnosis TKB-tjänst till FHIR-resurser.
 - Group 1: Condition-mappningar (diagnosisBody-element)
 - Group 2: Provenance-mappningar (diagnosisHeader-element)
 - Group 3: Ej mappade (frågeparametrar, result-wrapper)
+- Group 4: [CM-04] Kodöversättning DiagnosisTypeCS → condition-category
 """
 
 * url = "https://inera.se/fhir/core/ConceptMap/getdiagnosis-tkb-to-condition"
@@ -63,37 +64,23 @@ Mappning från GetDiagnosis TKB-tjänst till FHIR-resurser.
 
 // [CM-01 FIXAD] Fältnamn korrigerat: diagnosisType → typeOfDiagnosis
 // typeOfDiagnosis (1..1, CodeableConcept, bunden till DiagnosisTypeVS)
+// [CM-04] Explicita kodöversättningar finns i Group 4 (DiagnosisTypeCS → condition-category)
 * group[1].element[0].code = #diagnosis.diagnosisBody.typeOfDiagnosis
 * group[1].element[0].display = "Typ av diagnos – Huvuddiagnos | Bidiagnos (1..1)"
 * group[1].element[0].target[0].code = #category
 * group[1].element[0].target[0].equivalence = #wider
-* group[1].element[0].target[0].comment = """Mappas via ConceptMap diagnos-typ-to-condition-category (lager 2b).
+* group[1].element[0].target[0].comment = """Mappas via Group 4 (kodöversättning DiagnosisTypeCS → condition-category).
+Huvuddiagnos och Bidiagnos mappar båda till #encounter-diagnosis.
 System källa: https://fhir.inera.se/clinicalprocess-healthcond-description/CodeSystem/diagnosistype-cs
 System mål: http://terminology.hl7.org/CodeSystem/condition-category"""
 
-// [CM-04 FIXAD] Explicita kodöversättningar Huvuddiagnos/Bidiagnos → encounter-diagnosis
-* group[1].element[0].target[0].dependsOn[0].property = "code"
-* group[1].element[0].target[0].dependsOn[0].value = "Huvuddiagnos"
-* group[1].element[0].target[0].product[0].property = "code"
-* group[1].element[0].target[0].product[0].value = "encounter-diagnosis"
-
-* group[1].element[1].code = #diagnosis.diagnosisBody.typeOfDiagnosis
-* group[1].element[1].display = "Typ av diagnos – Bidiagnos → encounter-diagnosis"
-* group[1].element[1].target[0].code = #category
-* group[1].element[1].target[0].equivalence = #wider
-* group[1].element[1].target[0].comment = "Bidiagnos mappar till encounter-diagnosis (samma målkod som Huvuddiagnos). Rangordning hanteras via Encounter.diagnosis.rank."
-* group[1].element[1].target[0].dependsOn[0].property = "code"
-* group[1].element[1].target[0].dependsOn[0].value = "Bidiagnos"
-* group[1].element[1].target[0].product[0].property = "code"
-* group[1].element[1].target[0].product[0].value = "encounter-diagnosis"
-
 // diagnosisCode (0..1, CodeableConcept — normalt ICD-10-SE)
 // [CM-03 FIXAD] Korrekt terminologitjänst-URI används
-* group[1].element[2].code = #diagnosis.diagnosisBody.diagnosisCode
-* group[1].element[2].display = "Diagnoskod – ICD-10-SE eller KVÅ (0..1)"
-* group[1].element[2].target[0].code = #code
-* group[1].element[2].target[0].equivalence = #equivalent
-* group[1].element[2].target[0].comment = """Diagnoskod (CVType). Kodsystem-OID → URI via NamingSystem (lager 2a):
+* group[1].element[1].code = #diagnosis.diagnosisBody.diagnosisCode
+* group[1].element[1].display = "Diagnoskod – ICD-10-SE eller KVÅ (0..1)"
+* group[1].element[1].target[0].code = #code
+* group[1].element[1].target[0].equivalence = #equivalent
+* group[1].element[1].target[0].comment = """Diagnoskod (CVType). Kodsystem-OID → URI via NamingSystem (lager 2a):
 ICD-10-SE OID 1.2.752.116.1.1.1.1.3 → https://terminologitjansten.inera.se/inera-kodverksforvaltning/kodverk/icd-10-se
 KVÅ OID 1.2.752.129.2.2.2.1 → http://electronichealth.se/id/kva
 diagnosisCode.code → code.coding.code
@@ -101,11 +88,32 @@ diagnosisCode.displayName → code.coding.display
 diagnosisCode.originalText → code.text"""
 
 // diagnosisTime (0..1, dateTime)
-* group[1].element[3].code = #diagnosis.diagnosisBody.diagnosisTime
-* group[1].element[3].display = "Diagnostidpunkt (0..1)"
-* group[1].element[3].target[0].code = #onsetDateTime
+* group[1].element[2].code = #diagnosis.diagnosisBody.diagnosisTime
+* group[1].element[2].display = "Diagnostidpunkt (0..1)"
+* group[1].element[2].target[0].code = #onsetDateTime
+* group[1].element[2].target[0].equivalence = #equivalent
+* group[1].element[2].target[0].comment = "Format YYYYMMDDhhmmss → ISO 8601 dateTime via datatypbibliotek (lager 1)."
+
+// [CM-05 FIXAD] chronicDiagnosis → stage[chronicityEvaluation].summary
+* group[1].element[3].code = #diagnosis.diagnosisBody.chronicDiagnosis
+* group[1].element[3].display = "Kronisk diagnos (boolean, 0..1)"
+* group[1].element[3].target[0].code = #stage
 * group[1].element[3].target[0].equivalence = #equivalent
-* group[1].element[3].target[0].comment = "Format YYYYMMDDhhmmss → ISO 8601 dateTime via datatypbibliotek (lager 1)."
+* group[1].element[3].target[0].comment = """Modelleras som stage[chronicityEvaluation] i ConditionDiagnosisInera:
+  stage[chronicityEvaluation].type = ChronicityStagingTypeCS#kronisk-utvardering
+  stage[chronicityEvaluation].summary = ChronicityVS:
+    true  → https://inera.se/fhir/core/CodeSystem/chronicity#kronisk
+    false → https://inera.se/fhir/core/CodeSystem/chronicity#ej-kronisk"""
+
+// [CM-06 FIXAD] relatedDiagnosis → extension[ext-related-diagnosis]
+* group[1].element[4].code = #diagnosis.diagnosisBody.relatedDiagnosis.documentId
+* group[1].element[4].display = "Relaterad diagnos documentId (0..*)"
+* group[1].element[4].target[0].code = #extension
+* group[1].element[4].target[0].equivalence = #equivalent
+* group[1].element[4].target[0].comment = """Kopplar bidiagnos till sin huvuddiagnos.
+Extension: ext-related-diagnosis (ExtRelatedDiagnosis) i ConditionDiagnosisInera.
+documentId används för att slå upp den relaterade Condition-resursen via Condition.identifier.
+Typ: Reference(Condition). Kardinalitet: 0..*."""
 
 // ============================================================================
 // GROUP 2: Provenance-mappningar (diagnosisHeader)
@@ -234,14 +242,26 @@ diagnosisCode.originalText → code.text"""
 * group[3].element[5].target[0].equivalence = #unmatched
 * group[3].element[5].target[0].comment = "OperationOutcome.issue.diagnostics."
 
-// [CM-05] chronicDiagnosis — inget direkt FHIR-fält, behöver extension
-* group[3].element[6].code = #diagnosis.diagnosisBody.chronicDiagnosis
-* group[3].element[6].display = "Kronisk diagnos (boolean, 0..1)"
-* group[3].element[6].target[0].equivalence = #unmatched
-* group[3].element[6].target[0].comment = "Inget FHIR Condition-standardfält för kronisk. Föreslås som extension: ext-chronic-diagnosis (boolean). Se ConditionDiagnosisInera."
+// ============================================================================
+// GROUP 4: [CM-04 FIXAD] Kodöversättning DiagnosisTypeCS → condition-category
+// Källsystem: DiagnosisTypeCS (Inera TKB)
+// Målsystem: HL7 condition-category
+// Både Huvuddiagnos och Bidiagnos mappar till encounter-diagnosis;
+// rangordning (huvud/bi) hanteras via Encounter.diagnosis.rank.
+// ============================================================================
+* group[4].source = "https://fhir.inera.se/clinicalprocess-healthcond-description/CodeSystem/diagnosistype-cs"
+* group[4].target = "http://terminology.hl7.org/CodeSystem/condition-category"
 
-// [CM-06] relatedDiagnosis — bidiagnos-kopplingen
-* group[3].element[7].code = #diagnosis.diagnosisBody.relatedDiagnosis.documentId
-* group[3].element[7].display = "Relaterad diagnos documentId (0..*)"
-* group[3].element[7].target[0].equivalence = #unmatched
-* group[3].element[7].target[0].comment = "Kopplar bidiagnos till huvuddiagnos. Föreslås som Condition.extension med Reference(Condition). Alternativt: Encounter.diagnosis med rank."
+* group[4].element[0].code = #Huvuddiagnos
+* group[4].element[0].display = "Huvuddiagnos"
+* group[4].element[0].target[0].code = #encounter-diagnosis
+* group[4].element[0].target[0].display = "Encounter Diagnosis"
+* group[4].element[0].target[0].equivalence = #wider
+* group[4].element[0].target[0].comment = "Huvuddiagnos mappar till encounter-diagnosis. Rangordning (rank=1) anges i Encounter.diagnosis."
+
+* group[4].element[1].code = #Bidiagnos
+* group[4].element[1].display = "Bidiagnos"
+* group[4].element[1].target[0].code = #encounter-diagnosis
+* group[4].element[1].target[0].display = "Encounter Diagnosis"
+* group[4].element[1].target[0].equivalence = #wider
+* group[4].element[1].target[0].comment = "Bidiagnos mappar till encounter-diagnosis (samma målkod som Huvuddiagnos). Rangordning (rank>1) anges i Encounter.diagnosis."
