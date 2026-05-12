@@ -2,7 +2,7 @@
 [example-administrering-01]: MedicationAdministration-example-administrering-01.html
 [example-automat-01]: Device-example-automat-01.html
 [example-brukare-01]: Patient-example-brukare-01.html
-[example-koppling-01]: DeviceUseStatement-example-koppling-01.html
+[example-koppling-01]: DeviceAssociation-example-koppling-01.html
 [example-pafyllnad-01]: SupplyDelivery-example-pafyllnad-01.html
 [example-overlamnande-01]: MedicationDispense-example-overlamnande-01.html
 [example-overlamnande-misslyckad-01]: MedicationDispense-example-overlamnande-misslyckad-01.html

@@ -5,8 +5,8 @@
   "name": "LMAAutomat",
   "title": "LMA Automat",
   "status": "draft",
-  "description": "Fysisk läkemedelsautomat registrerad som medicinteknisk produkt\n(MDR 2017/745). Lager: enhetslager.\n\nAttributen driftsstatus, anslutningsstatus och batteriNivå tillhör **enhetslagret**\nmen modelleras **inte** direkt på Device-resursen. De bör i stället antingen:\n- hämtas i realtid via `DeviceMetric`-resursen\n  (se https://hl7.org/fhir/R4/devicemetric.html), eller\n- lagras som `Observation` om de mäts vid en viss frekvens eller händelse.\n\nSe avsnitt 6.1 i standarden för principiell motivering (IHE SDPi/BICEPS).",
-  "fhirVersion": "4.0.1",
+  "description": "Fysisk läkemedelsautomat registrerad som medicinteknisk produkt\n(MDR 2017/745). Lager: enhetslager.\n\nAttributen driftsstatus, anslutningsstatus och batteriNivå tillhör **enhetslagret**\nmen modelleras **inte** direkt på Device-resursen. De bör i stället antingen:\n- hämtas i realtid via `DeviceMetric`-resursen\n  (se https://hl7.org/fhir/R5/devicemetric.html), eller\n- lagras som `Observation` om de mäts vid en viss frekvens eller händelse.\n\nSe avsnitt 6.1 i standarden för principiell motivering (IHE SDPi/BICEPS).",
+  "fhirVersion": "5.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "Device",
@@ -32,12 +32,6 @@
         "id": "Device.identifier.value",
         "path": "Device.identifier.value",
         "min": 1,
-        "mustSupport": true
-      },
-      {
-        "id": "Device.statusReason",
-        "path": "Device.statusReason",
-        "short": "Statusorsak / period",
         "mustSupport": true
       },
       {

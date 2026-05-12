@@ -14,14 +14,16 @@
     }
   ],
   "occurrenceDateTime": "2025-06-14T14:30:00Z",
-  "suppliedItem": {
-    "quantity": {
-      "value": 28,
-      "code": "1",
-      "system": "http://unitsofmeasure.org",
-      "unit": "doser"
+  "suppliedItem": [
+    {
+      "quantity": {
+        "value": 28,
+        "code": "1",
+        "system": "http://unitsofmeasure.org",
+        "unit": "doser"
+      }
     }
-  },
+  ],
   "destination": {
     "display": "LMA automat-SE-2024-0042 (Storgatan 12)"
   },

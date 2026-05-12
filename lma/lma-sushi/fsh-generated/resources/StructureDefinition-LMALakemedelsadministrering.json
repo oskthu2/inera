@@ -5,8 +5,8 @@
   "name": "LMALakemedelsadministrering",
   "title": "LMA Läkemedelsadministrering",
   "status": "draft",
-  "description": "Dokumentation av att behörig hälso- och sjukvårdspersonal\nadministrerade läkemedlet till brukaren (tillförsel till kroppen).\nLager: omvårdnadslager.\n\nVarje post är ett **oföränderligt event** (immutable event). Korrektioner\nhanteras via ny post med `partOf`-referens till ursprungsposten.\n\n**Lageruppdelning av orsakskoder:**\nKodurval `VS-Administreringsorsak` tillhör **omvårdnadslagret** och innehåller\nenbart omvårdnadsbedömda orsaker: brukare-avböjde, brukare-ej-anträffad,\nmedicinsk-orsak. Tekniska felkoder från automaten (enhetslager) ingår **inte**\n– dessa representeras i `LMALakemedelsoverlamnande.statusReason`.",
-  "fhirVersion": "4.0.1",
+  "description": "Dokumentation av att behörig hälso- och sjukvårdspersonal\nadministrerade läkemedlet till brukaren (tillförsel till kroppen).\nLager: omvårdnadslager.\n\nVarje post är ett **oföränderligt event** (immutable event). Korrektioner\nhanteras via ny post med `partOf`-referens till ursprungsposten.\n\n**Lageruppdelning av orsakskoder:**\nKodurval `VS-Administreringsorsak` tillhör **omvårdnadslagret** och innehåller\nenbart omvårdnadsbedömda orsaker: brukare-avböjde, brukare-ej-anträffad,\nmedicinsk-orsak. Tekniska felkoder från automaten (enhetslager) ingår **inte**\n– dessa representeras i `LMALakemedelsoverlamnande.notPerformedReason`.",
+  "fhirVersion": "5.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "MedicationAdministration",
@@ -24,13 +24,20 @@
       {
         "id": "MedicationAdministration.partOf",
         "path": "MedicationAdministration.partOf",
-        "short": "Relaterad administrering (SHOULD)",
-        "comment": "SHOULD referera till en annan MedicationAdministration (FHIR R4\nbegränsar MedicationAdministration.partOf till Reference(MedicationAdministration|Procedure)).\nKopplingen till LMALakemedelsoverlamnande (MedicationDispense) kan inte uttryckas\nvia partOf i R4 – se standardens avsnitt 6.4.7 för alternativa spårningsstrategier.",
+        "short": "Relaterad administrering eller överlämning (SHOULD)",
+        "comment": "SHOULD referera till en annan MedicationAdministration eller\ntill LMALakemedelsoverlamnande (MedicationDispense). I FHIR R5 stöds\nReference(MedicationDispense) i partOf, vilket möjliggör direkt spårning\nmellan omvårdnadslager och enhetslager. Se standardens avsnitt 6.4.7.",
         "type": [
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/StructureDefinition/MedicationAdministration"
+              "http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+              "https://sis.se/fhir/lma/StructureDefinition/LMALakemedelsoverlamnande"
+            ],
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy",
+                "valueBoolean": true
+              }
             ]
           }
         ],
@@ -47,7 +54,7 @@
         "id": "MedicationAdministration.statusReason",
         "path": "MedicationAdministration.statusReason",
         "short": "Administreringsorsak (omvårdnadslager) – VS-Administreringsorsak Preferred",
-        "comment": "Tillhör **omvårdnadslagret**. Inkluderar enbart\nomvårdnadsbedömda orsaker: brukare-avböjde | brukare-ej-anträffad | medicinsk-orsak.\nTekniska felkoder (enhetslagret) ingår EJ – se LMALakemedelsoverlamnande.statusReason.",
+        "comment": "Tillhör **omvårdnadslagret**. Inkluderar enbart\nomvårdnadsbedömda orsaker: brukare-avböjde | brukare-ej-anträffad | medicinsk-orsak.\nTekniska felkoder (enhetslagret) ingår EJ – se LMALakemedelsoverlamnande.notPerformedReason.",
         "mustSupport": true,
         "binding": {
           "strength": "preferred",
@@ -55,8 +62,8 @@
         }
       },
       {
-        "id": "MedicationAdministration.medication[x]",
-        "path": "MedicationAdministration.medication[x]",
+        "id": "MedicationAdministration.medication",
+        "path": "MedicationAdministration.medication",
         "short": "Läkemedel",
         "mustSupport": true
       },
@@ -75,8 +82,8 @@
         "mustSupport": true
       },
       {
-        "id": "MedicationAdministration.effective[x]",
-        "path": "MedicationAdministration.effective[x]",
+        "id": "MedicationAdministration.occurence[x]",
+        "path": "MedicationAdministration.occurence[x]",
         "short": "Faktisk administreringstidpunkt (HSLF-FS 2016:40)",
         "comment": "SHALL anges. HSLF-FS 2016:40 kräver att administreringstidpunkt dokumenteras.",
         "type": [
@@ -100,7 +107,7 @@
         "comment": "SHALL vara Reference(Practitioner) med\nidentifier.system = urn:oid:1.2.752.129.2.1.4.1 (HSA-id). PDL 3:5§.",
         "type": [
           {
-            "code": "Reference",
+            "code": "CodeableReference",
             "targetProfile": [
               "http://hl7.org/fhir/StructureDefinition/Practitioner",
               "http://hl7.org/fhir/StructureDefinition/PractitionerRole"

@@ -6,7 +6,7 @@
   "title": "LMA Påfyllnad",
   "status": "draft",
   "description": "Registrering av att dosrullen eller läkemedelsförrådet fyllts\npå i en automat. Lager: enhetslager.\n\nBatchnummer (LVFS 2012:14) ska anges för att möjliggöra spårbarhet vid\nläkemedelsåterkallelse.",
-  "fhirVersion": "4.0.1",
+  "fhirVersion": "5.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "SupplyDelivery",
@@ -107,6 +107,15 @@
         "comment": "SHALL vara Reference(Practitioner) med HSA-id.\nPDL 3 kap. Den person som fysiskt fyllde på automaten.",
         "min": 1,
         "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
+            ]
+          }
+        ],
         "mustSupport": true
       }
     ]

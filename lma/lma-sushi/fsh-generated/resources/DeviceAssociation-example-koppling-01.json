@@ -1,0 +1,47 @@
+{
+  "resourceType": "DeviceAssociation",
+  "id": "example-koppling-01",
+  "meta": {
+    "profile": [
+      "https://sis.se/fhir/lma/StructureDefinition/LMAKoppling"
+    ]
+  },
+  "status": {
+    "coding": [
+      {
+        "code": "attached"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/example-brukare-01"
+  },
+  "period": {
+    "start": "2025-01-15T09:00:00Z"
+  },
+  "device": {
+    "reference": "Device/example-automat-01"
+  },
+  "operation": [
+    {
+      "status": {
+        "coding": [
+          {
+            "code": "on",
+            "system": "http://hl7.org/fhir/CodeSystem/deviceassociation-operationstatus",
+            "display": "On"
+          }
+        ]
+      },
+      "operator": [
+        {
+          "identifier": {
+            "system": "urn:oid:1.2.752.129.2.1.4.1",
+            "value": "SE2321000016-HSA123"
+          },
+          "display": "Leg. sjuksköterska Anna Lindqvist"
+        }
+      ]
+    }
+  ]
+}

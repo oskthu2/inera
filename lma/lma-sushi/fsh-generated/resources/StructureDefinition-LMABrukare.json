@@ -6,7 +6,7 @@
   "title": "LMA Brukare",
   "status": "draft",
   "description": "Brukare med insatsen läkemedelsautomat inom socialtjänst och\nkommunal hälso- och sjukvård. Lager: omvårdnadslager.\n\nI PDL-kontext benämns samma person *patient*; FHIR-resursen Patient används\ni båda sammanhangen. Ankarpunkten för alla personrelaterade händelseresurser.",
-  "fhirVersion": "4.0.1",
+  "fhirVersion": "5.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "Patient",
