@@ -7,6 +7,16 @@ pages_title="${PAGES_TITLE:-Implementation Guides}"
 terminology_server="${TERMINOLOGY_SERVER:-n/a}"
 ig_publisher_image="${IG_PUBLISHER_IMAGE:?IG_PUBLISHER_IMAGE environment variable is required}"
 
+html_escape() {
+  local value="${1}"
+  value="${value//&/&amp;}"
+  value="${value//</&lt;}"
+  value="${value//>/&gt;}"
+  value="${value//\"/&quot;}"
+  value="${value//\'/&#39;}"
+  printf '%s' "${value}"
+}
+
 mapfile -t ig_dirs < <(
   find "${repo_root}" -type f -name "ig.ini" -not -path "*/template/*" -print0 \
     | xargs -0 -n1 dirname \
@@ -40,13 +50,6 @@ for ig_dir in "${ig_dirs[@]}"; do
   destination_dir="${output_root}/${relative_path}"
   ig_title="${relative_path}"
 
-  if [ -f "${ig_dir}/sushi-config.yaml" ]; then
-    config_title="$(grep -E '^title:' "${ig_dir}/sushi-config.yaml" | head -n1 | sed -E 's/^title:[[:space:]]*//')"
-    if [ -n "${config_title}" ]; then
-      ig_title="${config_title}"
-    fi
-  fi
-
   echo "Building ${relative_path}"
   if ! docker run --rm \
     -v "${ig_dir}:/work" \
@@ -65,7 +68,9 @@ for ig_dir in "${ig_dirs[@]}"; do
   mkdir -p "${destination_dir}"
   cp -a "${ig_dir}/output/." "${destination_dir}/"
 
-  printf '      <li><a href="./%s/index.html">%s</a></li>\n' "${relative_path}" "${ig_title}" >> "${index_file}"
+  escaped_path="$(html_escape "${relative_path}")"
+  escaped_title="$(html_escape "${ig_title}")"
+  printf '      <li><a href="./%s/index.html">%s</a></li>\n' "${escaped_path}" "${escaped_title}" >> "${index_file}"
 done
 
 cat >> "${index_file}" <<'HTML'
