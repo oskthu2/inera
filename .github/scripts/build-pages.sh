@@ -7,6 +7,8 @@ pages_title="${PAGES_TITLE:-Implementation Guides}"
 # "n/a" is supported by IG Publisher to disable external terminology server lookups.
 terminology_server="${TERMINOLOGY_SERVER:-n/a}"
 ig_publisher_image="${IG_PUBLISHER_IMAGE:?IG_PUBLISHER_IMAGE environment variable is required}"
+sushi_npm_package="${SUSHI_NPM_PACKAGE:-fsh-sushi@3.19.0}"
+publisher_jar_url="${PUBLISHER_JAR_URL:-https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.8/publisher.jar}"
 
 html_escape() {
   local value="${1}"
@@ -58,14 +60,16 @@ for ig_dir in "${ig_dirs[@]}"; do
     -v "${ig_dir}:/work" \
     -w /work \
     -e "TERMINOLOGY_SERVER=${terminology_server}" \
+    -e "SUSHI_NPM_PACKAGE=${sushi_npm_package}" \
+    -e "PUBLISHER_JAR_URL=${publisher_jar_url}" \
     --entrypoint bash \
     "${ig_publisher_image}" \
     -lc 'set -euo pipefail
       export PATH="/usr/local/openjdk-23/bin:${PATH}"
-      npm install -g fsh-sushi >/dev/null
+      npm install -g "${SUSHI_NPM_PACKAGE}" >/dev/null
       mkdir -p input-cache
       if [ ! -f input-cache/publisher.jar ]; then
-        curl -fsSL https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o input-cache/publisher.jar
+        curl -fsSL "${PUBLISHER_JAR_URL}" -o input-cache/publisher.jar
       fi
       java -jar input-cache/publisher.jar -ig ig.ini -tx "${TERMINOLOGY_SERVER}"'; then
     echo "IG Publisher failed for ${relative_path}" >&2
