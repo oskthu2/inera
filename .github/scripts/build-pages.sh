@@ -5,6 +5,7 @@ repo_root="${1:-$(pwd)}"
 output_root="${repo_root}/.pages"
 pages_title="${PAGES_TITLE:-Implementation Guides}"
 terminology_server="${TERMINOLOGY_SERVER:-n/a}"
+ig_publisher_image="${IG_PUBLISHER_IMAGE:-hl7fhir/ig-publisher-base@sha256:d2917c07bbb1672acc6bbb1177e3ee80a4d79731a2608632a444af263235b369}"
 
 mapfile -t ig_dirs < <(
   find "${repo_root}" -type f -name "ig.ini" -not -path "*/template/*" -print0 \
@@ -42,7 +43,7 @@ for ig_dir in "${ig_dirs[@]}"; do
   docker run --rm \
     -v "${ig_dir}:/work" \
     -w /work \
-    hl7fhir/ig-publisher-base:latest \
+    "${ig_publisher_image}" \
     java -jar /usr/local/bin/publisher.jar -ig ig.ini -tx "${terminology_server}"
 
   if [ ! -d "${ig_dir}/output" ]; then
