@@ -57,8 +57,15 @@ for ig_dir in "${ig_dirs[@]}"; do
   if ! docker run --rm \
     -v "${ig_dir}:/work" \
     -w /work \
+    -e "TERMINOLOGY_SERVER=${terminology_server}" \
+    --entrypoint bash \
     "${ig_publisher_image}" \
-    java -jar /usr/local/bin/publisher.jar -ig ig.ini -tx "${terminology_server}"; then
+    -lc 'set -euo pipefail
+      mkdir -p input-cache
+      if [ ! -f input-cache/publisher.jar ]; then
+        curl -fsSL https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o input-cache/publisher.jar
+      fi
+      java -jar input-cache/publisher.jar -ig ig.ini -tx "${TERMINOLOGY_SERVER}"'; then
     echo "IG Publisher failed for ${relative_path}" >&2
     exit 1
   fi
