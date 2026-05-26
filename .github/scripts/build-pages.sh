@@ -66,7 +66,9 @@ for ig_dir in "${ig_dirs[@]}"; do
     "${ig_publisher_image}" \
     -lc 'set -euo pipefail
       export PATH="/usr/local/openjdk-23/bin:${PATH}"
-      npm install -g "${SUSHI_NPM_PACKAGE}" >/dev/null
+      if ! command -v sushi >/dev/null; then
+        npm install -g "${SUSHI_NPM_PACKAGE}" >/dev/null
+      fi
       mkdir -p input-cache
       if [ ! -f input-cache/publisher.jar ]; then
         curl -fsSL "${PUBLISHER_JAR_URL}" -o input-cache/publisher.jar
