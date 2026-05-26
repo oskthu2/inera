@@ -17,6 +17,8 @@ html_escape() {
   printf '%s' "${value}"
 }
 
+escaped_pages_title="$(html_escape "${pages_title}")"
+
 mapfile -t ig_dirs < <(
   find "${repo_root}" -type f -name "ig.ini" -not -path "*/template/*" -print0 \
     | xargs -0 -n1 dirname \
@@ -38,10 +40,10 @@ cat > "${index_file}" <<HTML
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>${pages_title}</title>
+    <title>${escaped_pages_title}</title>
   </head>
   <body>
-    <h1>${pages_title}</h1>
+    <h1>${escaped_pages_title}</h1>
     <ul>
 HTML
 
