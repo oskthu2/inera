@@ -61,6 +61,8 @@ for ig_dir in "${ig_dirs[@]}"; do
     --entrypoint bash \
     "${ig_publisher_image}" \
     -lc 'set -euo pipefail
+      export PATH="/usr/local/openjdk-23/bin:${PATH}"
+      npm install -g fsh-sushi >/dev/null
       mkdir -p input-cache
       if [ ! -f input-cache/publisher.jar ]; then
         curl -fsSL https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o input-cache/publisher.jar
