@@ -59,6 +59,7 @@ for ig_dir in "${ig_dirs[@]}"; do
   if ! docker run --rm \
     -v "${ig_dir}:/work" \
     -w /work \
+    -e "IG_PUBLISHER_IMAGE=${ig_publisher_image}" \
     -e "TERMINOLOGY_SERVER=${terminology_server}" \
     -e "SUSHI_NPM_PACKAGE=${sushi_npm_package}" \
     -e "PUBLISHER_JAR_URL=${publisher_jar_url}" \
