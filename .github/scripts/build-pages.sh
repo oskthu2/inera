@@ -65,9 +65,17 @@ for ig_dir in "${ig_dirs[@]}"; do
     --entrypoint bash \
     "${ig_publisher_image}" \
     -lc 'set -euo pipefail
-      export PATH="/usr/local/openjdk-23/bin:${PATH}"
+      if ! command -v java >/dev/null; then
+        for java_candidate in /usr/local/openjdk-*/bin/java; do
+          if [ -x "${java_candidate}" ]; then
+            export PATH="$(dirname "${java_candidate}"):${PATH}"
+            break
+          fi
+        done
+      fi
+      command -v java >/dev/null
       if ! command -v sushi >/dev/null; then
-        npm install -g "${SUSHI_NPM_PACKAGE}" >/dev/null
+        npm install -g "${SUSHI_NPM_PACKAGE}"
       fi
       mkdir -p input-cache
       if [ ! -f input-cache/publisher.jar ]; then
