@@ -67,21 +67,20 @@ for ig_dir in "${ig_dirs[@]}"; do
     "${ig_publisher_image}" \
     -lc 'set -euo pipefail
       if ! command -v java >/dev/null; then
-        shopt -s nullglob
-        for java_candidate in /usr/local/openjdk-*/bin/java; do
-          if [ -x "${java_candidate}" ]; then
-            export PATH="$(dirname "${java_candidate}"):${PATH}"
-            break
-          fi
-        done
-        shopt -u nullglob
+        while IFS= read -r java_candidate; do
+          export PATH="$(dirname "${java_candidate}"):${PATH}"
+          break
+        done < <(find /usr/local -maxdepth 4 -type f -name java -path "*/openjdk-*/bin/java" 2>/dev/null)
       fi
       if ! command -v java >/dev/null; then
         echo "Java runtime not found in container image ${IG_PUBLISHER_IMAGE:-unknown}" >&2
         exit 1
       fi
       if ! command -v sushi >/dev/null; then
-        npm install -g "${SUSHI_NPM_PACKAGE}"
+        if ! npm install -g "${SUSHI_NPM_PACKAGE}"; then
+          echo "Failed to install SUSHI package ${SUSHI_NPM_PACKAGE}" >&2
+          exit 1
+        fi
       fi
       if ! command -v sushi >/dev/null; then
         echo "SUSHI installation failed or sushi command is unavailable" >&2
@@ -89,7 +88,10 @@ for ig_dir in "${ig_dirs[@]}"; do
       fi
       mkdir -p input-cache
       if [ ! -f input-cache/publisher.jar ]; then
-        curl -fsSL "${PUBLISHER_JAR_URL}" -o input-cache/publisher.jar
+        if ! curl -fsSL "${PUBLISHER_JAR_URL}" -o input-cache/publisher.jar; then
+          echo "Failed to download publisher.jar from ${PUBLISHER_JAR_URL}" >&2
+          exit 1
+        fi
       fi
       java -jar input-cache/publisher.jar -ig ig.ini -tx "${TERMINOLOGY_SERVER}"'; then
     echo "IG Publisher failed for ${relative_path}" >&2
