@@ -66,16 +66,25 @@ for ig_dir in "${ig_dirs[@]}"; do
     "${ig_publisher_image}" \
     -lc 'set -euo pipefail
       if ! command -v java >/dev/null; then
+        shopt -s nullglob
         for java_candidate in /usr/local/openjdk-*/bin/java; do
           if [ -x "${java_candidate}" ]; then
             export PATH="$(dirname "${java_candidate}"):${PATH}"
             break
           fi
         done
+        shopt -u nullglob
       fi
-      command -v java >/dev/null
+      if ! command -v java >/dev/null; then
+        echo "Java runtime not found in container image ${IG_PUBLISHER_IMAGE:-unknown}" >&2
+        exit 1
+      fi
       if ! command -v sushi >/dev/null; then
         npm install -g "${SUSHI_NPM_PACKAGE}"
+      fi
+      if ! command -v sushi >/dev/null; then
+        echo "SUSHI installation failed or sushi command is unavailable" >&2
+        exit 1
       fi
       mkdir -p input-cache
       if [ ! -f input-cache/publisher.jar ]; then
