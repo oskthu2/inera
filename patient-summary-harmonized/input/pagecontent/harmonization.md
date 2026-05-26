@@ -1,28 +1,26 @@
 ### Harmoniseringsmetod
 
-Denna iteration prioriterar **konkreta MUST/SHALL/SHOULD från Xt-EHR logiska modeller** för de informationsdelar som har direkt motsvarighet i HL7 EU EPS och/eller EURIDICE resource access.
+Detta IG-spår använder följande källa-till-regel-princip:
 
-#### Källprioritering
+1. **EURIDICE EU Health Data API** för åtkomstmönster (document + resource access)
+2. **HL7 EU EPS** för Patient Summary-innehåll och constraints
+3. **Xt-EHR EHDS Patient Summary logiska modeller** för rekommenderade informationsmängder och strukturell komplettering
 
-1. Xt-EHR logiska modeller (primär källa för kardinalitet och semantik)
-2. HL7 EU EPS profiler/artifakter (kompatibilitet och europeisk profilering)
-3. EURIDICE resource-access mönster (åtkomst- och identitetskrav)
+#### Konkreta regler i denna iteration
 
-#### Spårbarhetsmatris (regel → profil)
+- `Patient.identifier` skärps till minst ett identifieringsvärde för robust patient-matchning i resource access-flöden.
+- `Patient.name` använder EPS-regeln (motsv. `eu-pat-1`): family/given/text eller data-absent-reason.
+- `Patient.gender` och `Patient.birthDate` sätts till obligatoriska för kliniskt användbar summary-kärna.
+- `MedicationStatement.subject`, `medication[x]` och `status` skärps för säkrare läkemedelstolkning.
+- `MedicationStatement.medicationCodeableConcept` tillåter ATC/SNOMED-kodning explicit (öppen slicing).
 
-- **Xt-EHR EHDSPatientSummary.header 1..1 (SHALL)** → `Composition.status/type/subject/date/author/title` obligatoriska.
-- **Xt-EHR EHDSPatientSummary.header.identifier 1..* (SHALL)** → `Composition.identifier 1..*`.
-- **Xt-EHR patientdemografi (MUST för klinisk tolkning)** → `Patient.identifier`, `Patient.gender`, `Patient.birthDate`.
-- **Xt-EHR/EPS läkemedelsöversikt (SHALL kärninformation)** → `MedicationStatement.subject`, `medication[x]`, `status`.
-- **Xt-EHR sektioner med EPS-motsvarighet**:
-  - Allergier/intoleranser → `AllergyIntolerance`
-  - Problem/diagnoser → `Condition`
-  - Utförda procedurer → `Procedure`
-  - Immuniseringar → `Immunization`
-  - Resultat (observationer) → `Observation`
+#### Kardinalitetsprinciper
 
-#### Kodverksstrategi
+- `1..1` när både EPS/Xt-EHR och klinisk användning kräver kärnuppgift.
+- `0..*` när uppgift är kompletterande eller varierar mellan implementeringar/medlemsstater.
 
-- Bindningar läggs som `preferred` till FHIR/IPS-värdemängder där EU-överenskomna bindningar ännu inte är stabilt publicerade i EPS CI-build.
-- Explicit kodsystemsstöd för läkemedel: ATC + SNOMED-slicing i `MedicationStatement`.
-- Nationell skärpning (required/extensible) görs i derived profiler per användningsfall.
+#### Kodverksprinciper
+
+- Primärt bindning till etablerade FHIR/EU value sets.
+- Explicita kodsystemspår (ATC/SNOMED) i harmoniserad profil.
+- Nationell skärpning görs i separata derived profiler.
