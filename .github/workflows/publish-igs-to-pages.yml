@@ -18,10 +18,16 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PAGES_TITLE: Inera Implementation Guides
+      TERMINOLOGY_SERVER: n/a
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Build all IGs
         run: bash .github/scripts/build-pages.sh "$GITHUB_WORKSPACE"

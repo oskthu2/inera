@@ -3,6 +3,8 @@ set -euo pipefail
 
 repo_root="${1:-$(pwd)}"
 output_root="${repo_root}/.pages"
+pages_title="${PAGES_TITLE:-Implementation Guides}"
+terminology_server="${TERMINOLOGY_SERVER:-n/a}"
 
 mapfile -t ig_dirs < <(
   find "${repo_root}" -type f -name "ig.ini" -not -path "*/template/*" -print0 \
@@ -19,16 +21,16 @@ rm -rf "${output_root}"
 mkdir -p "${output_root}"
 
 index_file="${output_root}/index.html"
-cat > "${index_file}" <<'HTML'
+cat > "${index_file}" <<HTML
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Inera IG Pages</title>
+    <title>${pages_title}</title>
   </head>
   <body>
-    <h1>Inera Implementation Guides</h1>
+    <h1>${pages_title}</h1>
     <ul>
 HTML
 
@@ -41,7 +43,7 @@ for ig_dir in "${ig_dirs[@]}"; do
     -v "${ig_dir}:/work" \
     -w /work \
     hl7fhir/ig-publisher-base:latest \
-    java -jar /usr/local/bin/publisher.jar -ig ig.ini -tx n/a
+    java -jar /usr/local/bin/publisher.jar -ig ig.ini -tx "${terminology_server}"
 
   if [ ! -d "${ig_dir}/output" ]; then
     echo "Missing output directory for ${relative_path}" >&2
