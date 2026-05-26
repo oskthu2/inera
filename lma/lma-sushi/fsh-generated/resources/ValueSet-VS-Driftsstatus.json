@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "VSDriftsstatus",
+  "id": "VS-Driftsstatus",
+  "title": "VS Driftsstatus",
+  "description": "Driftsstatus för läkemedelsautomat. Enhetslager.",
+  "url": "https://sis.se/fhir/lma/ValueSet/VS-Driftsstatus",
+  "compose": {
+    "include": [
+      {
+        "system": "https://sis.se/fhir/lma/CodeSystem/lma-driftsstatus"
+      }
+    ]
+  }
+}

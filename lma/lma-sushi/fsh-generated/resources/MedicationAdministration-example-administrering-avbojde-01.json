@@ -1,0 +1,45 @@
+{
+  "resourceType": "MedicationAdministration",
+  "id": "example-administrering-avbojde-01",
+  "meta": {
+    "profile": [
+      "https://sis.se/fhir/lma/StructureDefinition/LMALakemedelsadministrering"
+    ]
+  },
+  "status": "not-done",
+  "statusReason": [
+    {
+      "coding": [
+        {
+          "code": "brukare-avbojde",
+          "system": "https://sis.se/fhir/lma/CodeSystem/lma-administreringsorsak",
+          "display": "Brukare avböjde"
+        }
+      ]
+    }
+  ],
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "code": "unknown",
+        "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+        "display": "Unknown"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/example-brukare-01"
+  },
+  "effectiveDateTime": "2025-06-16T08:10:00Z",
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "urn:oid:1.2.752.129.2.1.4.1",
+          "value": "SE2321000016-HSA456"
+        },
+        "display": "Leg. sjuksköterska Karin Holm"
+      }
+    }
+  ]
+}
