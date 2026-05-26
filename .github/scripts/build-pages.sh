@@ -4,6 +4,7 @@ set -euo pipefail
 repo_root="${1:-$(pwd)}"
 output_root="${repo_root}/.pages"
 pages_title="${PAGES_TITLE:-Implementation Guides}"
+# "n/a" is supported by IG Publisher to disable external terminology server lookups.
 terminology_server="${TERMINOLOGY_SERVER:-n/a}"
 ig_publisher_image="${IG_PUBLISHER_IMAGE:?IG_PUBLISHER_IMAGE environment variable is required}"
 
