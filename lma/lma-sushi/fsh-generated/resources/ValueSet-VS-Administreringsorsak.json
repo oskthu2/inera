@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "VSAdministreringsorsak",
+  "id": "VS-Administreringsorsak",
+  "title": "VS Administreringsorsak",
+  "description": "Orsak till utebliven eller avbruten läkemedelsadministrering. Omvårdnadslager.",
+  "url": "https://sis.se/fhir/lma/ValueSet/VS-Administreringsorsak",
+  "compose": {
+    "include": [
+      {
+        "system": "https://sis.se/fhir/lma/CodeSystem/lma-administreringsorsak"
+      }
+    ]
+  }
+}
