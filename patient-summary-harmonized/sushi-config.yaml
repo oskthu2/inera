@@ -1,0 +1,20 @@
+id: se.inera.ehds.patientsummary.harmonized
+canonical: https://inera.se/fhir/ig/ehds-patient-summary-harmonized
+name: IneraEHDSPatientSummaryHarmonized
+status: draft
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2026+
+releaseLabel: ci-build
+
+dependencies:
+  hl7.fhir.r4.core: 4.0.1
+  hl7.fhir.uv.ips: 1.1.0
+
+parameters:
+  show-inherited-invariants: false
+
+menu:
+  Home: index.html
+  Harmonisering: harmonization.html
+  Artifacts: artifacts.html
