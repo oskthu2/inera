@@ -5,7 +5,7 @@ repo_root="${1:-$(pwd)}"
 output_root="${repo_root}/.pages"
 pages_title="${PAGES_TITLE:-Implementation Guides}"
 terminology_server="${TERMINOLOGY_SERVER:-n/a}"
-ig_publisher_image="${IG_PUBLISHER_IMAGE:-hl7fhir/ig-publisher-base@sha256:d2917c07bbb1672acc6bbb1177e3ee80a4d79731a2608632a444af263235b369}"
+ig_publisher_image="${IG_PUBLISHER_IMAGE:?IG_PUBLISHER_IMAGE environment variable is required}"
 
 mapfile -t ig_dirs < <(
   find "${repo_root}" -type f -name "ig.ini" -not -path "*/template/*" -print0 \
@@ -38,13 +38,24 @@ HTML
 for ig_dir in "${ig_dirs[@]}"; do
   relative_path="${ig_dir#${repo_root}/}"
   destination_dir="${output_root}/${relative_path}"
+  ig_title="${relative_path}"
+
+  if [ -f "${ig_dir}/sushi-config.yaml" ]; then
+    config_title="$(grep -E '^title:' "${ig_dir}/sushi-config.yaml" | head -n1 | sed -E 's/^title:[[:space:]]*//')"
+    if [ -n "${config_title}" ]; then
+      ig_title="${config_title}"
+    fi
+  fi
 
   echo "Building ${relative_path}"
-  docker run --rm \
+  if ! docker run --rm \
     -v "${ig_dir}:/work" \
     -w /work \
     "${ig_publisher_image}" \
-    java -jar /usr/local/bin/publisher.jar -ig ig.ini -tx "${terminology_server}"
+    java -jar /usr/local/bin/publisher.jar -ig ig.ini -tx "${terminology_server}"; then
+    echo "IG Publisher failed for ${relative_path}" >&2
+    exit 1
+  fi
 
   if [ ! -d "${ig_dir}/output" ]; then
     echo "Missing output directory for ${relative_path}" >&2
@@ -54,7 +65,7 @@ for ig_dir in "${ig_dirs[@]}"; do
   mkdir -p "${destination_dir}"
   cp -a "${ig_dir}/output/." "${destination_dir}/"
 
-  printf '      <li><a href="./%s/index.html">%s</a></li>\n' "${relative_path}" "${relative_path}" >> "${index_file}"
+  printf '      <li><a href="./%s/index.html">%s</a></li>\n' "${relative_path}" "${ig_title}" >> "${index_file}"
 done
 
 cat >> "${index_file}" <<'HTML'

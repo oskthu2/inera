@@ -21,6 +21,7 @@ jobs:
     env:
       PAGES_TITLE: Inera Implementation Guides
       TERMINOLOGY_SERVER: n/a
+      # hl7fhir/ig-publisher-base:latest as of 2026-05-26
       IG_PUBLISHER_IMAGE: hl7fhir/ig-publisher-base@sha256:d2917c07bbb1672acc6bbb1177e3ee80a4d79731a2608632a444af263235b369
 
     steps:
