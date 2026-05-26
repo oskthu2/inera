@@ -23,6 +23,8 @@ jobs:
       TERMINOLOGY_SERVER: n/a
       # hl7fhir/ig-publisher-base:latest as of 2026-05-26
       IG_PUBLISHER_IMAGE: hl7fhir/ig-publisher-base@sha256:d2917c07bbb1672acc6bbb1177e3ee80a4d79731a2608632a444af263235b369
+      SUSHI_NPM_PACKAGE: fsh-sushi@3.19.0
+      PUBLISHER_JAR_URL: https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.8/publisher.jar
 
     steps:
       - name: Checkout

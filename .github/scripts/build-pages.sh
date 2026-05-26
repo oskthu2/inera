@@ -7,6 +7,8 @@ pages_title="${PAGES_TITLE:-Implementation Guides}"
 # "n/a" is supported by IG Publisher to disable external terminology server lookups.
 terminology_server="${TERMINOLOGY_SERVER:-n/a}"
 ig_publisher_image="${IG_PUBLISHER_IMAGE:?IG_PUBLISHER_IMAGE environment variable is required}"
+sushi_npm_package="${SUSHI_NPM_PACKAGE:-fsh-sushi@3.19.0}"
+publisher_jar_url="${PUBLISHER_JAR_URL:-https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.8/publisher.jar}"
 
 html_escape() {
   local value="${1}"
@@ -57,8 +59,41 @@ for ig_dir in "${ig_dirs[@]}"; do
   if ! docker run --rm \
     -v "${ig_dir}:/work" \
     -w /work \
+    -e "IG_PUBLISHER_IMAGE=${ig_publisher_image}" \
+    -e "TERMINOLOGY_SERVER=${terminology_server}" \
+    -e "SUSHI_NPM_PACKAGE=${sushi_npm_package}" \
+    -e "PUBLISHER_JAR_URL=${publisher_jar_url}" \
+    --entrypoint bash \
     "${ig_publisher_image}" \
-    java -jar /usr/local/bin/publisher.jar -ig ig.ini -tx "${terminology_server}"; then
+    -lc 'set -euo pipefail
+      if ! command -v java >/dev/null; then
+        java_candidate="$(find /usr/local -maxdepth 4 -type f -name java -path "*/openjdk-*/bin/java" 2>/dev/null | head -n 1)"
+        if [ -n "${java_candidate}" ]; then
+          export PATH="$(dirname "${java_candidate}"):${PATH}"
+        fi
+      fi
+      if ! command -v java >/dev/null; then
+        echo "Java runtime not found in container image ${IG_PUBLISHER_IMAGE:-unknown}" >&2
+        exit 1
+      fi
+      if ! command -v sushi >/dev/null; then
+        if ! npm install -g "${SUSHI_NPM_PACKAGE}"; then
+          echo "Failed to install SUSHI package ${SUSHI_NPM_PACKAGE}" >&2
+          exit 1
+        fi
+      fi
+      if ! command -v sushi >/dev/null; then
+        echo "SUSHI installation failed or sushi command is unavailable" >&2
+        exit 1
+      fi
+      mkdir -p input-cache
+      if [ ! -f input-cache/publisher.jar ]; then
+        if ! curl --connect-timeout 30 --max-time 300 -fsSL "${PUBLISHER_JAR_URL}" -o input-cache/publisher.jar; then
+          echo "Failed to download publisher.jar from ${PUBLISHER_JAR_URL}" >&2
+          exit 1
+        fi
+      fi
+      java -jar input-cache/publisher.jar -ig ig.ini -tx "${TERMINOLOGY_SERVER}"'; then
     echo "IG Publisher failed for ${relative_path}" >&2
     exit 1
   fi
