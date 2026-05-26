@@ -1,0 +1,234 @@
+[
+  {
+    "outputFile": "CodeSystem-lma-administreringsorsak.json",
+    "fshName": "LMAAdministreringsorsak",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/CodeSystems.fsh",
+    "startLine": 75,
+    "endLine": 83
+  },
+  {
+    "outputFile": "CodeSystem-lma-administreringsstatus.json",
+    "fshName": "LMAAdministreringsstatus",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/CodeSystems.fsh",
+    "startLine": 64,
+    "endLine": 72
+  },
+  {
+    "outputFile": "CodeSystem-lma-anslutningsstatus.json",
+    "fshName": "LMAAnslutningsstatus",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/CodeSystems.fsh",
+    "startLine": 18,
+    "endLine": 27
+  },
+  {
+    "outputFile": "CodeSystem-lma-driftsstatus.json",
+    "fshName": "LMADriftsstatus",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/CodeSystems.fsh",
+    "startLine": 5,
+    "endLine": 15
+  },
+  {
+    "outputFile": "CodeSystem-lma-kopplingsstatus.json",
+    "fshName": "LMAKopplingsstatus",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/CodeSystems.fsh",
+    "startLine": 30,
+    "endLine": 36
+  },
+  {
+    "outputFile": "CodeSystem-lma-overlamningstfall.json",
+    "fshName": "LMAOverlamningstfall",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/CodeSystems.fsh",
+    "startLine": 39,
+    "endLine": 45
+  },
+  {
+    "outputFile": "CodeSystem-lma-overlamninsfelkod.json",
+    "fshName": "LMAOverlamninsfelkod",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/CodeSystems.fsh",
+    "startLine": 48,
+    "endLine": 57
+  },
+  {
+    "outputFile": "Device-example-automat-01.json",
+    "fshName": "example-automat-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 22,
+    "endLine": 35
+  },
+  {
+    "outputFile": "DeviceUseStatement-example-koppling-01.json",
+    "fshName": "example-koppling-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 38,
+    "endLine": 50
+  },
+  {
+    "outputFile": "MedicationAdministration-example-administrering-01.json",
+    "fshName": "example-administrering-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 82,
+    "endLine": 94
+  },
+  {
+    "outputFile": "MedicationAdministration-example-administrering-avbojde-01.json",
+    "fshName": "example-administrering-avbojde-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 99,
+    "endLine": 114
+  },
+  {
+    "outputFile": "MedicationDispense-example-overlamnande-01.json",
+    "fshName": "example-overlamnande-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 53,
+    "endLine": 64
+  },
+  {
+    "outputFile": "MedicationDispense-example-overlamnande-misslyckad-01.json",
+    "fshName": "example-overlamnande-misslyckad-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 67,
+    "endLine": 79
+  },
+  {
+    "outputFile": "Patient-example-brukare-01.json",
+    "fshName": "example-brukare-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 5,
+    "endLine": 19
+  },
+  {
+    "outputFile": "StructureDefinition-LMAAutomat.json",
+    "fshName": "LMAAutomat",
+    "fshType": "Profile",
+    "fshFile": "profiles/Patient-Automat.fsh",
+    "startLine": 71,
+    "endLine": 128
+  },
+  {
+    "outputFile": "StructureDefinition-LMABrukare.json",
+    "fshName": "LMABrukare",
+    "fshType": "Profile",
+    "fshFile": "profiles/Patient-Automat.fsh",
+    "startLine": 5,
+    "endLine": 64
+  },
+  {
+    "outputFile": "StructureDefinition-LMAKoppling.json",
+    "fshName": "LMAKoppling",
+    "fshType": "Profile",
+    "fshFile": "profiles/Koppling-Overlamnande.fsh",
+    "startLine": 5,
+    "endLine": 50
+  },
+  {
+    "outputFile": "StructureDefinition-LMALakemedelsadministrering.json",
+    "fshName": "LMALakemedelsadministrering",
+    "fshType": "Profile",
+    "fshFile": "profiles/Administrering-Pafyllnad.fsh",
+    "startLine": 5,
+    "endLine": 76
+  },
+  {
+    "outputFile": "StructureDefinition-LMALakemedelsoverlamnande.json",
+    "fshName": "LMALakemedelsoverlamnande",
+    "fshType": "Profile",
+    "fshFile": "profiles/Koppling-Overlamnande.fsh",
+    "startLine": 57,
+    "endLine": 126
+  },
+  {
+    "outputFile": "StructureDefinition-LMAPafyllnad.json",
+    "fshName": "LMAPafyllnad",
+    "fshType": "Profile",
+    "fshFile": "profiles/Administrering-Pafyllnad.fsh",
+    "startLine": 83,
+    "endLine": 136
+  },
+  {
+    "outputFile": "StructureDefinition-ext-lma-batch.json",
+    "fshName": "ExtLmaBatch",
+    "fshType": "Extension",
+    "fshFile": "extensions/Extensions.fsh",
+    "startLine": 5,
+    "endLine": 17
+  },
+  {
+    "outputFile": "SupplyDelivery-example-pafyllnad-01.json",
+    "fshName": "example-pafyllnad-01",
+    "fshType": "Instance",
+    "fshFile": "examples/Examples.fsh",
+    "startLine": 117,
+    "endLine": 130
+  },
+  {
+    "outputFile": "ValueSet-VS-Administreringsorsak.json",
+    "fshName": "VSAdministreringsorsak",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/ValueSets.fsh",
+    "startLine": 51,
+    "endLine": 55
+  },
+  {
+    "outputFile": "ValueSet-VS-Administreringsstatus.json",
+    "fshName": "VSAdministreringsstatus",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/ValueSets.fsh",
+    "startLine": 44,
+    "endLine": 48
+  },
+  {
+    "outputFile": "ValueSet-VS-Anslutningsstatus.json",
+    "fshName": "VSAnslutningsstatus",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/ValueSets.fsh",
+    "startLine": 12,
+    "endLine": 16
+  },
+  {
+    "outputFile": "ValueSet-VS-Driftsstatus.json",
+    "fshName": "VSDriftsstatus",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/ValueSets.fsh",
+    "startLine": 5,
+    "endLine": 9
+  },
+  {
+    "outputFile": "ValueSet-VS-Kopplingsstatus.json",
+    "fshName": "VSKopplingsstatus",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/ValueSets.fsh",
+    "startLine": 19,
+    "endLine": 23
+  },
+  {
+    "outputFile": "ValueSet-VS-Overlamningstfall.json",
+    "fshName": "VSOverlamningstfall",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/ValueSets.fsh",
+    "startLine": 26,
+    "endLine": 30
+  },
+  {
+    "outputFile": "ValueSet-VS-Overlamninsfelkod.json",
+    "fshName": "VSOverlamninsfelkod",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/ValueSets.fsh",
+    "startLine": 33,
+    "endLine": 37
+  }
+]

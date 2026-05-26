@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "LMAAdministreringsstatus",
+  "id": "lma-administreringsstatus",
+  "title": "LMA Administreringsstatus",
+  "description": "Status för läkemedelsadministrering. **Omvårdnadslager.**\nDokumenteras av hälso- och sjukvårdspersonal. (HSLF-FS 2016:40)",
+  "url": "https://sis.se/fhir/lma/CodeSystem/lma-administreringsstatus",
+  "concept": [
+    {
+      "code": "genomford",
+      "display": "Genomförd",
+      "definition": "Läkemedlet administrerades till brukaren."
+    },
+    {
+      "code": "ej-genomford",
+      "display": "Ej genomförd",
+      "definition": "Läkemedelsadministreringen genomfördes inte."
+    },
+    {
+      "code": "avbruten",
+      "display": "Avbruten",
+      "definition": "Läkemedelsadministreringen påbörjades men avbröts."
+    },
+    {
+      "code": "okant",
+      "display": "Okänt",
+      "definition": "Det är okänt om administreringen genomfördes."
+    }
+  ],
+  "count": 4
+}
