@@ -21,7 +21,7 @@ mkdir -p "${output_root}"
 index_file="${output_root}/index.html"
 cat > "${index_file}" <<'HTML'
 <!doctype html>
-<html lang="sv">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
