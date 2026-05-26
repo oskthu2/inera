@@ -1,6 +1,11 @@
 Alias: $DAR = http://hl7.org/fhir/StructureDefinition/data-absent-reason
 Alias: $V3NullFlavor = http://terminology.hl7.org/CodeSystem/v3-NullFlavor
 
+Invariant: inera-eu-pat-1
+Description: "family, given, text eller data-absent-reason ska finnas enligt EPS-princip."
+Expression: "family.exists() or given.exists() or text.exists() or extension('http://hl7.org/fhir/StructureDefinition/data-absent-reason').exists()"
+Severity: #error
+
 Profile: IneraEHDSPatientSummaryPatient
 Parent: Patient
 Id: inera-ehds-patient-summary-patient
@@ -28,11 +33,6 @@ Description: "Harmoniserad Patient-profil för Patient Summary med explicita reg
 // Xt-EHR PS: centrala demografiska fält
 * gender 1..1
 * birthDate 1..1
-
-Invariant: inera-eu-pat-1
-Description: "family, given, text eller data-absent-reason ska finnas enligt EPS-princip."
-Expression: "family.exists() or given.exists() or text.exists() or extension('http://hl7.org/fhir/StructureDefinition/data-absent-reason').exists()"
-Severity: #error
 
 // Xt-EHR logical model rekommenderar kontakt/kommunikation i summary när tillgängligt
 * telecom 0..*
