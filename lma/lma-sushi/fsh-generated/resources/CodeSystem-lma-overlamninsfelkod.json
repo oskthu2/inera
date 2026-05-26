@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "LMAOverlamninsfelkod",
+  "id": "lma-overlamninsfelkod",
+  "title": "LMA Överlämningsfelkod",
+  "description": "Felkod för misslyckad överlämning. **Enhetslager.**\nTekniska felkoder från automaten. Ska **inte** förekomma i\nMedicationAdministration.statusReason (omvårdnadslagret).",
+  "url": "https://sis.se/fhir/lma/CodeSystem/lma-overlamninsfelkod",
+  "concept": [
+    {
+      "code": "mekaniskt-fel",
+      "display": "Mekaniskt fel",
+      "definition": "Fel i automatens mekaniska komponenter förhindrade överlämnandet."
+    },
+    {
+      "code": "produkt-slut",
+      "display": "Produkt slut",
+      "definition": "Automaten saknar läkemedel för det aktuella administreringstillfället."
+    },
+    {
+      "code": "sensorfel",
+      "display": "Sensorfel",
+      "definition": "Sensorfel förhindrade verifiering av att överlämnandet genomförts."
+    },
+    {
+      "code": "okant",
+      "display": "Okänt",
+      "definition": "Felets orsak är okänd."
+    }
+  ],
+  "count": 4
+}

@@ -1,0 +1,27 @@
+{
+  "resourceType": "Device",
+  "id": "example-automat-01",
+  "meta": {
+    "profile": [
+      "https://sis.se/fhir/lma/StructureDefinition/LMAAutomat"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://sis.se/fhir/lma/id/automat",
+      "value": "automat-SE-2024-0042"
+    }
+  ],
+  "serialNumber": "MR3000-SN-20240042",
+  "manufacturer": "MedRobot AB",
+  "modelNumber": "MedRobot 3000",
+  "version": [
+    {
+      "value": "3.4.1"
+    }
+  ],
+  "status": "active",
+  "location": {
+    "display": "Storgatan 12, Lägenhet 3B"
+  }
+}

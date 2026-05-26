@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "LMAAnslutningsstatus",
+  "id": "lma-anslutningsstatus",
+  "title": "LMA Anslutningsstatus",
+  "description": "Kommunikationsstatus för läkemedelsautomat mot LMA-plattformen.\n**Enhetslager.** Rapporteras av plattformen baserat på nätverksobservation.\n(IHE SDPi/BICEPS: BICEPS MDib ConnectedState)",
+  "url": "https://sis.se/fhir/lma/CodeSystem/lma-anslutningsstatus",
+  "concept": [
+    {
+      "code": "ansluten",
+      "display": "Ansluten",
+      "definition": "Automaten kommunicerar normalt med LMA-plattformen."
+    },
+    {
+      "code": "frankapplad",
+      "display": "Frånkopplad",
+      "definition": "Kommunikation med automaten kan inte etableras."
+    },
+    {
+      "code": "intermittent",
+      "display": "Intermittent",
+      "definition": "Kommunikation med automaten är instabil eller tidvis avbruten."
+    },
+    {
+      "code": "okand",
+      "display": "Okänd",
+      "definition": "Anslutningsstatusen kan inte fastställas."
+    }
+  ],
+  "count": 4
+}

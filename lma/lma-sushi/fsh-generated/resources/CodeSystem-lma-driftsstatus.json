@@ -1,0 +1,38 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "LMADriftsstatus",
+  "id": "lma-driftsstatus",
+  "title": "LMA Driftsstatus",
+  "description": "Driftsstatus för läkemedelsautomat. **Enhetslager.**\nRapporteras av automaten och avser enhetens egna drifttillstånd,\noberoende av omvårdnadsflöden. (IHE SDPi/BICEPS: MDib OperatingMode)",
+  "url": "https://sis.se/fhir/lma/CodeSystem/lma-driftsstatus",
+  "concept": [
+    {
+      "code": "operationell",
+      "display": "Operationell",
+      "definition": "Automaten är i drift och fungerar normalt."
+    },
+    {
+      "code": "ur-drift",
+      "display": "Ur drift",
+      "definition": "Automaten är tillfälligt ur drift."
+    },
+    {
+      "code": "service",
+      "display": "Service",
+      "definition": "Automaten genomgår planerat underhåll eller service."
+    },
+    {
+      "code": "bortkopplad",
+      "display": "Bortkopplad",
+      "definition": "Automaten är permanent bortkopplad eller avvecklad."
+    },
+    {
+      "code": "okant",
+      "display": "Okänt",
+      "definition": "Driftsstatusen kan inte fastställas."
+    }
+  ],
+  "count": 5
+}
