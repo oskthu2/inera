@@ -25,14 +25,14 @@ Description: "Harmoniserad Patient-profil för Patient Summary med explicita reg
 * name.extension[dataAbsentReason].valueCode 1..1
 * name.extension[dataAbsentReason].valueCode from http://hl7.org/fhir/ValueSet/data-absent-reason (required)
 
+// Xt-EHR PS: centrala demografiska fält
+* gender 1..1
+* birthDate 1..1
+
 Invariant: inera-eu-pat-1
 Description: "family, given, text eller data-absent-reason ska finnas enligt EPS-princip."
 Expression: "family.exists() or given.exists() or text.exists() or extension('http://hl7.org/fhir/StructureDefinition/data-absent-reason').exists()"
 Severity: #error
-
-// Xt-EHR PS: centrala demografiska fält
-* gender 1..1
-* birthDate 1..1
 
 // Xt-EHR logical model rekommenderar kontakt/kommunikation i summary när tillgängligt
 * telecom 0..*
