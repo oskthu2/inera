@@ -67,10 +67,10 @@ for ig_dir in "${ig_dirs[@]}"; do
     "${ig_publisher_image}" \
     -lc 'set -euo pipefail
       if ! command -v java >/dev/null; then
-        while IFS= read -r java_candidate; do
+        java_candidate="$(find /usr/local -maxdepth 4 -type f -name java -path "*/openjdk-*/bin/java" 2>/dev/null | head -n 1)"
+        if [ -n "${java_candidate}" ]; then
           export PATH="$(dirname "${java_candidate}"):${PATH}"
-          break
-        done < <(find /usr/local -maxdepth 4 -type f -name java -path "*/openjdk-*/bin/java" 2>/dev/null)
+        fi
       fi
       if ! command -v java >/dev/null; then
         echo "Java runtime not found in container image ${IG_PUBLISHER_IMAGE:-unknown}" >&2
@@ -88,7 +88,7 @@ for ig_dir in "${ig_dirs[@]}"; do
       fi
       mkdir -p input-cache
       if [ ! -f input-cache/publisher.jar ]; then
-        if ! curl -fsSL "${PUBLISHER_JAR_URL}" -o input-cache/publisher.jar; then
+        if ! curl --connect-timeout 30 --max-time 300 -fsSL "${PUBLISHER_JAR_URL}" -o input-cache/publisher.jar; then
           echo "Failed to download publisher.jar from ${PUBLISHER_JAR_URL}" >&2
           exit 1
         fi
