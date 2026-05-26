@@ -11,6 +11,7 @@ Syftet är att ge en gemensam profilering som kan användas vid nationell anpass
 ## Innehåll
 
 - `sushi-config.yaml` – SUSHI/IG-konfiguration.
+- `ig.ini` – IG Publisher entry point för CI/publicering.
 - `input/fsh/profiles/` – profiler och harmoniseringsregler.
 - `input/fsh/extensions/` – tilläggsextensioner för krav som saknar direkt stöd.
 - `input/pagecontent/` – narrativ dokumentation av harmoniseringsprinciper.
