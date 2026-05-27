@@ -1,0 +1,341 @@
+{
+  "resourceType": "CapabilityStatement",
+  "id": "inera-ehds-patient-summary-server-requirements",
+  "url": "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/CapabilityStatement/inera-ehds-patient-summary-server-requirements",
+  "version": "0.1.0",
+  "name": "IneraEHDSPatientSummaryServerRequirements",
+  "title": "Inera EHDS Patient Summary – Server Capability Requirements",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-05-27",
+  "description": "Minimikrav (kind=requirements) på en FHIR-server för att stödja resursorienterad EHDS Patient Summary-åtkomst (EURIDICE resource access pattern). Används som underlag för gap-analys mot befintliga FHIR-implementationer och RIVTA-tjänstekontrakt. Baseras på Xt-EHR EHDS Patient Summary R1 och EURIDICE EU Health Data API-specifikationen i avvaktan på formellt beslutad EEHRxF.",
+  "kind": "requirements",
+  "fhirVersion": "4.0.1",
+  "format": ["json", "xml"],
+  "implementationGuide": [
+    "https://inera.se/fhir/ig/ehds-patient-summary-harmonized"
+  ],
+  "rest": [
+    {
+      "mode": "server",
+      "documentation": "FHIR REST-server som stödjer resursorienterad EHDS Patient Summary-åtkomst per EURIDICE resource access pattern. Alla resurser söks med patient-referens som primärnyckel.",
+      "security": {
+        "cors": true,
+        "service": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/restful-security-service",
+                "code": "SMART-on-FHIR",
+                "display": "SMART-on-FHIR"
+              }
+            ],
+            "text": "SMART on FHIR (OAuth2/OIDC)"
+          }
+        ],
+        "description": "SMART on FHIR med patient-scope (patient/[Resource].read) och system-scope (system/[Resource].read). Nationell IdP-integration för cross-border EU-åtkomst."
+      },
+      "resource": [
+        {
+          "type": "Patient",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-patient"
+          ],
+          "documentation": "SHALL – Patientidentitet och demografi (Xt-EHR A.1.1). Sökning på nationell identifierare (personnummer OID 1.2.752.129.2.1.3.1) och EU-patientidentifierare krävs.",
+          "interaction": [
+            { "code": "read", "documentation": "Hämta patient med känt id" },
+            { "code": "search-type", "documentation": "Sök på identifier/birthdate för identifiering" }
+          ],
+          "searchParam": [
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "SHALL – Personnummer (OID 1.2.752.129.2.1.3.1) eller EU-patientidentifierare"
+            },
+            {
+              "name": "birthdate",
+              "type": "date",
+              "documentation": "SHOULD – Kompletterande demografisk matchning"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date",
+              "documentation": "SHOULD – Delta-queries för uppdaterade poster"
+            }
+          ]
+        },
+        {
+          "type": "MedicationStatement",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-medication-statement"
+          ],
+          "documentation": "SHALL – Läkemedelsöversikt (Xt-EHR A.1.7, LOINC 10160-0). Avser aktuell läkemedelslista. Notering: skiljer sig från MedicationRequest (förskrivning) och MedicationDispense (expediering). Pascal/NPÖ-motsvarighet är GetMedicationHistory.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL – Primärnyckel för EHDS resource access"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "SHALL – active | completed | stopped | on-hold. Aktiv läkemedelslista: status=active"
+            },
+            {
+              "name": "medication",
+              "type": "token",
+              "documentation": "SHOULD – ATC-kod (http://www.whocc.no/atc) eller SNOMED CT"
+            },
+            {
+              "name": "effective",
+              "type": "date",
+              "documentation": "SHOULD – Tidsfilter på behandlingsperiod"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "AllergyIntolerance",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-allergy-intolerance"
+          ],
+          "documentation": "SHALL – Allergier och intoleranser (Xt-EHR A.1.8, LOINC 48765-2). NPÖ-motsvarighet är GetAlertInformation. Obs: alerts/varningar utan allergigrund täcks ej av EHDS PS.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL"
+            },
+            {
+              "name": "clinical-status",
+              "type": "token",
+              "documentation": "SHALL – active | resolved | inactive"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "SHOULD – Allergensubstans (SNOMED CT, NKK, ATC)"
+            },
+            {
+              "name": "criticality",
+              "type": "token",
+              "documentation": "MAY – high | low | unable-to-assess"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "Condition",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-condition"
+          ],
+          "documentation": "SHALL – Problemlista/diagnoser (Xt-EHR A.1.9, LOINC 11450-4). NPÖ-motsvarighet är GetDiagnoses. category=problem-list-item ger aktiv problemlista; encounter-diagnosis ger episoddiagnoser.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL"
+            },
+            {
+              "name": "category",
+              "type": "token",
+              "documentation": "SHALL – problem-list-item | encounter-diagnosis | health-concern"
+            },
+            {
+              "name": "clinical-status",
+              "type": "token",
+              "documentation": "SHALL – active | resolved | inactive | recurrence"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "SHOULD – ICD-10-SE (http://hl7.org/fhir/sid/icd-10) eller SNOMED CT"
+            },
+            {
+              "name": "onset-date",
+              "type": "date",
+              "documentation": "MAY"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "Procedure",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-procedure"
+          ],
+          "documentation": "SHOULD – Procedurhistorik (Xt-EHR A.1.10, LOINC 47519-4). Saknar direkt RIVTA-tjänstekontrakt; viss täckning via GetCareContacts och kliniska dokument. Kodverk: KVÅ (nationellt), SNOMED CT, NordDRG.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "SHOULD – completed | in-progress | stopped"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "SHOULD – KVÅ, SNOMED CT eller NordDRG-kod"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "SHOULD – Filter på performed[x]"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "Immunization",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-immunization"
+          ],
+          "documentation": "SHOULD – Immuniseringar/vaccinationer (Xt-EHR A.1.11, LOINC 11369-6). Svenska nationella vaccinationsregistret (NVR) är källa; NVR exponerar idag inte ett direkt FHIR-API mot kliniska system.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "SHOULD – completed | not-done"
+            },
+            {
+              "name": "vaccine-code",
+              "type": "token",
+              "documentation": "SHOULD – ATC-SE vaccinkod eller SNOMED CT"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "SHOULD"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "DeviceUseStatement",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-device-use-statement"
+          ],
+          "documentation": "SHOULD – Medicintekniska produkter och implantat (Xt-EHR A.1.12, LOINC 46264-8). Saknar idag direkt RIVTA-tjänstekontrakt och nationellt register. Uppgifter finns i journalsystem men harmoniserad exponering saknas. Obs: FHIR R4 = DeviceUseStatement; R4B/R5 = DeviceUsage.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "SHOULD – active | completed | entered-in-error"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "Observation",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-observation-results"
+          ],
+          "documentation": "SHOULD – Diagnostiska resultat inkl. laboratorieprov, vitala parametrar, funktionsstatus och social anamnes (Xt-EHR A.1.13–A.1.15, LOINC 30954-2). category-parameter är avgörande för att separera information. Lab: GetLaboratoryOrderOutcome via Labportalen. Vitala parametrar: saknar i stort standardiserat RIVTA-flöde.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL"
+            },
+            {
+              "name": "category",
+              "type": "token",
+              "documentation": "SHALL – laboratory | vital-signs | functional-status | social-history"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "SHOULD – LOINC-observationskod (http://loinc.org)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "SHOULD – Filter på effective[x]"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "SHOULD – final | preliminary | amended"
+            },
+            {
+              "name": "value-quantity",
+              "type": "quantity",
+              "documentation": "MAY – Filtrering på numeriska värden"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        }
+      ],
+      "operation": [
+        {
+          "name": "patient-everything",
+          "definition": "http://hl7.org/fhir/OperationDefinition/Patient-everything",
+          "documentation": "MAY – $patient-everything ger alla resurser för en patient i ett enda anrop. Alternativt till sekventiella per-resurs-queries. Bör stödja _type-parameter för att begränsa resurstyper."
+        }
+      ]
+    }
+  ]
+}
