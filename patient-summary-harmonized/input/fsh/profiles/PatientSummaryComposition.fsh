@@ -18,8 +18,8 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * author 1..*
 * title 1..1
 
-// Xt-EHR header.identifier 1..* -> SHALL
-* identifier 1..*
+// Xt-EHR header.identifier 1..* -> SHALL (FHIR Composition tillåter max 1)
+* identifier 1..1
 * identifier.system 1..1
 * identifier.value 1..1
 
