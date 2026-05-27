@@ -29,6 +29,19 @@ Fokus ligger på:
 | IneraEHDSPatientSummaryImmunization | Immunization | Immuniseringar |
 | IneraEHDSPatientSummaryDeviceUseStatement | DeviceUseStatement | Medicintekniska produkter / implantat (A.1.12) |
 | IneraEHDSPatientSummaryObservationResults | Observation | Diagnostiska resultat |
+| IneraEHDSPatientSummaryPractitionerRole | PractitionerRole | Preferred HCP / GP (A.1.3) – Xt-EHR-only |
+| IneraEHDSPatientSummaryRelatedPerson | RelatedPerson | Legal guardian / kontaktperson (A.1.4) – Xt-EHR-only |
+| IneraEHDSPatientSummaryCoverage | Coverage | Försäkring / betalning (A.1.5) – Xt-EHR-only |
+| IneraEHDSPatientSummaryConsent | Consent | Föranmälda direktiv – Xt-EHR-only |
+| IneraEHDSPatientSummaryCarePlan | CarePlan | Vårdplan / plan of care – Xt-EHR-only |
+| IneraEHDSPatientSummaryDiagnosticReport | DiagnosticReport | Strukturerade diagnostiska rapporter – Xt-EHR-only |
+
+### CapabilityStatements
+
+| Artefakt | Scope | Syfte |
+|---|---|---|
+| IneraEHDSPSServerEURIDICECore | EURIDICE Core | Minimum för cross-border resource access (8 resurser) |
+| IneraEHDSPSServerXtEHRFull | Full Xt-EHR PS | Komplett scope inkl. header och valfria sektioner (15 resurser) |
 
 ### Extension
 

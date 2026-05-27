@@ -252,18 +252,24 @@ Tabellen nedan är tänkt att fyllas i vid analys av specifika system. Status-ko
 
 #### Funktionellt API-stöd
 
-| EHDS PS-krav | Xt-EHR | Inera FHIR Core | Cambio Open Services | RIVTA-tjänstekontrakt |
-|---|---|---|---|---|
-| Patient READ + search by identifier | A.1.1 | ? | ? | GetPatient / NPÖ |
-| MedicationStatement search (patient+status) | A.1.7 | ? | ? | GetMedicationHistory (Pascal) |
-| AllergyIntolerance search (patient+clinical-status) | A.1.8 | ? | ? | GetAlertInformation (NPÖ) |
-| Condition search (patient+category+clinical-status) | A.1.9 | ? | ? | GetDiagnoses (NPÖ) |
-| Procedure search (patient+date) | A.1.10 | ? | ? | ❌ (partiellt via GetCareContacts) |
-| Immunization search (patient+vaccine-code) | A.1.11 | ? | ? | ❌ (NVR, ej RIVTA) |
-| DeviceUseStatement search (patient+status) | A.1.12 | ? | ? | ❌ |
-| Observation lab (patient+category=laboratory) | A.1.13 | ? | ? | GetLaboratoryOrderOutcome |
-| Observation vital-signs (patient+category=vital-signs) | A.1.13 | ? | ? | ❌ |
-| Observation social-history | A.1.15 | ? | ? | ❌ |
+| EHDS PS-krav | Xt-EHR | Källa | Inera FHIR Core | Cambio Open Services | RIVTA-tjänstekontrakt |
+|---|---|---|---|---|---|
+| Patient READ + search by identifier | A.1.1 | EURIDICE + Xt-EHR | ? | ? | GetPatient / NPÖ |
+| MedicationStatement search (patient+status) | A.1.7 | EURIDICE + Xt-EHR | ? | ? | GetMedicationHistory (Pascal) |
+| AllergyIntolerance search (patient+clinical-status) | A.1.8 | EURIDICE + Xt-EHR | ? | ? | GetAlertInformation (NPÖ) |
+| Condition search (patient+category+clinical-status) | A.1.9 | EURIDICE + Xt-EHR | ? | ? | GetDiagnoses (NPÖ) |
+| Procedure search (patient+date) | A.1.10 | EURIDICE + Xt-EHR | ? | ? | ❌ (partiellt via GetCareContacts) |
+| Immunization search (patient+vaccine-code) | A.1.11 | EURIDICE + Xt-EHR | ? | ? | ❌ (NVR, ej RIVTA) |
+| DeviceUseStatement search (patient+status) | A.1.12 | EURIDICE + Xt-EHR | ? | ? | ❌ |
+| Observation lab (patient+category=laboratory) | A.1.13 | EURIDICE + Xt-EHR | ? | ? | GetLaboratoryOrderOutcome |
+| Observation vital-signs (patient+category=vital-signs) | A.1.13 | EURIDICE + Xt-EHR | ? | ? | ❌ |
+| Observation social-history | A.1.15 | Xt-EHR-only | ? | ? | ❌ |
+| PractitionerRole search (practitioner) | A.1.3 | Xt-EHR-only | ? | ? | ❌ (HSA-katalog, SOAP) |
+| RelatedPerson search (patient+relationship) | A.1.4 | Xt-EHR-only | ? | ? | ❌ |
+| Coverage search (patient+status) | A.1.5 | Xt-EHR-only | ? | ? | ❌ (Försäkringskassan) |
+| DiagnosticReport search (patient+category) | A.1.13 | Xt-EHR-only | ? | ? | ⚠️ (Labportalen, FHIR-stöd varierar) |
+| Consent search (patient+status+category) | EHDS PS body | Xt-EHR-only | ? | ? | ❌ |
+| CarePlan search (patient+status) | EHDS PS body | Xt-EHR-only | ? | ? | ❌ |
 
 #### Semantisk täckning
 
