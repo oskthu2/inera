@@ -37,7 +37,10 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
     procedures   0..1 and   // Xt-EHR A.1.10 – SHOULD
     immunizations 0..1 and  // Xt-EHR A.1.11 – SHOULD
     devices      0..1 and   // Xt-EHR A.1.12 – SHOULD
-    results      0..1       // Xt-EHR A.1.13 – SHOULD
+    results      0..1 and   // Xt-EHR A.1.13 – SHOULD
+    pastHistory  0..1 and   // Xt-EHR: historiska sjukdomar – Xt-EHR-only
+    advDir       0..1 and   // Xt-EHR: advance directives – Xt-EHR-only
+    planOfCare   0..1       // Xt-EHR: plan of care – Xt-EHR-only
 
 // --- Läkemedelsöversikt (Xt-EHR A.1.7 / LOINC 10160-0) ---
 * section[medications].code = $LNC#10160-0
@@ -90,3 +93,24 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section[results].title 1..1
 * section[results].entry 0..*
 * section[results].entry only Reference(IneraEHDSPatientSummaryObservationResults)
+
+// --- Historiska sjukdomar / tidigare problem (Xt-EHR only / LOINC 11348-0) ---
+* section[pastHistory].code = $LNC#11348-0
+* section[pastHistory].code 1..1
+* section[pastHistory].title 1..1
+* section[pastHistory].entry 0..*
+* section[pastHistory].entry only Reference(IneraEHDSPatientSummaryCondition)
+
+// --- Föranmälda direktiv (Xt-EHR only / LOINC 42348-3) ---
+* section[advDir].code = $LNC#42348-3
+* section[advDir].code 1..1
+* section[advDir].title 1..1
+* section[advDir].entry 0..*
+* section[advDir].entry only Reference(IneraEHDSPatientSummaryConsent)
+
+// --- Vårdplan / plan of care (Xt-EHR only / LOINC 18776-5) ---
+* section[planOfCare].code = $LNC#18776-5
+* section[planOfCare].code 1..1
+* section[planOfCare].title 1..1
+* section[planOfCare].entry 0..*
+* section[planOfCare].entry only Reference(IneraEHDSPatientSummaryCarePlan)
