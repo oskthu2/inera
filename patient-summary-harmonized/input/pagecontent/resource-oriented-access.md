@@ -7,7 +7,7 @@ EURIDICE EU Health Data API definierar två komplementära åtkomstmönster för
 | Mönster | Beskrivning | FHIR-artefakt |
 |---|---|---|
 | **Document access** | En komplett, självständig Bundle (type=document) hämtas från ett enda endpoint | `IneraEHDSPatientSummaryBundle` |
-| **Resource access** | Konsumenten ställer separata FHIR-queries per resurstyp mot ett standard REST API | `IneraEHDSPatientSummaryServerRequirements` |
+| **Resource access** | Konsumenten ställer separata FHIR-queries per resurstyp mot ett standard REST API | `IneraEHDSPSServerEURIDICECore` / `IneraEHDSPSServerXtEHRFull` |
 
 Båda mönstren ska täcka **samma informationsmängd** enligt Xt-EHR EHDS Patient Summary (A.1.1–A.1.16). Valet av mönster påverkar inte vad som behöver lagras – det påverkar hur och i vilka steg informationen hämtas.
 
@@ -28,22 +28,37 @@ Detta ställer tydligare och mer operativa krav på en FHIR-server än document 
 
 ---
 
-### Sektionsmatris: Xt-EHR A.1.x → FHIR-resurser → API-queries
+### Sektionsmatris: Xt-EHR logisk modell → FHIR-resurser → API-queries
 
-| Sektion | Xt-EHR | Krav | FHIR-resurs | Primär query | Nyckelfilter |
+| Sektion | Xt-EHR | Källa | FHIR-resurs | Primär query | Nyckelfilter |
 |---|---|---|---|---|---|
-| Patientidentitet och demografi | A.1.1 | **SHALL** | `Patient` | `GET /Patient?identifier={id}` | `identifier`, `birthdate` |
-| Läkemedelsöversikt | A.1.7 | **SHALL** | `MedicationStatement` | `GET /MedicationStatement?patient={id}&status=active` | `patient`, `status`, `medication` |
-| Allergier och intoleranser | A.1.8 | **SHALL** | `AllergyIntolerance` | `GET /AllergyIntolerance?patient={id}&clinical-status=active` | `patient`, `clinical-status`, `code` |
-| Problemlista / diagnoser | A.1.9 | **SHALL** | `Condition` | `GET /Condition?patient={id}&category=problem-list-item` | `patient`, `category`, `clinical-status`, `code` |
-| Procedurhistorik | A.1.10 | SHOULD | `Procedure` | `GET /Procedure?patient={id}` | `patient`, `status`, `code`, `date` |
-| Immuniseringar | A.1.11 | SHOULD | `Immunization` | `GET /Immunization?patient={id}&status=completed` | `patient`, `status`, `vaccine-code`, `date` |
-| Medicintekniska produkter | A.1.12 | SHOULD | `DeviceUseStatement`¹ | `GET /DeviceUseStatement?patient={id}&status=active` | `patient`, `status` |
-| Diagnostiska resultat (lab) | A.1.13 | SHOULD | `Observation` | `GET /Observation?patient={id}&category=laboratory` | `patient`, `category`, `code`, `date`, `status` |
-| Vitala parametrar | A.1.13 | SHOULD | `Observation` | `GET /Observation?patient={id}&category=vital-signs` | `patient`, `category`, `code`, `date` |
-| Funktionsstatus | A.1.14 | MAY | `Observation` | `GET /Observation?patient={id}&category=functional-status` | `patient`, `category` |
-| Social anamnes | A.1.15 | MAY | `Observation` | `GET /Observation?patient={id}&category=social-history` | `patient`, `category`, `code` |
-| Graviditetshistorik | A.1.16 | MAY | `Observation` / `Condition` | `GET /Observation?patient={id}&code=82810-3` | `patient`, `code` |
+| Patientidentitet | A.1.1 | EURIDICE + Xt-EHR | `Patient` | `GET /Patient?identifier={id}` | `identifier`, `birthdate` |
+| Demografisk info / språk | A.1.2 | Xt-EHR-only | `Patient` (extended) | (ingår i Patient-resursen) | `communication` |
+| Preferred HCP / GP | A.1.3 | Xt-EHR-only | `PractitionerRole` + `Practitioner` | `GET /PractitionerRole?practitioner={id}` | `practitioner`, `organization`, `specialty` |
+| Legal guardian / kontaktperson | A.1.4 | Xt-EHR-only | `RelatedPerson` | `GET /RelatedPerson?patient={id}` | `patient`, `relationship` |
+| Försäkring / betalning | A.1.5 | Xt-EHR-only | `Coverage` | `GET /Coverage?patient={id}&status=active` | `patient`, `status` |
+| Språkpreferenser | A.1.6 | Xt-EHR-only | `Patient.communication` | (ingår i Patient-resursen) | – |
+| Läkemedelsöversikt | A.1.7 | EURIDICE + Xt-EHR | `MedicationStatement` | `GET /MedicationStatement?patient={id}&status=active` | `patient`, `status`, `medication` |
+| Allergier och intoleranser | A.1.8 | EURIDICE + Xt-EHR | `AllergyIntolerance` | `GET /AllergyIntolerance?patient={id}&clinical-status=active` | `patient`, `clinical-status`, `code` |
+| Problemlista (aktiv) | A.1.9 | EURIDICE + Xt-EHR | `Condition` | `GET /Condition?patient={id}&category=problem-list-item` | `patient`, `category`, `clinical-status` |
+| Historiska sjukdomar | A.1.9 / 11348-0 | Xt-EHR-only | `Condition` | `GET /Condition?patient={id}&clinical-status=resolved` | `patient`, `clinical-status` |
+| Procedurhistorik | A.1.10 | EURIDICE + Xt-EHR | `Procedure` | `GET /Procedure?patient={id}` | `patient`, `status`, `code`, `date` |
+| Immuniseringar | A.1.11 | EURIDICE + Xt-EHR | `Immunization` | `GET /Immunization?patient={id}&status=completed` | `patient`, `status`, `vaccine-code` |
+| Medicintekniska produkter | A.1.12 | EURIDICE + Xt-EHR | `DeviceUseStatement` | `GET /DeviceUseStatement?patient={id}&status=active` | `patient`, `status` |
+| Diagnostiska resultat (lab) | A.1.13 | EURIDICE + Xt-EHR | `Observation` | `GET /Observation?patient={id}&category=laboratory` | `patient`, `category`, `code`, `date` |
+| Vitala parametrar | A.1.13 | EURIDICE + Xt-EHR | `Observation` | `GET /Observation?patient={id}&category=vital-signs` | `patient`, `category`, `code` |
+| Strukturerade rapporter | A.1.13 | Xt-EHR-only | `DiagnosticReport` | `GET /DiagnosticReport?patient={id}&category=laboratory` | `patient`, `category`, `date` |
+| Funktionsstatus | A.1.14 | Xt-EHR-only | `Observation` | `GET /Observation?patient={id}&category=functional-status` | `patient`, `category` |
+| Social anamnes (rökning/alkohol) | A.1.15 | Xt-EHR-only | `Observation` | `GET /Observation?patient={id}&category=social-history` | `patient`, `category`, `code` |
+| Graviditetshistorik | A.1.16 | Xt-EHR-only | `Observation` / `Condition` | `GET /Observation?patient={id}&code=82810-3` | `patient`, `code` |
+| Föranmälda direktiv | EHDS PS body | Xt-EHR-only | `Consent` | `GET /Consent?patient={id}&status=active` | `patient`, `status`, `category` |
+| Vårdplan / plan of care | EHDS PS body | Xt-EHR-only | `CarePlan` | `GET /CarePlan?patient={id}&status=active` | `patient`, `status`, `date` |
+
+**Källkodning:** `EURIDICE + Xt-EHR` = krävs i båda specifikationerna och ingår i `IneraEHDSPSServerEURIDICECore`. `Xt-EHR-only` = ingår endast i `IneraEHDSPSServerXtEHRFull` och saknar EURIDICE-ekvivalent.
+
+De två CapabilityStatements i detta IG speglar denna uppdelning:
+- [`IneraEHDSPSServerEURIDICECore`](CapabilityStatement-inera-ehds-ps-server-euridice-core.html) – minimum för cross-border resource access
+- [`IneraEHDSPSServerXtEHRFull`](CapabilityStatement-inera-ehds-ps-server-xtehr-full.html) – komplett Xt-EHR PS scope
 
 ¹ *FHIR R4: `DeviceUseStatement`; FHIR R4B/R5: `DeviceUsage`. Val av FHIR-version påverkar resursnamn.*
 
@@ -173,6 +188,46 @@ Detta ställer tydligare och mer operativa krav på en FHIR-server än document 
 - `code` (token) – LOINC-observationskod
 - `date` (date)
 - `status` (token) – `final | preliminary | amended`
+
+---
+
+#### Xt-EHR-only resurser (ej i EURIDICE Core)
+
+Dessa resurser ingår i Xt-EHR EHDS PS logisk modell men saknar direkt ekvivalent i EURIDICE resource access pattern.
+
+**PractitionerRole + Practitioner (SHOULD – Xt-EHR header)**
+- GP / preferred healthcare professional
+- Kopplar Practitioner (HSA-id) till Organisation och specialitet
+- Söks via `PractitionerRole?practitioner={id}` eller via `Composition.author`-referens
+- Nationellt gap: HSA-katalogen innehåller data men exponeras via SOAP-tjänster, inte FHIR
+
+**RelatedPerson (SHOULD – Xt-EHR header)**
+- Legal guardian, nödkontakt, auktoriserad representant
+- Söks via `RelatedPerson?patient={id}&relationship={kod}`
+- Nationellt gap: registreras i journalsystem, inget standardiserat flöde
+
+**Coverage (SHOULD – Xt-EHR header)**
+- Försäkring och betalningsinformation (bl.a. Europeiskt sjukförsäkringskort/EHIC)
+- Söks via `Coverage?patient={id}&status=active`
+- Nationellt gap: Försäkringskassan är källa, saknar FHIR-API mot kliniska system
+
+**DiagnosticReport (SHOULD – Xt-EHR A.1.13 komplement)**
+- Strukturerade diagnostiska rapporter (labpaket, röntgensvar) med ingående Observations
+- Komplement till enskilda Observation-resurser; ger sammanhang och rapportenhet
+- Söks via `DiagnosticReport?patient={id}&category=laboratory&date={range}`
+- Nationellt gap: laboratoriesystem (Labportalen) exponerar svar som rapporter, FHIR-stöd varierar
+
+**Consent (MAY – Xt-EHR advance directives)**
+- Föranmälda direktiv: DNR-beslut, behandlingsavstående, informerat samtycke
+- LOINC-sektionskod 42348-3 i Composition
+- Söks via `Consent?patient={id}&status=active&category={direktiv-typ}`
+- Nationellt gap: ingen nationell tjänst, registreras lokalt i journalsystem
+
+**CarePlan (MAY – Xt-EHR plan of care)**
+- Planerade åtgärder, uppföljningar och behandlingsmål
+- LOINC-sektionskod 18776-5 i Composition
+- Söks via `CarePlan?patient={id}&status=active`
+- Nationellt gap: ingen nationell tjänst, hanteras i respektive journalsystem
 
 ---
 
