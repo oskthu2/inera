@@ -3,8 +3,8 @@ Alias: $DeviceKind = http://hl7.org/fhir/ValueSet/device-kind
 Profile: IneraEHDSPatientSummaryDeviceUseStatement
 Parent: DeviceUseStatement
 Id: inera-ehds-patient-summary-device-use-statement
-Title: "Inera EHDS Patient Summary DeviceUseStatement"
-Description: "Profil för medicintekniska produkter och implantat (Xt-EHR A.1.12, IPS Medical Devices). Harmoniserad mot EPS och EURIDICE resource access. Notering: FHIR R4 använder DeviceUseStatement; R4B/R5 använder DeviceUsage – profilen kan behöva justeras vid versionsuppgradering."
+Title: "Inera EHDS Patient Summary DeviceUseStatement (EHDSDeviceUse – Användning av medicinteknisk produkt)"
+Description: "Profil för användning av medicinteknisk produkt (EHDSDeviceUse) per Xt-EHR A.1.12. Beskriver ATT en patient använder/har implanterat en medicinteknisk produkt. Refererar till IneraEHDSPatientSummaryDevice (EHDSDevice) som beskriver PRODUKTEN i sig med UDI-identifierare per EU MDR. Harmoniserad mot EPS och EURIDICE resource access. Notering: FHIR R4 = DeviceUseStatement; R4B/R5 = DeviceUsage – profilen kan behöva justeras vid versionsuppgradering."
 
 * ^status = #draft
 * ^experimental = false
@@ -15,9 +15,10 @@ Description: "Profil för medicintekniska produkter och implantat (Xt-EHR A.1.12
 // SHALL: status för att förstå om enheten är aktiv, avslutad eller avbruten
 * status 1..1
 
-// SHALL: enhetens identitet och typ
-// DeviceUseStatement.device är en Reference(Device); device.type bär den kodade produkttypen
+// SHALL: referens till den medicintekniska produkten
+// Begränsas till IneraEHDSPatientSummaryDevice (EHDSDevice) för UDI-stöd och EU MDR-compliance
 * device 1..1
+* device only Reference(IneraEHDSPatientSummaryDevice)
 
 // SHOULD: tidpunkt/period när enheten användes/implanterades
 * timing[x] 0..1

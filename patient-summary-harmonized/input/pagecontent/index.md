@@ -17,31 +17,33 @@ Fokus ligger på:
 
 ### Profiler
 
-| Profil | Basresurs | Syfte |
-|---|---|---|
-| IneraEHDSPatientSummaryBundle | Bundle | Dokumentbundle för komplett Patient Summary |
-| IneraEHDSPatientSummaryComposition | Composition | Dokumenthuvud + slicade sektioner |
-| IneraEHDSPatientSummaryPatient | Patient | Patientidentitet och demografi |
-| IneraEHDSPatientSummaryMedicationStatement | MedicationStatement | Läkemedelsöversikt |
-| IneraEHDSPatientSummaryAllergyIntolerance | AllergyIntolerance | Allergier och intoleranser |
-| IneraEHDSPatientSummaryCondition | Condition | Problemlista / diagnoser |
-| IneraEHDSPatientSummaryProcedure | Procedure | Procedurhistorik |
-| IneraEHDSPatientSummaryImmunization | Immunization | Immuniseringar |
-| IneraEHDSPatientSummaryDeviceUseStatement | DeviceUseStatement | Medicintekniska produkter / implantat (A.1.12) |
-| IneraEHDSPatientSummaryObservationResults | Observation | Diagnostiska resultat |
-| IneraEHDSPatientSummaryPractitionerRole | PractitionerRole | Preferred HCP / GP (A.1.3) – Xt-EHR-only |
-| IneraEHDSPatientSummaryRelatedPerson | RelatedPerson | Legal guardian / kontaktperson (A.1.4) – Xt-EHR-only |
-| IneraEHDSPatientSummaryCoverage | Coverage | Försäkring / betalning (A.1.5) – Xt-EHR-only |
-| IneraEHDSPatientSummaryConsent | Consent | Föranmälda direktiv – Xt-EHR-only |
-| IneraEHDSPatientSummaryCarePlan | CarePlan | Vårdplan / plan of care – Xt-EHR-only |
-| IneraEHDSPatientSummaryDiagnosticReport | DiagnosticReport | Strukturerade diagnostiska rapporter – Xt-EHR-only |
+| Profil | EHDS-informationsmängd | Basresurs | Syfte |
+|---|---|---|---|
+| IneraEHDSPatientSummaryBundle | – | Bundle | Dokumentbundle för komplett Patient Summary |
+| IneraEHDSPatientSummaryComposition | – | Composition | Dokumenthuvud + slicade sektioner |
+| IneraEHDSPatientSummaryPatient | EHDSPatient | Patient | Patientidentitet och demografi |
+| IneraEHDSPatientSummaryMedicationStatement | EHDSMedicationStatement | MedicationStatement | Läkemedelsbehandling (A.1.7) |
+| IneraEHDSPatientSummaryAllergyIntolerance | EHDSAllergyIntolerance | AllergyIntolerance | Överkänslighet (A.1.8) – allergier och överkänsligheter |
+| IneraEHDSPatientSummaryFlag | EHDSAlert | Flag | Medicinska varningar – kliniska varningar skilda från överkänslighet; UMI-varningsdelen |
+| IneraEHDSPatientSummaryCondition | EHDSCondition | Condition | Diagnos/problem (A.1.9) – aktiv problemlista och historiska sjukdomar |
+| IneraEHDSPatientSummaryProcedure | EHDSProcedure | Procedure | Åtgärder (A.1.10) – KVÅ, SNOMED CT |
+| IneraEHDSPatientSummaryImmunization | EHDSImmunization | Immunization | Vaccinationer/immuniseringar (A.1.11) |
+| IneraEHDSPatientSummaryDeviceUseStatement | EHDSDeviceUse | DeviceUseStatement | Användning av medicinteknisk produkt (A.1.12) |
+| IneraEHDSPatientSummaryDevice | EHDSDevice | Device | Medicinteknisk produkt med UDI-identifierare per EU MDR (A.1.12) |
+| IneraEHDSPatientSummaryObservationResults | EHDSObservation | Observation | Diagnostiska resultat (A.1.13) |
+| IneraEHDSPatientSummaryPractitionerRole | EHDSHealthProfessional | PractitionerRole | Patientansvarig/husläkare (A.1.3) – Xt-EHR-only |
+| IneraEHDSPatientSummaryRelatedPerson | EHDSRelatedPerson | RelatedPerson | Legalt ombud / kontaktperson (A.1.4) – Xt-EHR-only |
+| IneraEHDSPatientSummaryCoverage | EHDSInsurance | Coverage | Försäkring / betalning (A.1.5) – Xt-EHR-only |
+| IneraEHDSPatientSummaryConsent | EHDSAdvanceDirective | Consent | Föranmälda direktiv – Xt-EHR-only |
+| IneraEHDSPatientSummaryCarePlan | EHDSCarePlan | CarePlan | Vårdplan – Xt-EHR-only |
+| IneraEHDSPatientSummaryDiagnosticReport | EHDSDiagnosticReport | DiagnosticReport | Strukturerade diagnostiska rapporter – Xt-EHR-only |
 
 ### CapabilityStatements
 
 | Artefakt | Scope | Syfte |
 |---|---|---|
-| IneraEHDSPSServerEURIDICECore | EURIDICE Core | Minimum för cross-border resource access (8 resurser) |
-| IneraEHDSPSServerXtEHRFull | Full Xt-EHR PS | Komplett scope inkl. header och valfria sektioner (15 resurser) |
+| IneraEHDSPSServerEURIDICECore | EURIDICE Core | Minimum för cross-border resource access (10 resurser inkl. Flag och Device) |
+| IneraEHDSPSServerXtEHRFull | Full Xt-EHR PS | Komplett scope inkl. header och valfria sektioner (17 resurser); inkluderar och utökar EURIDICE Core via instantiatesCanonical |
 
 ### Extension
 

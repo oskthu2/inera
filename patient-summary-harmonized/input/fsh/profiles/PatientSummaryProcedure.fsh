@@ -1,8 +1,8 @@
 Profile: IneraEHDSPatientSummaryProcedure
 Parent: Procedure
 Id: inera-ehds-patient-summary-procedure
-Title: "Inera EHDS Patient Summary Procedure"
-Description: "Procedureprofil för Xt-EHR History of Procedures med motsvarighet i EPS Patient Summary."
+Title: "Inera EHDS Patient Summary Procedure (EHDSProcedure – Åtgärder)"
+Description: "Profil för åtgärder (EHDSProcedure) per Xt-EHR History of Procedures (A.1.10) med motsvarighet i EPS Patient Summary. Avser kirurgiska och terapeutiska ingrepp av klinisk relevans för patientöversikten. Nationell motsvarighet: KVÅ (Klassifikation av vårdåtgärder) som kodverk. Notering: termen 'åtgärder' används genomgående i enlighet med eHälsomyndighetens svenska terminologi för EHDS."
 
 * ^status = #draft
 * ^experimental = false

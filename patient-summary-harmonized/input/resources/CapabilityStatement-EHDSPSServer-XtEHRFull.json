@@ -136,7 +136,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-medication-statement"
           ],
-          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.7) – Läkemedelsöversikt. Se EURIDICE Core CS för fullständiga krav.",
+          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.7) – Läkemedelsbehandling (EHDSMedicationStatement). Se EURIDICE Core CS för fullständiga krav.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -154,7 +154,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-allergy-intolerance"
           ],
-          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.8) – Allergier och intoleranser. Se EURIDICE Core CS för fullständiga krav.",
+          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.8) – Överkänslighet (EHDSAllergyIntolerance). Se EURIDICE Core CS för fullständiga krav. Medicinska varningar (EHDSAlert) representeras separat via Flag.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -191,7 +191,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-procedure"
           ],
-          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.10) – Procedurhistorik. Se EURIDICE Core CS.",
+          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.10) – Åtgärder (EHDSProcedure). Se EURIDICE Core CS. Kodverk: KVÅ (primärt), SNOMED CT, NordDRG.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -227,7 +227,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-device-use-statement"
           ],
-          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.12) – Medicintekniska produkter. Se EURIDICE Core CS.",
+          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.12) – Användning av medicinteknisk produkt (EHDSDeviceUse). Refererar till Device (EHDSDevice) med UDI per EU MDR. Se EURIDICE Core CS.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -235,6 +235,39 @@
           "searchParam": [
             { "name": "patient", "type": "reference" },
             { "name": "status", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Flag",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-flag"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR EHDSAlert) – Medicinska varningar. Kliniska varningar skilda från överkänslighet, t.ex. säkerhetsvarningar och riskfaktorer. Nationell källa: UMI varningsdelen (NPÖ GetAlertInformation). Se EURIDICE Core CS för fullständiga krav.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "category", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Device",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-device"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR EHDSDevice, A.1.12) – Medicinteknisk produkt med UDI-identifierare (UDI-DI + UDI-PI) per EU MDR 2017/745. Refereras från DeviceUseStatement.device. Se EURIDICE Core CS för fullständiga krav.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "identifier", "type": "token", "documentation": "SHOULD – UDI-DI" },
+            { "name": "type", "type": "token" },
             { "name": "_lastUpdated", "type": "date" }
           ]
         },

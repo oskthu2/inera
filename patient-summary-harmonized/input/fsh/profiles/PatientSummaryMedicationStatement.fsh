@@ -4,8 +4,8 @@ Alias: $ATC = http://www.whocc.no/atc
 Profile: IneraEHDSPatientSummaryMedicationStatement
 Parent: MedicationStatement
 Id: inera-ehds-patient-summary-medication-statement
-Title: "Inera EHDS Patient Summary MedicationStatement"
-Description: "Harmoniserad läkemedelsöversikt för Patient Summary med kravspårning till EURIDICE/EPS och Xt-EHR-sektioner för läkemedel."
+Title: "Inera EHDS Patient Summary MedicationStatement (EHDSMedicationStatement – Läkemedelsbehandling)"
+Description: "Profil för läkemedelsbehandling (EHDSMedicationStatement) per Xt-EHR A.1.7 harmoniserad mot EURIDICE/EPS. Avser aktuell och nylig läkemedelsbehandling (inte enbart en statisk lista). Nationell motsvarighet: Nationella läkemedelslistan (Pascal) via GetMedicationHistory. Kodverk: NPL-id (nationellt), ATC-SE, SNOMED CT."
 
 * ^status = #draft
 * ^experimental = false
