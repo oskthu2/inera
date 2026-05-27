@@ -16,4 +16,5 @@ parameters:
 menu:
   Home: index.html
   Harmonisering: harmonization.html
+  Resursorienterad åtkomst: resource-oriented-access.html
   Artifacts: artifacts.html

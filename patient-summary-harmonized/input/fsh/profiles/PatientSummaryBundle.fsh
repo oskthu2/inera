@@ -26,14 +26,15 @@ Description: "FHIR Bundle av typen 'document' som utgör ett komplett, självst�
 * entry 2..*
 
 * entry contains
-    composition       1..1 and  // obligatorisk: dokumentets Composition
-    patient           1..1 and  // obligatorisk: den summerade patienten
-    allergy           0..* and  // Xt-EHR A.1.8 AllergyIntolerance
-    condition         0..* and  // Xt-EHR A.1.9 Condition (problemlista)
-    medicationStatement 0..* and // Xt-EHR A.1.7 MedicationStatement
-    immunization      0..* and  // Xt-EHR A.1.11 Immunization
-    procedure         0..* and  // Xt-EHR A.1.10 Procedure
-    observation       0..*      // Xt-EHR A.1.13 Observation (resultat)
+    composition         1..1 and  // obligatorisk: dokumentets Composition
+    patient             1..1 and  // obligatorisk: den summerade patienten
+    allergy             0..* and  // Xt-EHR A.1.8 AllergyIntolerance
+    condition           0..* and  // Xt-EHR A.1.9 Condition (problemlista)
+    medicationStatement 0..* and  // Xt-EHR A.1.7 MedicationStatement
+    immunization        0..* and  // Xt-EHR A.1.11 Immunization
+    procedure           0..* and  // Xt-EHR A.1.10 Procedure
+    device              0..* and  // Xt-EHR A.1.12 DeviceUseStatement
+    observation         0..*      // Xt-EHR A.1.13 Observation (resultat)
 
 // Composition (EURIDICE, EPS, Xt-EHR: krävs alltid som första entry i dokumentbundle)
 * entry[composition].resource 1..1
@@ -69,6 +70,11 @@ Description: "FHIR Bundle av typen 'document' som utgör ett komplett, självst�
 * entry[procedure].resource 1..1
 * entry[procedure].resource only IneraEHDSPatientSummaryProcedure
 * entry[procedure].fullUrl 1..1
+
+// Medicintekniska produkter / implantat
+* entry[device].resource 1..1
+* entry[device].resource only IneraEHDSPatientSummaryDeviceUseStatement
+* entry[device].fullUrl 1..1
 
 // Laboratorieresultat / vitala parametrar
 * entry[observation].resource 1..1

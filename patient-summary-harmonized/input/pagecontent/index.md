@@ -27,6 +27,7 @@ Fokus ligger på:
 | IneraEHDSPatientSummaryCondition | Condition | Problemlista / diagnoser |
 | IneraEHDSPatientSummaryProcedure | Procedure | Procedurhistorik |
 | IneraEHDSPatientSummaryImmunization | Immunization | Immuniseringar |
+| IneraEHDSPatientSummaryDeviceUseStatement | DeviceUseStatement | Medicintekniska produkter / implantat (A.1.12) |
 | IneraEHDSPatientSummaryObservationResults | Observation | Diagnostiska resultat |
 
 ### Extension
@@ -37,4 +38,4 @@ Fokus ligger på:
 
 ---
 
-Se [Harmoniseringsmetod](harmonization.html) för detaljerad redovisning av källhänvisningar och designbeslut.
+Se [Harmoniseringsmetod](harmonization.html) för källhänvisningar och designbeslut, och [Resursorienterad åtkomst](resource-oriented-access.html) för API-krav och gap-analysunderlag.

@@ -31,6 +31,7 @@ Xt-EHR EHDS Patient Summary A.1.7–A.1.13:
 | Problemlista | 11450-4 | A.1.9 | **1..1** (SHALL) |
 | Procedurhistorik | 47519-4 | A.1.10 | 0..1 (SHOULD) |
 | Immuniseringar | 11369-6 | A.1.11 | 0..1 (SHOULD) |
+| Medicintekniska produkter | 46264-8 | A.1.12 | 0..1 (SHOULD) |
 | Diagnostiska resultat | 30954-2 | A.1.13 | 0..1 (SHOULD) |
 
 Obligatoriska sektioner (1..1) tillåter `emptyReason` för fall där information saknas men sektionen ändå måste inkluderas.
@@ -60,8 +61,12 @@ Obligatoriska sektioner (1..1) tillåter `emptyReason` för fall där informatio
 
 ---
 
+Se [Resursorienterad åtkomst](resource-oriented-access.html) för en fullständig sektionsmatris, per-resurs API-krav och gap-analysunderlag mot Inera FHIR Core, Cambio Open Services och befintliga RIVTA-tjänstekontrakt.
+
+---
+
 ### Nästa iterationer
 
-- Lägga till `DeviceUseStatement`-profil och medicinteknisk utrustning-sektion (Xt-EHR A.1.12).
 - Lägg till svenska nationella värdemängder (ICD-10-SE, Socialstyrelsens allergenregister, ATC-SE).
 - Validera profilerna mot konkreta FHIR-exempelinstanser.
+- Genomför gap-analys och fyll i tabellerna i resursorienterad-åtkomst-sidan.

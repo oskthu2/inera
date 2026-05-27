@@ -36,6 +36,7 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
     problems     1..1 and   // Xt-EHR A.1.9 – SHALL
     procedures   0..1 and   // Xt-EHR A.1.10 – SHOULD
     immunizations 0..1 and  // Xt-EHR A.1.11 – SHOULD
+    devices      0..1 and   // Xt-EHR A.1.12 – SHOULD
     results      0..1       // Xt-EHR A.1.13 – SHOULD
 
 // --- Läkemedelsöversikt (Xt-EHR A.1.7 / LOINC 10160-0) ---
@@ -75,6 +76,13 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section[immunizations].title 1..1
 * section[immunizations].entry 0..*
 * section[immunizations].entry only Reference(IneraEHDSPatientSummaryImmunization)
+
+// --- Medicintekniska produkter / implantat (Xt-EHR A.1.12 / LOINC 46264-8) ---
+* section[devices].code = $LNC#46264-8
+* section[devices].code 1..1
+* section[devices].title 1..1
+* section[devices].entry 0..*
+* section[devices].entry only Reference(IneraEHDSPatientSummaryDeviceUseStatement)
 
 // --- Diagnostiska resultat (Xt-EHR A.1.13 / LOINC 30954-2) ---
 * section[results].code = $LNC#30954-2
