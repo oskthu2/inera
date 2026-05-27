@@ -18,9 +18,8 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * author 1..*
 * title 1..1
 
-// OBS: Xt-EHR anger header.identifier 1..*, men FHIR Composition.identifier är 0..1.
-// Vi bryter inte FHIR-kardinalitet; istället skärper vi till max tillåtna 1..1.
-* identifier 1..1
+// Xt-EHR header.identifier 1..* -> SHALL
+* identifier 1..*
 * identifier.system 1..1
 * identifier.value 1..1
 

@@ -1,3 +1,5 @@
+Alias: $ConditionClinical = http://terminology.hl7.org/CodeSystem/condition-clinical
+
 Profile: IneraEHDSPatientSummaryCondition
 Parent: Condition
 Id: inera-ehds-patient-summary-condition
@@ -16,8 +18,7 @@ Description: "Problem/diagnosprofil harmoniserad för Xt-EHR ProblemList och EPS
 
 // SHOULD: status för att tolka om problemet är aktivt/inaktivt
 * clinicalStatus 0..1
-// OBS: Parent (R4 Condition) har redan REQUIRED binding till condition-clinical.
-// Den bindningen lämnas oförändrad för att inte bryta FHIR/SUSHI-regler.
+* clinicalStatus from http://hl7.org/fhir/ValueSet/condition-clinical (preferred)
 
 // SHOULD: onset/recordedDate som tidsankare
 * onset[x] 0..1
