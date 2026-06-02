@@ -1,0 +1,362 @@
+{
+  "resourceType": "CapabilityStatement",
+  "id": "inera-ehds-ps-server-xtehr-full",
+  "url": "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/CapabilityStatement/inera-ehds-ps-server-xtehr-full",
+  "version": "0.1.0",
+  "name": "IneraEHDSPSServerXtEHRFull",
+  "title": "Inera EHDS PS – Server Requirements (Xt-EHR Full Scope)",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-05-27",
+  "description": "Fullständiga serverkrav (kind=requirements) för att stödja hela Xt-EHR EHDS Patient Summary logisk modell via resursorienterat FHIR-API. Inkluderar och utökar EURIDICE Core (inera-ehds-ps-server-euridice-core) med header-information (GP, guardian, försäkring) och valfria body-sektioner (advance directives, plan of care, DiagnosticReport). Resurser märkta 'EURIDICE+Xt-EHR' krävs i båda; resurser märkta 'Xt-EHR-only' är tillägg utöver EURIDICE-minimumet.",
+  "instantiatesCanonical": [
+    "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/CapabilityStatement/inera-ehds-ps-server-euridice-core"
+  ],
+  "kind": "requirements",
+  "fhirVersion": "4.0.1",
+  "format": ["json", "xml"],
+  "implementationGuide": [
+    "https://inera.se/fhir/ig/ehds-patient-summary-harmonized"
+  ],
+  "rest": [
+    {
+      "mode": "server",
+      "documentation": "Full Xt-EHR EHDS PS scope. Alla EURIDICE Core-resurser ingår (se instantiatesCanonical). Denna CS lägger till header-resurser och valfria body-sektioner från Xt-EHR logisk modell.",
+      "security": {
+        "cors": true,
+        "service": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/restful-security-service",
+                "code": "SMART-on-FHIR"
+              }
+            ],
+            "text": "SMART on FHIR (OAuth2/OIDC)"
+          }
+        ],
+        "description": "SMART on FHIR med patient-scope och system-scope. Nationell IdP-integration för cross-border EU-åtkomst."
+      },
+      "resource": [
+        {
+          "type": "Patient",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-patient"
+          ],
+          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.1/A.1.2) – Patientidentitet och demografi. Xt-EHR utökar EURIDICE med krav på communication (språkpreferenser) och address-fält.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "identifier", "type": "token", "documentation": "SHALL – personnummer (OID 1.2.752.129.2.1.3.1) och EU-patientidentifierare" },
+            { "name": "birthdate", "type": "date" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Practitioner",
+          "documentation": "SHOULD (Xt-EHR-only, header: preferred healthcare professional). Ingen EURIDICE-ekvivalent. Ger identitet för patientens GP/primärvårdsläkare. I Sverige: HSA-id i identifier.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "identifier", "type": "token", "documentation": "SHOULD – HSA-id (OID 1.2.752.129.2.1.4.1)" },
+            { "name": "family", "type": "string" },
+            { "name": "given", "type": "string" },
+            { "name": "active", "type": "token" }
+          ]
+        },
+        {
+          "type": "PractitionerRole",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-practitioner-role"
+          ],
+          "documentation": "SHOULD (Xt-EHR-only, header: preferred healthcare professional + organization). Kopplar Practitioner till Organisation och specialitet. Söks via patient-id i Composition.author-referens; direktsökning via practitioner-parameter.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "practitioner", "type": "reference", "documentation": "SHOULD – navigering från Practitioner-resurs" },
+            { "name": "organization", "type": "reference" },
+            { "name": "specialty", "type": "token" },
+            { "name": "active", "type": "token" }
+          ]
+        },
+        {
+          "type": "Organization",
+          "documentation": "SHOULD (Xt-EHR-only) – Vårdgivande organisation. Refereras från PractitionerRole. I Sverige: HSAID för VårdEnhet.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "identifier", "type": "token", "documentation": "SHOULD – HSA-id" },
+            { "name": "name", "type": "string" },
+            { "name": "type", "type": "token" },
+            { "name": "active", "type": "token" }
+          ]
+        },
+        {
+          "type": "RelatedPerson",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-related-person"
+          ],
+          "documentation": "SHOULD (Xt-EHR-only, header: legal guardian / authorized representative / emergency contact). Saknar direkt RIVTA-tjänstekontrakt. Uppgifter registreras i journalsystem men utan standardiserat flöde.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference", "documentation": "SHALL – patientkoppling" },
+            { "name": "relationship", "type": "token" },
+            { "name": "active", "type": "token" }
+          ]
+        },
+        {
+          "type": "Coverage",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-coverage"
+          ],
+          "documentation": "SHOULD (Xt-EHR-only, header: insurance and payment information). Relevant för cross-border-behandling (Europeiskt sjukförsäkringskort, EHIC). Saknar nationellt standardiserat FHIR-API i Sverige. Uppgifter hanteras av Försäkringskassan.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference", "documentation": "SHALL – sök på beneficiary" },
+            { "name": "status", "type": "token" },
+            { "name": "identifier", "type": "token" }
+          ]
+        },
+        {
+          "type": "MedicationStatement",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-medication-statement"
+          ],
+          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.7) – Läkemedelsbehandling (EHDSMedicationStatement). Se EURIDICE Core CS för fullständiga krav.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "medication", "type": "token" },
+            { "name": "effective", "type": "date" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "AllergyIntolerance",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-allergy-intolerance"
+          ],
+          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.8) – Överkänslighet (EHDSAllergyIntolerance). Se EURIDICE Core CS för fullständiga krav. Medicinska varningar (EHDSAlert) representeras separat via Flag.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "clinical-status", "type": "token" },
+            { "name": "code", "type": "token" },
+            { "name": "criticality", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Condition",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-condition"
+          ],
+          "documentation": "SHALL (EURIDICE + Xt-EHR A.1.9) för aktiv problemlista (category=problem-list-item). SHOULD (Xt-EHR-only) för historiska sjukdomar (category=encounter-diagnosis med clinical-status=resolved, eller section LOINC 11348-0). Separering sker via category + clinical-status.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "category", "type": "token", "documentation": "SHALL – problem-list-item | encounter-diagnosis. Xt-EHR tillägger past-history via clinical-status=inactive/resolved" },
+            { "name": "clinical-status", "type": "token" },
+            { "name": "code", "type": "token" },
+            { "name": "onset-date", "type": "date" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Procedure",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-procedure"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.10) – Åtgärder (EHDSProcedure). Se EURIDICE Core CS. Kodverk: KVÅ (primärt), SNOMED CT, NordDRG.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "code", "type": "token" },
+            { "name": "date", "type": "date" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Immunization",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-immunization"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.11) – Immuniseringar. Se EURIDICE Core CS.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "vaccine-code", "type": "token" },
+            { "name": "date", "type": "date" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "DeviceUseStatement",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-device-use-statement"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.12) – Användning av medicinteknisk produkt (EHDSDeviceUse). Refererar till Device (EHDSDevice) med UDI per EU MDR. Se EURIDICE Core CS.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Flag",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-flag"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR EHDSAlert) – Medicinska varningar. Kliniska varningar skilda från överkänslighet, t.ex. säkerhetsvarningar och riskfaktorer. Nationell källa: UMI varningsdelen (NPÖ GetAlertInformation). Se EURIDICE Core CS för fullständiga krav.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "category", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Device",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-device"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR EHDSDevice, A.1.12) – Medicinteknisk produkt med UDI-identifierare (UDI-DI + UDI-PI) per EU MDR 2017/745. Refereras från DeviceUseStatement.device. Se EURIDICE Core CS för fullständiga krav.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "identifier", "type": "token", "documentation": "SHOULD – UDI-DI" },
+            { "name": "type", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Observation",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-observation-results"
+          ],
+          "documentation": "SHOULD (EURIDICE + Xt-EHR A.1.13) för laboratory och vital-signs. SHOULD (Xt-EHR-only) för functional-status (A.1.14), social-history inkl. rökning/alkohol (A.1.15) och pregnancy-status (A.1.16). Åtskiljs via category-parametern.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            {
+              "name": "category",
+              "type": "token",
+              "documentation": "SHALL – laboratory | vital-signs (EURIDICE+Xt-EHR). SHOULD – functional-status | social-history (Xt-EHR-only)"
+            },
+            { "name": "code", "type": "token" },
+            { "name": "date", "type": "date" },
+            { "name": "status", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "DiagnosticReport",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-diagnostic-report"
+          ],
+          "documentation": "SHOULD (Xt-EHR-only, A.1.13 komplement) – Strukturerade diagnostiska rapporter (labpaket, röntgensvar) som komplement till enskilda Observation-resurser. EURIDICE resource access använder Observation direkt; Xt-EHR tillåter strukturerade rapporter. Saknar standardiserat RIVTA-flöde för FHIR-format.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "category", "type": "token", "documentation": "laboratory | radiology | cardiology" },
+            { "name": "code", "type": "token" },
+            { "name": "date", "type": "date" },
+            { "name": "status", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "Consent",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-consent"
+          ],
+          "documentation": "MAY (Xt-EHR-only) – Föranmälda direktiv (advance directives), inkl. DNR-beslut och behandlingsavstående (LOINC 42348-3). Saknar nationellt standardiserat flöde i Sverige. Registreras i journalsystem utan harmoniserad exponering.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "category", "type": "token" },
+            { "name": "scope", "type": "token" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        },
+        {
+          "type": "CarePlan",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-care-plan"
+          ],
+          "documentation": "MAY (Xt-EHR-only) – Vårdplan / plan of care (LOINC 18776-5). Planerade åtgärder, uppföljningar och behandlingsmål. Saknar nationellt standardiserat FHIR-API. Hanteras i respektive journalsystem utan standardiserat flöde mot Inera-plattformen.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            { "name": "patient", "type": "reference" },
+            { "name": "status", "type": "token" },
+            { "name": "category", "type": "token" },
+            { "name": "date", "type": "date" },
+            { "name": "_lastUpdated", "type": "date" }
+          ]
+        }
+      ],
+      "operation": [
+        {
+          "name": "patient-everything",
+          "definition": "http://hl7.org/fhir/OperationDefinition/Patient-everything",
+          "documentation": "MAY – $patient-everything med _type-parameter för att begränsa resurstyper. Bör stödjas för effektiv hämtning av hela Xt-EHR PS i ett anrop."
+        }
+      ]
+    }
+  ]
+}

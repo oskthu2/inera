@@ -4,7 +4,7 @@ Profile: IneraEHDSPatientSummaryComposition
 Parent: Composition
 Id: inera-ehds-patient-summary-composition
 Title: "Inera EHDS Patient Summary Composition"
-Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD från Xt-EHR logiska modeller omsatta till FHIR-kardinalitet och bindningar med EPS/EURIDICE-kompatibilitet. Sektioner är slicade på LOINC-kod i enlighet med Xt-EHR EHDS PS A.1.7–A.1.13."
+Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD från Xt-EHR logiska modeller omsatta till FHIR-kardinalitet och bindningar med EPS/EURIDICE-kompatibilitet. Sektioner slicade på LOINC-kod i enlighet med Xt-EHR EHDS PS A.1.7–A.1.13 samt eHälsomyndighetens svenska terminologi: läkemedelsbehandling, överkänslighet, diagnos/problem, åtgärder, medicinska varningar (skild sektion från överkänslighet)."
 
 * ^status = #draft
 * ^experimental = false
@@ -31,15 +31,19 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section ^short = "Patient Summary-sektioner – läkemedel, allergier och problemlista är obligatoriska"
 
 * section contains
-    medications  1..1 and   // Xt-EHR A.1.7 – SHALL
-    allergies    1..1 and   // Xt-EHR A.1.8 – SHALL
-    problems     1..1 and   // Xt-EHR A.1.9 – SHALL
-    procedures   0..1 and   // Xt-EHR A.1.10 – SHOULD
-    immunizations 0..1 and  // Xt-EHR A.1.11 – SHOULD
-    devices      0..1 and   // Xt-EHR A.1.12 – SHOULD
-    results      0..1       // Xt-EHR A.1.13 – SHOULD
+    medications   1..1 and   // Xt-EHR A.1.7 – SHALL – läkemedelsbehandling (EHDSMedicationStatement)
+    allergies     1..1 and   // Xt-EHR A.1.8 – SHALL – överkänslighet (EHDSAllergyIntolerance)
+    problems      1..1 and   // Xt-EHR A.1.9 – SHALL – diagnos/problem (EHDSCondition)
+    alerts        0..1 and   // Xt-EHR A.1.x – SHOULD – medicinska varningar (EHDSAlert/Flag) – skild sektion från överkänslighet
+    procedures    0..1 and   // Xt-EHR A.1.10 – SHOULD – åtgärder (EHDSProcedure)
+    immunizations 0..1 and   // Xt-EHR A.1.11 – SHOULD – vaccinationer/immuniseringar (EHDSImmunization)
+    devices       0..1 and   // Xt-EHR A.1.12 – SHOULD – användning av medicinteknisk produkt (EHDSDeviceUse)
+    results       0..1 and   // Xt-EHR A.1.13 – SHOULD – diagnostiska resultat (EHDSObservation)
+    pastHistory   0..1 and   // Xt-EHR – historiska sjukdomar – Xt-EHR-only
+    advDir        0..1 and   // Xt-EHR – föranmälda direktiv – Xt-EHR-only
+    planOfCare    0..1       // Xt-EHR – vårdplan – Xt-EHR-only
 
-// --- Läkemedelsöversikt (Xt-EHR A.1.7 / LOINC 10160-0) ---
+// --- Läkemedelsbehandling (Xt-EHR A.1.7 / LOINC 10160-0) ---
 * section[medications].code = $LNC#10160-0
 * section[medications].code 1..1
 * section[medications].title 1..1
@@ -47,7 +51,7 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section[medications].entry only Reference(IneraEHDSPatientSummaryMedicationStatement)
 * section[medications].emptyReason 0..1
 
-// --- Allergier och intoleranser (Xt-EHR A.1.8 / LOINC 48765-2) ---
+// --- Överkänslighet (Xt-EHR A.1.8 / LOINC 48765-2) ---
 * section[allergies].code = $LNC#48765-2
 * section[allergies].code 1..1
 * section[allergies].title 1..1
@@ -55,7 +59,7 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section[allergies].entry only Reference(IneraEHDSPatientSummaryAllergyIntolerance)
 * section[allergies].emptyReason 0..1
 
-// --- Problemlista / diagnoser (Xt-EHR A.1.9 / LOINC 11450-4) ---
+// --- Diagnos/problem (Xt-EHR A.1.9 / LOINC 11450-4) ---
 * section[problems].code = $LNC#11450-4
 * section[problems].code 1..1
 * section[problems].title 1..1
@@ -63,7 +67,17 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section[problems].entry only Reference(IneraEHDSPatientSummaryCondition)
 * section[problems].emptyReason 0..1
 
-// --- Procedurhistorik (Xt-EHR A.1.10 / LOINC 47519-4) ---
+// --- Medicinska varningar (EHDSAlert / LOINC 75310-3) ---
+// Separat informationsmängd från överkänslighet per eHM gap-analys.
+// Nationell motsvarighet: UMI varningsdelen (NPÖ GetAlertInformation, exkl. överkänslighet).
+// LOINC 75310-3 "Health concerns [section]" används i avvaktan på Xt-EHR final code binding.
+* section[alerts].code = $LNC#75310-3
+* section[alerts].code 1..1
+* section[alerts].title 1..1
+* section[alerts].entry 0..*
+* section[alerts].entry only Reference(IneraEHDSPatientSummaryFlag)
+
+// --- Åtgärder (Xt-EHR A.1.10 / LOINC 47519-4) ---
 * section[procedures].code = $LNC#47519-4
 * section[procedures].code 1..1
 * section[procedures].title 1..1
@@ -77,7 +91,7 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section[immunizations].entry 0..*
 * section[immunizations].entry only Reference(IneraEHDSPatientSummaryImmunization)
 
-// --- Medicintekniska produkter / implantat (Xt-EHR A.1.12 / LOINC 46264-8) ---
+// --- Användning av medicinteknisk produkt (Xt-EHR A.1.12 / LOINC 46264-8) ---
 * section[devices].code = $LNC#46264-8
 * section[devices].code 1..1
 * section[devices].title 1..1
@@ -90,3 +104,24 @@ Description: "Harmoniserad Composition för Patient Summary. MUST/SHALL/SHOULD f
 * section[results].title 1..1
 * section[results].entry 0..*
 * section[results].entry only Reference(IneraEHDSPatientSummaryObservationResults)
+
+// --- Historiska sjukdomar / tidigare problem (Xt-EHR only / LOINC 11348-0) ---
+* section[pastHistory].code = $LNC#11348-0
+* section[pastHistory].code 1..1
+* section[pastHistory].title 1..1
+* section[pastHistory].entry 0..*
+* section[pastHistory].entry only Reference(IneraEHDSPatientSummaryCondition)
+
+// --- Föranmälda direktiv (Xt-EHR only / LOINC 42348-3) ---
+* section[advDir].code = $LNC#42348-3
+* section[advDir].code 1..1
+* section[advDir].title 1..1
+* section[advDir].entry 0..*
+* section[advDir].entry only Reference(IneraEHDSPatientSummaryConsent)
+
+// --- Vårdplan / plan of care (Xt-EHR only / LOINC 18776-5) ---
+* section[planOfCare].code = $LNC#18776-5
+* section[planOfCare].code 1..1
+* section[planOfCare].title 1..1
+* section[planOfCare].entry 0..*
+* section[planOfCare].entry only Reference(IneraEHDSPatientSummaryCarePlan)

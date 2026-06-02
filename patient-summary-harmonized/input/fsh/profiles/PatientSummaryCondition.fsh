@@ -3,8 +3,8 @@ Alias: $ConditionClinical = http://terminology.hl7.org/CodeSystem/condition-clin
 Profile: IneraEHDSPatientSummaryCondition
 Parent: Condition
 Id: inera-ehds-patient-summary-condition
-Title: "Inera EHDS Patient Summary Condition"
-Description: "Problem/diagnosprofil harmoniserad för Xt-EHR ProblemList och EPS Patient Summary."
+Title: "Inera EHDS Patient Summary Condition (EHDSCondition – Diagnos/problem)"
+Description: "Profil för diagnos/problem (EHDSCondition) harmoniserad mot Xt-EHR A.1.9 (aktiv problemlista) och Xt-EHR historiska sjukdomar (section LOINC 11348-0) samt EPS Patient Summary. Nationell motsvarighet: getDiagnosis via RIVTA/NPÖ. Kodverk: ICD-10-SE (primärt), SNOMED CT. Termen 'diagnos/problem' används i enlighet med eHälsomyndighetens svenska terminologi för EHDS."
 
 * ^status = #draft
 * ^experimental = false

@@ -28,13 +28,21 @@ Description: "FHIR Bundle av typen 'document' som utgör ett komplett, självst�
 * entry contains
     composition         1..1 and  // obligatorisk: dokumentets Composition
     patient             1..1 and  // obligatorisk: den summerade patienten
-    allergy             0..* and  // Xt-EHR A.1.8 AllergyIntolerance
-    condition           0..* and  // Xt-EHR A.1.9 Condition (problemlista)
-    medicationStatement 0..* and  // Xt-EHR A.1.7 MedicationStatement
-    immunization        0..* and  // Xt-EHR A.1.11 Immunization
-    procedure           0..* and  // Xt-EHR A.1.10 Procedure
-    device              0..* and  // Xt-EHR A.1.12 DeviceUseStatement
-    observation         0..*      // Xt-EHR A.1.13 Observation (resultat)
+    allergy             0..* and  // Xt-EHR A.1.8 AllergyIntolerance – överkänslighet (EHDSAllergyIntolerance)
+    condition           0..* and  // Xt-EHR A.1.9 Condition – diagnos/problem (EHDSCondition)
+    medicationStatement 0..* and  // Xt-EHR A.1.7 MedicationStatement – läkemedelsbehandling (EHDSMedicationStatement)
+    flag                0..* and  // Xt-EHR EHDSAlert – medicinska varningar; separat från överkänslighet; UMI-varningsdelen
+    immunization        0..* and  // Xt-EHR A.1.11 Immunization – vaccinationer/immuniseringar
+    procedure           0..* and  // Xt-EHR A.1.10 Procedure – åtgärder (EHDSProcedure)
+    deviceUseStatement  0..* and  // Xt-EHR A.1.12 DeviceUseStatement – användning av medicinteknisk produkt (EHDSDeviceUse)
+    device              0..* and  // Xt-EHR A.1.12 Device – medicinteknisk produkt (EHDSDevice); refereras från DeviceUseStatement
+    observation         0..* and  // Xt-EHR A.1.13 Observation – diagnostiska resultat
+    relatedPerson       0..* and  // Xt-EHR header: legal guardian – Xt-EHR-only
+    coverage            0..* and  // Xt-EHR header: insurance – Xt-EHR-only
+    practitionerRole    0..* and  // Xt-EHR header: preferred HCP – Xt-EHR-only
+    consent             0..* and  // Xt-EHR: föranmälda direktiv – Xt-EHR-only
+    carePlan            0..* and  // Xt-EHR: vårdplan – Xt-EHR-only
+    diagnosticReport    0..*      // Xt-EHR: strukturerade rapporter – Xt-EHR-only
 
 // Composition (EURIDICE, EPS, Xt-EHR: krävs alltid som första entry i dokumentbundle)
 * entry[composition].resource 1..1
@@ -71,12 +79,46 @@ Description: "FHIR Bundle av typen 'document' som utgör ett komplett, självst�
 * entry[procedure].resource only IneraEHDSPatientSummaryProcedure
 * entry[procedure].fullUrl 1..1
 
-// Medicintekniska produkter / implantat
+// Medicinska varningar (EHDSAlert) – separat från överkänslighet
+* entry[flag].resource 1..1
+* entry[flag].resource only IneraEHDSPatientSummaryFlag
+* entry[flag].fullUrl 1..1
+
+// Användning av medicinteknisk produkt (EHDSDeviceUse)
+* entry[deviceUseStatement].resource 1..1
+* entry[deviceUseStatement].resource only IneraEHDSPatientSummaryDeviceUseStatement
+* entry[deviceUseStatement].fullUrl 1..1
+
+// Medicinteknisk produkt (EHDSDevice) – refereras från DeviceUseStatement
 * entry[device].resource 1..1
-* entry[device].resource only IneraEHDSPatientSummaryDeviceUseStatement
+* entry[device].resource only IneraEHDSPatientSummaryDevice
 * entry[device].fullUrl 1..1
 
 // Laboratorieresultat / vitala parametrar
 * entry[observation].resource 1..1
 * entry[observation].resource only IneraEHDSPatientSummaryObservationResults
 * entry[observation].fullUrl 1..1
+
+* entry[relatedPerson].resource 1..1
+* entry[relatedPerson].resource only IneraEHDSPatientSummaryRelatedPerson
+* entry[relatedPerson].fullUrl 1..1
+
+* entry[coverage].resource 1..1
+* entry[coverage].resource only IneraEHDSPatientSummaryCoverage
+* entry[coverage].fullUrl 1..1
+
+* entry[practitionerRole].resource 1..1
+* entry[practitionerRole].resource only IneraEHDSPatientSummaryPractitionerRole
+* entry[practitionerRole].fullUrl 1..1
+
+* entry[consent].resource 1..1
+* entry[consent].resource only IneraEHDSPatientSummaryConsent
+* entry[consent].fullUrl 1..1
+
+* entry[carePlan].resource 1..1
+* entry[carePlan].resource only IneraEHDSPatientSummaryCarePlan
+* entry[carePlan].fullUrl 1..1
+
+* entry[diagnosticReport].resource 1..1
+* entry[diagnosticReport].resource only IneraEHDSPatientSummaryDiagnosticReport
+* entry[diagnosticReport].fullUrl 1..1

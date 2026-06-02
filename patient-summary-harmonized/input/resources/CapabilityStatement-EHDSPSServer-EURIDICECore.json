@@ -1,14 +1,14 @@
 {
   "resourceType": "CapabilityStatement",
-  "id": "inera-ehds-patient-summary-server-requirements",
-  "url": "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/CapabilityStatement/inera-ehds-patient-summary-server-requirements",
+  "id": "inera-ehds-ps-server-euridice-core",
+  "url": "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/CapabilityStatement/inera-ehds-ps-server-euridice-core",
   "version": "0.1.0",
-  "name": "IneraEHDSPatientSummaryServerRequirements",
-  "title": "Inera EHDS Patient Summary – Server Capability Requirements",
+  "name": "IneraEHDSPSServerEURIDICECore",
+  "title": "Inera EHDS PS – Server Requirements (EURIDICE Core)",
   "status": "draft",
   "experimental": true,
   "date": "2026-05-27",
-  "description": "Minimikrav (kind=requirements) på en FHIR-server för att stödja resursorienterad EHDS Patient Summary-åtkomst (EURIDICE resource access pattern). Används som underlag för gap-analys mot befintliga FHIR-implementationer och RIVTA-tjänstekontrakt. Baseras på Xt-EHR EHDS Patient Summary R1 och EURIDICE EU Health Data API-specifikationen i avvaktan på formellt beslutad EEHRxF.",
+  "description": "Minimikrav (kind=requirements) från EURIDICE EU Health Data API resource access pattern. Dessa 8 resurstyper utgör minimiuppsättningen för EHDS-kompatibel cross-border åtkomst. Se IneraEHDSPSServerXtEHRFull för komplett Xt-EHR-scope.",
   "kind": "requirements",
   "fhirVersion": "4.0.1",
   "format": ["json", "xml"],
@@ -69,7 +69,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-medication-statement"
           ],
-          "documentation": "SHALL – Läkemedelsöversikt (Xt-EHR A.1.7, LOINC 10160-0). Avser aktuell läkemedelslista. Notering: skiljer sig från MedicationRequest (förskrivning) och MedicationDispense (expediering). Pascal/NPÖ-motsvarighet är GetMedicationHistory.",
+          "documentation": "SHALL – Läkemedelsbehandling (EHDSMedicationStatement, Xt-EHR A.1.7, LOINC 10160-0). Avser aktuell och nylig läkemedelsbehandling. Notering: skiljer sig från MedicationRequest (förskrivning) och MedicationDispense (expediering). Nationell källa: Nationella läkemedelslistan (Pascal) via GetMedicationHistory. Kodverk: NPL-id, ATC-SE, SNOMED CT.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -106,7 +106,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-allergy-intolerance"
           ],
-          "documentation": "SHALL – Allergier och intoleranser (Xt-EHR A.1.8, LOINC 48765-2). NPÖ-motsvarighet är GetAlertInformation. Obs: alerts/varningar utan allergigrund täcks ej av EHDS PS.",
+          "documentation": "SHALL – Överkänslighet (EHDSAllergyIntolerance, Xt-EHR A.1.8, LOINC 48765-2). Täcker allergier och överkänsligheter mot substanser. Nationell källa: UMI överkänslighetsdelen via NPÖ GetAlertInformation. Obs: medicinska varningar (EHDSAlert) som inte är överkänslighet representeras separat via Flag-resursen.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -143,7 +143,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-condition"
           ],
-          "documentation": "SHALL – Problemlista/diagnoser (Xt-EHR A.1.9, LOINC 11450-4). NPÖ-motsvarighet är GetDiagnoses. category=problem-list-item ger aktiv problemlista; encounter-diagnosis ger episoddiagnoser.",
+          "documentation": "SHALL – Diagnos/problem (EHDSCondition, Xt-EHR A.1.9, LOINC 11450-4). Aktiv problemlista och relevanta diagnoser. Nationell källa: getDiagnosis via RIVTA/NPÖ. category=problem-list-item ger aktiv problemlista; encounter-diagnosis ger episoddiagnoser. Kodverk: ICD-10-SE (primärt), SNOMED CT.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -185,7 +185,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-procedure"
           ],
-          "documentation": "SHOULD – Procedurhistorik (Xt-EHR A.1.10, LOINC 47519-4). Saknar direkt RIVTA-tjänstekontrakt; viss täckning via GetCareContacts och kliniska dokument. Kodverk: KVÅ (nationellt), SNOMED CT, NordDRG.",
+          "documentation": "SHOULD – Åtgärder (EHDSProcedure, Xt-EHR A.1.10, LOINC 47519-4). Kirurgiska och terapeutiska ingrepp av klinisk relevans. Saknar direkt RIVTA-tjänstekontrakt; viss täckning via getActivities och kliniska dokument. Kodverk: KVÅ (Klassifikation av vårdåtgärder, primärt nationellt), SNOMED CT, NordDRG.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -259,7 +259,7 @@
           "supportedProfile": [
             "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-device-use-statement"
           ],
-          "documentation": "SHOULD – Medicintekniska produkter och implantat (Xt-EHR A.1.12, LOINC 46264-8). Saknar idag direkt RIVTA-tjänstekontrakt och nationellt register. Uppgifter finns i journalsystem men harmoniserad exponering saknas. Obs: FHIR R4 = DeviceUseStatement; R4B/R5 = DeviceUsage.",
+          "documentation": "SHOULD – Användning av medicinteknisk produkt (EHDSDeviceUse, Xt-EHR A.1.12, LOINC 46264-8). Beskriver patientens aktiva medicintekniska hjälpmedel och implantat. Refererar till Device-resursen (EHDSDevice) med UDI-identifierare per EU MDR 2017/745. Saknar idag direkt RIVTA-tjänstekontrakt och nationellt register. Uppgifter finns i journalsystem men harmoniserad exponering saknas. Obs: FHIR R4 = DeviceUseStatement; R4B/R5 = DeviceUsage.",
           "interaction": [
             { "code": "read" },
             { "code": "search-type" }
@@ -274,6 +274,65 @@
               "name": "status",
               "type": "token",
               "documentation": "SHOULD – active | completed | entered-in-error"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "Flag",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-flag"
+          ],
+          "documentation": "SHOULD – Medicinska varningar (EHDSAlert, LOINC 75310-3). Kliniska varningar som INTE är överkänslighet/allergi – t.ex. säkerhetsvarningar, riskfaktorer och tillstånd med direkt behandlingskonsekvens. Nationell källa: UMI varningsdelen (NPÖ GetAlertInformation, exkl. överkänsligheter). Hanteras separat från AllergyIntolerance per EHDS PS-specifikationen och eHälsomyndighetens gap-analys (Dnr 2024/04403, okt 2025).",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "SHALL – Primärnyckel för EHDS resource access"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "SHOULD – active | inactive | entered-in-error"
+            },
+            {
+              "name": "category",
+              "type": "token",
+              "documentation": "SHOULD – Typ av varning (SNOMED CT eller lokalt kodverk)"
+            },
+            {
+              "name": "_lastUpdated",
+              "type": "date"
+            }
+          ]
+        },
+        {
+          "type": "Device",
+          "supportedProfile": [
+            "https://inera.se/fhir/ig/ehds-patient-summary-harmonized/StructureDefinition/inera-ehds-patient-summary-device"
+          ],
+          "documentation": "SHOULD – Medicinteknisk produkt (EHDSDevice, Xt-EHR A.1.12). Beskriver den fysiska enheten med UDI-identifierare (UDI-DI + UDI-PI) per EU MDR 2017/745. Refereras från DeviceUseStatement.device. Söks normalt via $includes från DeviceUseStatement-query snarare än direkt sökning.",
+          "interaction": [
+            { "code": "read" },
+            { "code": "search-type" }
+          ],
+          "searchParam": [
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "SHOULD – UDI-DI som token-sökning"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "SHOULD – Produkttyp (SNOMED CT eller ISO/IEEE 11073)"
             },
             {
               "name": "_lastUpdated",
