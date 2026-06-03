@@ -16,7 +16,7 @@ Description: "Föranmälda direktiv (advance directives) och patientens informer
 
 // SHALL: typ av direktiv
 * category 1..*
-* category from http://hl7.org/fhir/ValueSet/consent-category (preferred)
+* category from http://hl7.org/fhir/ValueSet/consent-category (extensible)
 
 // SHALL: koppling till patient
 * patient 1..1

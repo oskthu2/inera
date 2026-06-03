@@ -17,8 +17,8 @@ Description: "Försäkrings- och betalningsinformation (Xt-EHR EHDS PS header: i
 * type 0..1
 * type from http://hl7.org/fhir/ValueSet/coverage-type (preferred)
 
-// SHOULD: försäkringsgivare / betalare
-* payor 0..*
+// SHOULD: försäkringsgivare / betalare (1..* i FHIR R4-basen; ingen ytterligare begränsning)
+// * payor 0..* — kan ej lossas från basens 1..*
 
 // SHOULD: giltighetsperiod
 * period 0..1
