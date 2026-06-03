@@ -27,4 +27,4 @@ Description: "Vårdplan / plan of care (Xt-EHR EHDS PS: plan of care-sektion, LO
 * activity 0..*
 * activity.detail 0..1
 * activity.detail.code 0..1
-* activity.detail.status 0..1
+// activity.detail.status är 1..1 i FHIR R4-basen; ingen ytterligare begränsning behövs
